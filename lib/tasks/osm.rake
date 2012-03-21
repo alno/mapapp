@@ -82,7 +82,7 @@ namespace :osm do
     xml = File.read(Rails.root.join('config', 'map.xml'))
     xml.gsub! "<Parameter name=\"dbname\"><![CDATA[gis]]></Parameter>","<Parameter name=\"dbname\"><![CDATA[#{db['database']}]]></Parameter>"
     xml.gsub! "<Parameter name=\"user\"><![CDATA[gis]]></Parameter>","<Parameter name=\"user\"><![CDATA[#{db['username']}]]></Parameter>"
-    xml.gsub! "<Parameter name=\"password\"><![CDATA[gis]]></Parameter>","<Parameter name=\"password\"><![CDATA[#{db['password']}]]></Parameter>"
+    xml.gsub! "<Parameter name=\"password\"><![CDATA[zsedcft]]></Parameter>","<Parameter name=\"password\"><![CDATA[#{db['password']}]]></Parameter>"
     xml.gsub! /CDATA\[[^\]]+hillshade.tif\]/, "CDATA[hillshade.tif]"
 
     File.open "#{tmpdir}/map.xml", "w" do |f|
