@@ -43,7 +43,7 @@ namespace :osm do
     name = url.split('/').last
     db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]
 
-    puts "Starting import of OSM dump from '#{url}' to database '#{db.insect}'"
+    puts "Starting import of OSM dump from '#{url}' to database '#{db.inspect}'"
 
     importdir = Rails.root.join('tmp', 'import')
 
