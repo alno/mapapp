@@ -1,0 +1,25 @@
+// Place all the styles related to the index controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'leaflet'
+
+.leaflet-control-measure
+  border-radius: 7px 7px 7px 7px
+  background: rgba(0, 0, 0, 0.25)
+  padding: 5px
+
+  a
+    border-radius: 4px 4px 4px 4px
+    height: 19px
+    width: 19px
+    display: block
+    background: blue
+    padding: 0px
+
+    &.active
+      background: red
+
+#map
+  width: 100%
+  height: 100%
