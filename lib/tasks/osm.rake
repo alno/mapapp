@@ -67,8 +67,10 @@ namespace :osm do
 
     if File.exists? Rails.root.join('..', '..', 'shared')
       heightdir = Rails.root.join('..', '..', 'shared', 'heights')
+      tiledir = Rails.root.join('..', '..', 'shared', 'tiles')
     else
       heightdir = Rails.root.join('tmp', 'heights')
+      tiledir = Rails.root.join('public', 'tiles')
     end
 
     db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]
@@ -91,6 +93,7 @@ namespace :osm do
 
     FileUtils.ln_s heightdir.join('hillshade.tif'), tmpdir.join('hillshade.tif')
     FileUtils.ln_s Rails.root.join('public', 'markers'), tmpdir.join('markers')
+    FileUtils.mkdir_p tiledir
 
     puts "Loading mapnik style..."
 
@@ -115,17 +118,16 @@ namespace :osm do
         end
       end
 
+      puts "Moving zoom..."
+
+      FileUtils.rm_rf "#{tiledir}/#{z}"
+      FileUtils.move "#{tmpdir}/tiles/#{z}", "#{tiledir}/#{z}"
+
       minx = minx * 2
       miny = miny * 2
       maxx = maxx * 2 + 1
       maxy = maxy * 2 + 1
     end
-
-    puts "Moving tiles..."
-
-    dir = Rails.root.join('public', 'tiles')
-    FileUtils.rm_rf dir
-    FileUtils.move "#{tmpdir}/tiles", dir
 
     puts "Success!"
   end

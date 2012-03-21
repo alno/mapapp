@@ -5,6 +5,10 @@ set :user, "kalugamap"
 set :use_sudo, false
 set :deploy_to, "/home/kalugamap/apps/kalugamap"
 
+set :whenever_command, "bundle exec whenever"
+set :whenever_identifier, defer { application }
+set :whenever_options, :roles => :db, :only => { :primary => true }
+
 server "s1.alno.name", :web, :app, :db, :primary => true
 
 default_run_options[:pty] = true
@@ -41,6 +45,8 @@ end
 after "deploy:update_code", roles => :app do
   run "ln -nfs #{shared_path}/config/unicorn.rb #{release_path}/config/unicorn.rb"
   run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+
+  run "ln -s #{shared_path}/tiles #{release_path}/public/tiles"
 end
 
 load 'deploy/assets'
