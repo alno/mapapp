@@ -42,3 +42,7 @@ after "deploy:update_code", roles => :app do
   run "ln -nfs #{shared_path}/config/unicorn.rb #{release_path}/config/unicorn.rb"
   run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 end
+
+load 'deploy/assets'
+
+require 'whenever/capistrano'

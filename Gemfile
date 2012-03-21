@@ -23,13 +23,10 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'jquery-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+  gem 'bootstrap-sass'
 
   gem 'uglifier', '>= 1.0.3'
-
-  gem 'bootstrap-sass'
+  gem 'therubyracer'
 end
 
 group :development, :test do
