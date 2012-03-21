@@ -132,4 +132,9 @@ namespace :osm do
     puts "Success!"
   end
 
+  desc "Import new version of map and rerender it"
+  task :update => [:import, :render] do
+    puts "Ok, map updated!"
+  end
+
 end
