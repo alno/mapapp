@@ -308,7 +308,7 @@
     <StyleName>hillshade-outline</StyleName>
     <StyleName>hillshade-inline_1_ter</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[/home/alno/Documents/MapBox/project/kaluga/layers/hillshade.tif]]></Parameter>
+       <Parameter name="file"><![CDATA[/home/alno/Documents/MapBox/project/kaluga/hillshade.tif]]></Parameter>
        <Parameter name="type"><![CDATA[gdal]]></Parameter>
     </Datasource>
   </Layer>
@@ -5921,17 +5921,17 @@
     <MaxScaleDenominator>750000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'village')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="12" fill="#000000" minimum-distance="50" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="12" fill="#000000" minimum-distance="50" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'town')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="16" fill="#000000" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="16" fill="#000000" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Bold" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="3" size="20" fill="#cc0000" text-transform="uppercase" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Bold" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="3" size="20" fill="#cc0000" text-transform="uppercase" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="place_labels"
@@ -5966,13 +5966,13 @@
 <Style name="building_labels-label" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <TextSymbolizer wrap-width="50" placement-type="simple" placements="N,S" label-position-tolerance="5" face-name="Ubuntu Regular" fill="#000000" halo-fill="rgba(250, 236, 212, 0.7)" halo-radius="1.5" size="12" dy="10" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="50" placement-type="simple" placements="N,S" label-position-tolerance="5" face-name="Ubuntu Regular" fill="#000000" halo-fill="rgba(250, 236, 212, 0.7)" halo-radius="1.5" size="12" dy="10" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Style name="building_labels-number" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <TextSymbolizer wrap-width="40" placement-type="simple" placements="N,S" face-name="Ubuntu Regular" label-position-tolerance="50" fill="#000000" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1" size="11" minimum-distance="1" placement="interior" ><![CDATA[[addr:housenumber]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" placement-type="simple" placements="N,S" face-name="Ubuntu Regular" label-position-tolerance="50" fill="#000000" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1" size="11" minimum-distance="1" minimum-padding="5" placement="interior" ><![CDATA[[addr:housenumber]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="building_labels"
