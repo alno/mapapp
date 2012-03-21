@@ -1,5 +1,5 @@
 GIT
-  remote: /home/alno/Projects/Map/ruby-mapnik
+  remote: git://github.com/alno/Ruby-Mapnik.git
   revision: 958910b17bce3d2c94227728d44578fb94b21da4
   specs:
     ruby_mapnik (0.1.2)

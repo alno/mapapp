@@ -16,7 +16,7 @@ gem 'capistrano' # Deploy with Capistrano
 gem 'whenever' # Cron tasks
 
 group :rendering do
-  gem 'ruby_mapnik', :git => '/home/alno/Projects/Map/ruby-mapnik'
+  gem 'ruby_mapnik', :git => 'git://github.com/alno/Ruby-Mapnik.git'
 end
 
 group :assets do
