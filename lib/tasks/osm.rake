@@ -2,6 +2,39 @@ require 'fileutils'
 
 namespace :osm do
 
+  desc "Prepare hillshade data"
+  task :hillshade do
+    if File.exists? Rails.root.join('..', '..', 'shared')
+      heightdir = Rails.root.join('..', '..', 'shared', 'heights')
+    else
+      heightdir = Rails.root.join('..', 'heights')
+    end
+
+    min_lat = 52
+    max_lat = 56
+    min_lon = 31
+    max_lon = 38
+
+    puts "Downloading height data..."
+
+    names = (min_lat..max_lat).map{|lat| (min_lon..max_lon).map{|lon| "N#{lat}E0#{lon}" } }.flatten
+    names.each do |name|
+      `cd '#{heightdir}' && wget http://dds.cr.usgs.gov/srtm/version2_1/SRTM3/Eurasia/#{name}.hgt.zip` unless File.exists? heightdir.join("#{name}.hgt.zip")
+      `cd '#{heightdir}' && yes | '#{Rails.root.join('vendor', 'bin', 'srtm_generate_hdr')}' #{name}.hgt.zip` unless File.exists? heightdir.join("#{name}.tif")
+    end
+
+    puts "Merging height data..."
+    system "cd '#{heightdir}' && rm -rf all.tif && gdal_merge.py -v -o all.tif -ul_lr #{min_lon} #{max_lat} #{max_lon} #{min_lat} #{names.map{|n|"#{n}.tif"}.join(' ')}" or raise StandardError.new("Error merging data")
+
+    puts "Reprojecting height data..."
+    system "cd '#{heightdir}' && rm -rf warped.tif && gdalwarp -of GTiff -co 'TILED=YES' -srcnodata 32767 -t_srs '+proj=merc +ellps=sphere +R=6378137 +a=6378137 +units=m' -rcs -order 3 -tr 30 30 -multi all.tif warped.tif" or raise StandardError.new("Error reprojecting data")
+
+    puts "Generating hillshades..."
+    system "cd '#{heightdir}' && rm -rf hillshade.tif && '#{Rails.root.join('vendor', 'bin', 'hillshade')}' warped.tif hillshade.tif -z 16" or raise StandardError.new("Error generating hillshade")
+
+    puts "Success!"
+  end
+
   desc "Import latest osm dump"
   task :import do
     ENV['DB_CONFIG'] ||= Rails.root.join('config', 'database.yml')
@@ -10,7 +43,7 @@ namespace :osm do
     name = url.split('/').last
     db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]
 
-    puts "Starting import of OSM dump from '#{url}' to database '#{db}'"
+    puts "Starting import of OSM dump from '#{url}' to database '#{db.insect}'"
 
     importdir = Rails.root.join('tmp', 'import')
 
@@ -23,7 +56,7 @@ namespace :osm do
 
     puts "Importing OSM dump..."
 
-    system "cd '#{importdir}' && imposm --read --write --optimize --deploy-production-tables -m '#{Rails.root.join('config', 'mapping.py')}' -d '#{db}' '#{name}'" or raise StandardError.new("Error importing data")
+    system "cd '#{importdir}' && imposm --read --write --optimize --deploy-production-tables -m '#{Rails.root.join('config', 'mapping.py')}' -d '#{db['database']}' '#{name}'" or raise StandardError.new("Error importing data")
 
     puts "Success!"
   end
