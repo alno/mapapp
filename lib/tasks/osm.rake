@@ -7,12 +7,12 @@ namespace :osm do
     if File.exists? Rails.root.join('..', '..', 'shared')
       heightdir = Rails.root.join('..', '..', 'shared', 'heights')
     else
-      heightdir = Rails.root.join('..', 'heights')
+      heightdir = Rails.root.join('tmp', 'heights')
     end
 
-    min_lat = 52
+    min_lat = 53
     max_lat = 56
-    min_lon = 31
+    min_lon = 33
     max_lon = 38
 
     puts "Downloading height data..."
@@ -65,6 +65,12 @@ namespace :osm do
   task :render do
     ENV['DB_CONFIG'] ||= Rails.root.join('config', 'database.yml')
 
+    if File.exists? Rails.root.join('..', '..', 'shared')
+      heightdir = Rails.root.join('..', '..', 'shared', 'heights')
+    else
+      heightdir = Rails.root.join('tmp', 'heights')
+    end
+
     db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]
     tmpdir = Rails.root.join('tmp', 'render')
 
@@ -77,11 +83,13 @@ namespace :osm do
     xml.gsub! "<Parameter name=\"dbname\"><![CDATA[gis]]></Parameter>","<Parameter name=\"dbname\"><![CDATA[#{db['database']}]]></Parameter>"
     xml.gsub! "<Parameter name=\"user\"><![CDATA[gis]]></Parameter>","<Parameter name=\"user\"><![CDATA[#{db['username']}]]></Parameter>"
     xml.gsub! "<Parameter name=\"password\"><![CDATA[gis]]></Parameter>","<Parameter name=\"password\"><![CDATA[#{db['password']}]]></Parameter>"
+    xml.gsub! /CDATA\[[^\]]+hillshade.tif\]/, "CDATA[hillshade.tif]"
 
     File.open "#{tmpdir}/map.xml", "w" do |f|
       f.write xml
     end
 
+    FileUtils.ln_s heightdir.join('hillshade.tif'), tmpdir.join('hillshade.tif')
     FileUtils.ln_s Rails.root.join('public', 'markers'), tmpdir.join('markers')
 
     puts "Loading mapnik style..."
