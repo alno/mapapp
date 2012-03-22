@@ -6,8 +6,11 @@ gem 'rails', '3.2.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'activerecord-postgis-adapter' # Working with geodata
 
 gem 'yajl-ruby'
+
+gem 'cells'
 
 gem 'haml-rails'
 
@@ -23,6 +26,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'jquery-rails'
+  gem 'historyjs-rails'
   gem 'bootstrap-sass'
 
   gem 'uglifier', '>= 1.0.3'

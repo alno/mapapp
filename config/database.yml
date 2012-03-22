@@ -13,7 +13,7 @@
 # gem 'pg'
 #
 development:
-  adapter: postgresql
+  adapter: postgis
   host: localhost
   encoding: unicode
   database: gis

@@ -19,6 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :output, {:error => File.expand_path(File.dirname(__FILE__) + '/../log/cron-error.log'), :standard => File.expand_path(File.dirname(__FILE__) + '/../log/cron.log')}
+
 every 1.day, :at => '03:30' do
   rake "osm:update"
 end

@@ -1,0 +1,15 @@
+- if @query
+  Search results for #{@query}
+
+  %ul
+    - @buildings.each do |building|
+      %li
+        %b= building.name
+
+  :javascript
+    $(function(){
+      window.map.showSearchResults([#{ @buildings.map(&:latlng_centroid).map{|c| "new L.LatLng(#{c.y}, #{c.x})" }.join(',') }])
+    })
+
+- else
+  No query - no results

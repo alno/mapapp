@@ -1,0 +1,12 @@
+!!!5
+%html
+  = render 'layouts/header'
+
+  %body
+    = render 'layouts/navbar'
+
+    #content.map{ :style => params[:q].blank? ? "" : "with-sidebar" }
+      = yield
+
+    #sidebar{ :style => params[:q].blank? ? "left: -300px": "" }
+      = render_cell :search, :results, params
