@@ -1,6 +1,6 @@
 require 'active_record/geo_model'
 
-class OsmPlace < ActiveRecord::Base
+class OsmArea < ActiveRecord::Base
   include ActiveRecord::GeoModel
 
   self.inheritance_column = "ar_type"

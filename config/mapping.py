@@ -103,7 +103,10 @@ buildings = Polygons(
         'building': ('__any__',),
     },
     fields = (
+        ('addr:street', String()),
         ('addr:housenumber', String()),
+        ('addr:postcode', String()),
+        ('amenity', String()),
     )
 )
 
@@ -229,6 +232,7 @@ areas = Polygons(
             'wetland',
             'beach',
         ])),
+        ('amenity', String()),
     ),
     field_filter = (
         ('building', Bool()),

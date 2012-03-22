@@ -2,14 +2,16 @@
   Search results for #{@query}
 
   %ul
-    - @buildings.each do |building|
-      %li
-        %b= building.name
+    - @buildings.each_with_distance do |obj, distance|
+      - centroid = obj.latlng_centroid
 
-  :javascript
-    $(function(){
-      window.map.showSearchResults([#{ @buildings.map(&:latlng_centroid).map{|c| "new L.LatLng(#{c.y}, #{c.x})" }.join(',') }])
-    })
+      %li.result{ 'data-lat' => centroid.y, 'data-lng' => centroid.x, 'data-zoom' => 14 }
+        %a.name{ :href => '#' }= obj.name
+
+        - if obj.respond_to?(:address) && obj.address
+          %span.address= obj.address
+
+        %span.distance= distance
 
 - else
   No query - no results

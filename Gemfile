@@ -7,6 +7,7 @@ gem 'rails', '3.2.2'
 
 gem 'pg'
 gem 'activerecord-postgis-adapter' # Working with geodata
+gem 'thinking-sphinx', '>= 2.0.10'
 
 gem 'yajl-ruby'
 

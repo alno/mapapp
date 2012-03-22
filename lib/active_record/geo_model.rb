@@ -1,4 +1,4 @@
-module OsmModel
+module ActiveRecord::GeoModel
 
   extend ActiveSupport::Concern
 
@@ -16,10 +16,6 @@ module OsmModel
     else
       geometry.centroid
     end
-  end
-
-  included do
-    self.inheritance_column = "ar_type"
   end
 
   module ClassMethods

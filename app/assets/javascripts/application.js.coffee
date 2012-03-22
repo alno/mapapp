@@ -17,15 +17,33 @@ class Map
 
     @present = true
 
-  showSearchResults: (coords) ->
-    @map.removeLayer(@searchResultsLayer) if @searchResultsLayer
-    @searchResultsLayer = new L.LayerGroup()
+  updateSearchResults: ->
+    if @searchResultsLayer
+      @map.removeLayer(@searchResultsLayer)
+      @searchResultsLayer = null
 
-    for c in coords
-      console.log(c)
-      @searchResultsLayer.addLayer(new L.Marker(c))
+    return if $('#sidebar .result').lenght == 0
 
-    @map.addLayer @searchResultsLayer
+    layer = new L.LayerGroup()
+    map = @map
+
+    $('#sidebar .result').each ->
+      res = $(@)
+      zoom = res.data('zoom')
+      point = new L.LatLng(res.data('lat'), res.data('lng'))
+
+      res.click ->
+        map.panTo point
+        map.setZoom zoom
+        false
+
+      marker = new L.Marker(point)
+      marker.bindPopup("<h3>#{res.find('.name').html()}</h3><b>#{res.find('.address').html()}</b>")
+
+      layer.addLayer(marker)
+
+    @map.addLayer layer
+    @searchResultsLayer = layer
 
 $ ->
   sidebar = $('#sidebar')
@@ -43,6 +61,7 @@ $ ->
 
   $('#map').each ->
     window.map = new Map()
+    window.map.updateSearchResults()
 
   $('#sidebar_toggle').click ->
     if sidebar.offset().left >= 0
@@ -56,8 +75,11 @@ $ ->
     # TODO Add sidebar loading
     # TODO Pushstate
 
-    $.get "/search?#{$('#search_form').serialize()}", (data) ->
+    center = map.map.getCenter()
+
+    $.get "/search?#{$('#search_form').serialize()}&lat=#{center.lat}&lng=#{center.lng}", (data) ->
       $('#sidebar').html(data)
+      map.updateSearchResults()
       showSidebar()
 
     false # Don't send form in normal way
