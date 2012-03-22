@@ -25,12 +25,16 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "cd #{current_path} ; script/delayed_job restart"
     run "cd #{current_path} ; ([ -f tmp/pids/unicorn.pid ] && kill -USR2 `cat tmp/pids/unicorn.pid`) || bundle exec unicorn -c config/unicorn.rb -E production -D"
+
+    thinking_sphinx.start
   end
 
   desc "Rude restart application"
   task :rude_restart, :roles => :app do
     run "cd #{current_path} ; script/delayed_job stop; script/delayed_job start"
     run "cd #{current_path} ; pkill -f unicorn; sleep 0.5; pkill -f unicorn; sleep 0.5 ; bundle exec unicorn -c config/unicorn.rb -E production -D "
+
+    thinking_sphinx.start
   end
 
   task :start, :roles => :app do
@@ -47,8 +51,13 @@ after "deploy:update_code", roles => :app do
   run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 
   run "ln -s #{shared_path}/tiles #{release_path}/public/tiles"
+
+  run "ln -nfs #{shared_path}/sphinx #{release_path}/db/sphinx"
+
+  thinking_sphinx.configure
 end
 
 load 'deploy/assets'
 
 require 'whenever/capistrano'
+require 'thinking_sphinx/deploy/capistrano'
