@@ -1,3 +1,3 @@
-require 'thinking_sphinx'
+require 'thinking-sphinx'
 
 ThinkingSphinx.database_adapter = :postgresql

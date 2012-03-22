@@ -26,7 +26,7 @@ namespace :deploy do
     run "cd #{current_path} ; script/delayed_job restart"
     run "cd #{current_path} ; ([ -f tmp/pids/unicorn.pid ] && kill -USR2 `cat tmp/pids/unicorn.pid`) || bundle exec unicorn -c config/unicorn.rb -E production -D"
 
-    thinking_sphinx.start
+    thinking_sphinx.restart
   end
 
   desc "Rude restart application"
@@ -34,7 +34,7 @@ namespace :deploy do
     run "cd #{current_path} ; script/delayed_job stop; script/delayed_job start"
     run "cd #{current_path} ; pkill -f unicorn; sleep 0.5; pkill -f unicorn; sleep 0.5 ; bundle exec unicorn -c config/unicorn.rb -E production -D "
 
-    thinking_sphinx.start
+    thinking_sphinx.restart
   end
 
   task :start, :roles => :app do
