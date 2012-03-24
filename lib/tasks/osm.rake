@@ -51,7 +51,7 @@ namespace :osm do
       dump_file = File.expand_path(ENV['FILE'])
     else # Dump should be downloaded
       dump_url = "http://data.gis-lab.info/osm_dump/dump/latest/RU-KLU.osm.pbf"
-      dump_file = importdir.join(url.split('/').last)
+      dump_file = importdir.join(dump_url.split('/').last)
 
       puts "Downloading OSM dump..."
       system "cd '#{importdir}' && wget '#{dump_url}'" or raise StandardError.new("Error downloading dump from '#{dump_url}'")
