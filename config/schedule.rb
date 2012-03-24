@@ -21,6 +21,6 @@
 
 set :output, {:error => File.expand_path(File.dirname(__FILE__) + '/../log/cron-error.log'), :standard => File.expand_path(File.dirname(__FILE__) + '/../log/cron.log')}
 
-every 1.day, :at => '03:30' do
+every 3.days, :at => '01:30' do
   rake "osm:update"
 end
