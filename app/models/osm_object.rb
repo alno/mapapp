@@ -1,6 +1,6 @@
 require 'active_record/geo_model'
 
-class OsmBuilding < ActiveRecord::Base
+class OsmObject < ActiveRecord::Base
   include ActiveRecord::GeoModel
 
   self.inheritance_column = "ar_type"
@@ -12,16 +12,6 @@ class OsmBuilding < ActiveRecord::Base
     has "RADIANS(ST_X(ST_CENTROID(geometry)))", :as => :longitude, :type => :float
 
     where "name IS NOT NULL"
-  end
-
-  def address
-    addr = [address_postcode, address_city, address_street, address_housenumber].compact
-
-    if addr.empty?
-      nil
-    else
-      addr.join(', ')
-    end
   end
 
 end

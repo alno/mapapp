@@ -3,7 +3,7 @@
 
   %ul
     - @buildings.each_with_distance do |obj, distance|
-      - centroid = obj.latlng_centroid
+      - centroid = obj.centroid
 
       %li.result{ 'data-lat' => centroid.y, 'data-lng' => centroid.x, 'data-zoom' => 14 }
         %a.name{ :href => '#' }= obj.name
