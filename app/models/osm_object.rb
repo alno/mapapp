@@ -14,4 +14,14 @@ class OsmObject < ActiveRecord::Base
     where "name IS NOT NULL"
   end
 
+  def address
+    addr = [address_postcode, address_city, address_street, address_housenumber].compact
+
+    if addr.empty?
+      nil
+    else
+      addr.join(', ')
+    end
+  end
+
 end

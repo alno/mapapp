@@ -2,13 +2,15 @@ require 'osm_import'
 
 class OsmImport::Table
 
-  attr_reader :type, :name, :mapping, :mappers
+  attr_reader :type, :name, :mapping, :mappers, :after_create_callbacks, :after_import_callbacks
 
   def initialize(type, name, &block)
     @type = type.to_s.gsub(/s$/,'')
     @name = name
     @mapping = {}
     @mappers = {}
+    @after_create_callbacks = []
+    @after_import_callbacks = []
 
     dsl.instance_eval(&block) if block
   end
@@ -39,10 +41,12 @@ class OsmImport::Table
       end
     end
 
-    def after_create
+    def after_create(&block)
+      table.after_create_callbacks << block
     end
 
-    def after_import
+    def after_import(&block)
+      table.after_import_callbacks << block
     end
 
     private

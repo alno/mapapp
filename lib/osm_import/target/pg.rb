@@ -52,6 +52,10 @@ class OsmImport::Target::Pg < Struct.new(:options)
         mapper.after_create(tt)
       end
 
+      table.after_create_callbacks.each do |cb|
+        cb.call tt
+      end
+
       # Importing data to table
 
       if table.type == 'polygon'
@@ -69,6 +73,10 @@ class OsmImport::Target::Pg < Struct.new(:options)
 
       table.mappers.each do |key, mapper|
         mapper.after_import(tt)
+      end
+
+      table.after_import_callbacks.each do |cb|
+        cb.call tt
       end
     end
 
