@@ -47,17 +47,17 @@ namespace :osm do
     FileUtils.rm_rf importdir
     FileUtils.mkdir importdir
 
-    if ENV['FILE'] # Dump is present, just import it
-      dump_file = File.expand_path(ENV['FILE'])
-    else # Dump should be downloaded
-      dump_url = "http://data.gis-lab.info/osm_dump/dump/latest/RU-KLU.osm.pbf"
-      dump_file = importdir.join(dump_url.split('/').last)
+    unless ENV['UPDATE']
+      if ENV['FILE'] # Dump is present, just import it
+        dump_file = File.expand_path(ENV['FILE'])
+      else # Dump should be downloaded
+        dump_url = "http://data.gis-lab.info/osm_dump/dump/latest/RU-KLU.osm.pbf"
+        dump_file = importdir.join(dump_url.split('/').last)
 
-      puts "Downloading OSM dump..."
-      system "cd '#{importdir}' && wget '#{dump_url}'" or raise StandardError.new("Error downloading dump from '#{dump_url}'")
-    end
+        puts "Downloading OSM dump..."
+        system "cd '#{importdir}' && wget '#{dump_url}'" or raise StandardError.new("Error downloading dump from '#{dump_url}'")
+      end
 
-    unless ENV['RAW']
       puts "Importing osm data..."
       ENV['PGPASS'] = db['password']
       system "cd '#{importdir}' && '#{Rails.root.join('vendor', 'bin', 'osm2pgsql')}' -e 1-18 -o expire.list -x -j -l -G -S #{Rails.root.join('config', 'osm2pgsql.style')} -U #{db['username']} -d #{db['database']} -H #{db['host']} -p raw_osm '#{dump_file}'" or raise StandardError.new("Error importing data")

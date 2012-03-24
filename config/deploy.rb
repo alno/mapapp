@@ -54,6 +54,7 @@ after "deploy:update_code", roles => :app do
 
   run "ln -nfs #{shared_path}/sphinx #{release_path}/db/sphinx"
 
+  run "cd #{release_path} && bundle exec rake osm:import UPDATE=1"
   thinking_sphinx.configure
 end
 

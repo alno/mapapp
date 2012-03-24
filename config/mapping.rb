@@ -33,8 +33,8 @@ end
 lines :barriers do
   map :barrier, :natural => :cliff, :man_made => :enbankment
 
-  after_import do
-    # TODO
+  after_import do |tt|
+    tt.conn.exec "INSERT INTO new_osm_barriers(id,type,geometry) SELECT osm_id, COALESCE(tags->'barrier', tags->'natural') AS type, ST_Boundary(way) FROM raw_osm_polygon WHERE (tags->'barrier') IS NOT NULL OR (tags->'natural') IN ('cliff')"
   end
 end
 
