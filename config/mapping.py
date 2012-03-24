@@ -27,6 +27,14 @@ db_conf = Options(
 
 set_default_name_type(LocalizedName(['name:ru','name','int_name']))
 
+class NotEmptyString(String):
+
+    def value(self, val, osm_elem):
+        if val == None or val == "undefined" or len(val) == 0:
+            return None
+
+        return val
+
 class Length(FieldType):
     column_type = "REAL"
 
@@ -50,8 +58,8 @@ class NotArea(Bool):
             return 1  # not self.default
         return 0  # self.default
 
-places = Points(
-    name = 'places',
+cities = Points(
+    name = 'cities',
     mapping = {
         'place': (
             'city',
@@ -62,6 +70,20 @@ places = Points(
     fields = (
         ('z_order', ZOrder(['city','town','village'])),
         ('population', Integer()),
+    )
+)
+
+city_areas = Polygons(
+    name = 'city_areas',
+    mapping = {
+        'place': (
+            'city',
+            'town',
+            'village'
+        ),
+    },
+    fields = (
+        ('z_order', ZOrder(['city','town','village'])),
     )
 )
 
@@ -103,9 +125,10 @@ buildings = Polygons(
         'building': ('__any__',),
     },
     fields = (
-        ('addr:street', String()),
-        ('addr:housenumber', String()),
-        ('addr:postcode', String()),
+        ('addr:postcode', NotEmptyString()),
+        ('addr:city', NotEmptyString()),
+        ('addr:street', NotEmptyString()),
+        ('addr:housenumber', NotEmptyString()),
         ('amenity', String()),
     )
 )

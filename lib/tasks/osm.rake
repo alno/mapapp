@@ -39,31 +39,43 @@ namespace :osm do
   task :import do
     ENV['DB_CONFIG'] ||= Rails.root.join('config', 'database.yml')
 
-    url = "http://data.gis-lab.info/osm_dump/dump/latest/RU-KLU.osm.pbf"
-    name = url.split('/').last
     db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]
 
-    puts "Starting import of OSM dump from '#{url}' to database '#{db.inspect}'"
-
     importdir = Rails.root.join('tmp', 'import')
-
     FileUtils.rm_rf importdir
     FileUtils.mkdir importdir
 
-    puts "Downloading OSM dump..."
+    if ENV['FILE'] # Dump is present, just import it
+      dump_file = File.expand_path(ENV['FILE'])
+    else # Dump should be downloaded
+      dump_url = "http://data.gis-lab.info/osm_dump/dump/latest/RU-KLU.osm.pbf"
+      dump_file = importdir.join(url.split('/').last)
 
-    system "cd '#{importdir}' && wget '#{url}'" or raise StandardError.new("Error downloading dump from '#{url}'")
+      puts "Downloading OSM dump..."
+      system "cd '#{importdir}' && wget '#{dump_url}'" or raise StandardError.new("Error downloading dump from '#{dump_url}'")
+    end
 
-    puts "Importing OSM dump..."
+    puts "Importing OSM dump from '#{dump_file}' to database '#{db.inspect}'..."
+    system "cd '#{importdir}' && imposm --read --write --optimize -m '#{Rails.root.join('config', 'mapping.py')}' -d '#{db['database']}' '#{dump_file}'" or raise StandardError.new("Error importing data")
 
-    system "cd '#{importdir}' && imposm --read --write --optimize --deploy-production-tables -m '#{Rails.root.join('config', 'mapping.py')}' -d '#{db['database']}' '#{name}'" or raise StandardError.new("Error importing data")
+    puts "Postprocessing imported data..."
+    conn = PG.connect :dbname => db['database'], :user => db['username'], :password => db['password'], :host => db['host']
+    conn.exec %q{BEGIN TRANSACTION}
+    conn.exec %q{UPDATE osm_new_buildings SET "addr:city" = NULL WHERE "addr:city" = 'undefined'}
+    conn.exec %q{UPDATE osm_new_buildings SET "addr:city" = a.name FROM osm_new_city_areas a WHERE osm_new_buildings.geometry @ a.geometry AND ST_Contains(a.geometry, osm_new_buildings.geometry) AND a.name IS NOT NULL AND a.name <> '' AND "addr:city" IS NULL}
+    conn.exec %q{COMMIT}
+    conn.close
+
+    puts "Deploying data to production tables..."
+    system "cd '#{importdir}' && imposm --deploy-production-tables -m '#{Rails.root.join('config', 'mapping.py')}' -d '#{db['database']}' '#{dump_file}'" or raise StandardError.new("Error deploying data")
 
     puts "Success!"
   end
 
   desc "Render map"
   task :render do
-    ENV['DB_CONFIG'] ||= Rails.root.join('config', 'database.yml')
+    db_conf_file = ENV['DB_CONFIG'] || Rails.root.join('config', 'database.yml')
+    db = YAML.load(File.open db_conf_file)[Rails.env]
 
     if File.exists? Rails.root.join('..', '..', 'shared')
       heightdir = Rails.root.join('..', '..', 'shared', 'heights')
@@ -73,9 +85,7 @@ namespace :osm do
       tiledir = Rails.root.join('public', 'tiles')
     end
 
-    db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]
     tmpdir = Rails.root.join('tmp', 'render')
-
     FileUtils.rm_rf tmpdir
     FileUtils.mkdir tmpdir
 

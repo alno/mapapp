@@ -17,3 +17,4 @@ public/tiles
 config/*.sphinx.conf
 db/sphinx
 log/searchd.development.pid
+vendor/bundle
