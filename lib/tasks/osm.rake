@@ -35,8 +35,10 @@ namespace :osm do
     puts "Success!"
   end
 
-  desc "Import latest osm dump"
+  desc "Import latest osm map"
   task :import do
+    require 'osm_import'
+
     ENV['DB_CONFIG'] ||= Rails.root.join('config', 'database.yml')
 
     db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]
@@ -55,19 +57,13 @@ namespace :osm do
       system "cd '#{importdir}' && wget '#{dump_url}'" or raise StandardError.new("Error downloading dump from '#{dump_url}'")
     end
 
-    puts "Importing OSM dump from '#{dump_file}' to database '#{db.inspect}'..."
-    system "cd '#{importdir}' && imposm --read --write --optimize -m '#{Rails.root.join('config', 'mapping.py')}' -d '#{db['database']}' '#{dump_file}'" or raise StandardError.new("Error importing data")
+    puts "Importing osm data..."
+    ENV['PGPASS'] = db['password']
+    system "cd '#{importdir}' && '#{Rails.root.join('vendor', 'bin', 'osm2pgsql')}' -e 1-18 -o expire.list -x -j -l -G -U #{db['username']} -d #{db['database']} -H #{db['host']} -p raw_osm '#{dump_file}'" or raise StandardError.new("Error importing data")
 
-    puts "Postprocessing imported data..."
-    conn = PG.connect :dbname => db['database'], :user => db['username'], :password => db['password'], :host => db['host']
-    conn.exec %q{BEGIN TRANSACTION}
-    conn.exec %q{UPDATE osm_new_buildings SET "addr:city" = NULL WHERE "addr:city" = 'undefined'}
-    conn.exec %q{UPDATE osm_new_buildings SET "addr:city" = a.name FROM osm_new_city_areas a WHERE osm_new_buildings.geometry @ a.geometry AND ST_Contains(a.geometry, osm_new_buildings.geometry) AND a.name IS NOT NULL AND a.name <> '' AND "addr:city" IS NULL}
-    conn.exec %q{COMMIT}
-    conn.close
+    puts "Converting osm data"
 
-    puts "Deploying data to production tables..."
-    system "cd '#{importdir}' && imposm --deploy-production-tables -m '#{Rails.root.join('config', 'mapping.py')}' -d '#{db['database']}' '#{dump_file}'" or raise StandardError.new("Error deploying data")
+    OsmImport.import 'config/mapping.rb', :dbname => db['database'], :user => db['username'], :password => db['password'], :host => db['host']
 
     puts "Success!"
   end
