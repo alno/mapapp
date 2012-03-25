@@ -22,12 +22,12 @@ class Map
       @map.removeLayer(@searchResultsLayer)
       @searchResultsLayer = null
 
-    return if $('#sidebar .result').lenght == 0
+    return if $('#sidebar .search-result').lenght == 0
 
     layer = new L.LayerGroup()
     map = @map
 
-    $('#sidebar .result').each ->
+    $('#sidebar .search-result').each ->
       res = $(@)
       zoom = res.data('zoom')
       point = new L.LatLng(res.data('lat'), res.data('lng'))

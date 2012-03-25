@@ -1,11 +1,11 @@
 - if @query
-  Search results for #{@query}
+  %h3= t "search.results.header", :query => @query
 
-  %ul
+  %ul.search-results
     - @buildings.each_with_distance do |obj, distance|
       - center = obj.center
 
-      %li.result{ 'data-lat' => center.y, 'data-lng' => center.x, 'data-zoom' => 14 }
+      %li.search-result{ 'class' => "type-#{obj.type}", 'data-lat' => center.y, 'data-lng' => center.x, 'data-zoom' => 14 }
         %a.name{ :href => '#' }= obj.name
 
         - if obj.respond_to?(:address) && obj.address

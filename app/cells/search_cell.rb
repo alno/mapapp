@@ -10,9 +10,8 @@ class SearchCell < Cell::Rails
         options[:geo] = [params[:lat].to_f / 180 * Math::PI, params[:lng].to_f / 180 * Math::PI]
         options[:latitude_attr] = "latitude"
         options[:longitude_attr] = "longitude"
+        options[:order] = "@geodist ASC, @relevance DESC"
       end
-
-      options[:order] = "@geodist ASC, @relevance DESC"
 
       @buildings = ThinkingSphinx.search @query, options
     end

@@ -5,7 +5,9 @@ $navbarBackground: #333
 $navbarBackgroundHighlight: #666
 $navbarHeight: 40px
 
+$sidebarBackground: #fff
 $sidebarWidth: 300px
+$sidebarPadding: 10px
 
 @import 'bootstrap'
 
@@ -26,10 +28,11 @@ html, body
   top: $navbarHeight
   bottom: 0px
   left: 0px
-  width: $sidebarWidth - 1px
+  width: $sidebarWidth - $sidebarPadding - 1px
+  padding: $sidebarPadding
   border-right: 1px solid $navbarBackgroundHighlight
   z-index: 100
-  background: #aaa
+  background: $sidebarBackground
 
 #content
   position: fixed
@@ -41,3 +44,15 @@ html, body
 #content.with-sidebar
   .leaflet-left
     left: $sidebarWidth
+
+ul.search-results
+  list-style-type: none
+  padding: 0px
+  margin: 0px
+
+  li.search-result
+    margin-bottom: 10px
+    padding-left: 25px
+
+    &.type-school
+      background: url(/images/icons/school.png) no-repeat left top
