@@ -2,7 +2,7 @@
   %h3= t "search.results.header", :query => @query
 
   %ul.search-results
-    - @buildings.each_with_distance do |obj, distance|
+    - @results.each_with_distance do |obj, distance|
       - center = obj.center
 
       %li.search-result{ 'class' => "type-#{obj.type}", 'data-lat' => center.y, 'data-lng' => center.x, 'data-zoom' => 14 }
@@ -12,6 +12,8 @@
           %span.address= obj.address
 
         %span.distance= distance
+
+  = paginate @results, :window => 2
 
 - else
   No query - no results

@@ -32,15 +32,16 @@ class Map
       zoom = res.data('zoom')
       point = new L.LatLng(res.data('lat'), res.data('lng'))
 
-      res.click ->
-        map.panTo point
-        map.setZoom zoom
-        false
-
       marker = new L.Marker(point)
       marker.bindPopup("<h3>#{res.find('.name').html()}</h3><b>#{res.find('.address').html()}</b>")
 
       layer.addLayer(marker)
+
+      res.click ->
+        map.panTo point
+        map.setZoom zoom
+        marker.openPopup()
+        false
 
     @map.addLayer layer
     @searchResultsLayer = layer
@@ -58,6 +59,20 @@ $ ->
     if sidebar.offset().left >= 0
       content.removeClass('with-sidebar')
       sidebar.animate({left: - sidebar.width() - 10}, 200)
+
+  updateSidebar = ->
+    $('#sidebar .pagination a').click ->
+
+      if page = $(@).data('page')
+        center = map.map.getCenter()
+
+        $.get "/search?#{$('#search_form').serialize()}&lat=#{center.lat}&lng=#{center.lng}&page=#{page}", (data) ->
+          $('#sidebar').html(data)
+          map.updateSearchResults()
+          updateSidebar()
+          showSidebar()
+
+      false
 
   $('#map').each ->
     window.map = new Map()
@@ -80,6 +95,10 @@ $ ->
     $.get "/search?#{$('#search_form').serialize()}&lat=#{center.lat}&lng=#{center.lng}", (data) ->
       $('#sidebar').html(data)
       map.updateSearchResults()
+      updateSidebar()
       showSidebar()
 
     false # Don't send form in normal way
+
+  updateSidebar()
+

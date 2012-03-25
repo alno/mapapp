@@ -4,3 +4,8 @@ en:
   search:
     results:
       header: "Search results for «%{query}»"
+
+  views:
+    pagination:
+      previous: "←"
+      next: "→"

@@ -1,10 +1,12 @@
 class SearchCell < Cell::Rails
 
+  append_view_path Rails.root.join('app/views')
+
   def results(params)
     unless params[:q].blank?
       @query = params[:q]
 
-      options = {}
+      options = { :page => params[:page] || 1, :per_page => 15 }
 
       unless params[:lat].blank? || params[:lng].blank?
         options[:geo] = [params[:lat].to_f / 180 * Math::PI, params[:lng].to_f / 180 * Math::PI]
@@ -13,7 +15,7 @@ class SearchCell < Cell::Rails
         options[:order] = "@geodist ASC, @relevance DESC"
       end
 
-      @buildings = ThinkingSphinx.search @query, options
+      @results = ThinkingSphinx.search @query, options
     end
 
     render

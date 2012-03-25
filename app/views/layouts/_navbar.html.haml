@@ -5,7 +5,7 @@
       %a#sidebar_toggle.pull-left{ :href => "#", :onclick => 'return false' } S
 
       %form#search_form.navbar-search.pull-left{ :action => "/" }
-        %input.search-query{ :type => "text", :placeholder => "Search", :name => "q" }
+        %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q] }
 
       %ul.nav
         %li.divider-vertical

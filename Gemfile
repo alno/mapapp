@@ -12,6 +12,7 @@ gem 'thinking-sphinx', '>= 2.0.10'
 gem 'yajl-ruby'
 
 gem 'cells'
+gem 'kaminari'
 
 gem 'haml-rails'
 
