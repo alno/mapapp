@@ -37,6 +37,8 @@ namespace :osm do
 
   desc "Import latest osm map"
   task :import do
+    geography = true
+
     require 'osm_import'
 
     ENV['DB_CONFIG'] ||= Rails.root.join('config', 'database.yml')
@@ -60,12 +62,12 @@ namespace :osm do
 
       puts "Importing osm data..."
       ENV['PGPASS'] = db['password']
-      system "cd '#{importdir}' && '#{Rails.root.join('vendor', 'bin', 'osm2pgsql')}' -e 1-18 -o expire.list -x -j -l -G -S #{Rails.root.join('config', 'osm2pgsql.style')} -U #{db['username']} -d #{db['database']} -H #{db['host']} -p raw_osm '#{dump_file}'" or raise StandardError.new("Error importing data")
+      system "cd '#{importdir}' && '#{Rails.root.join('vendor', 'bin', 'osm2pgsql')}' -e 1-18 -o expire.list -x -j #{geography ? "-l" : "-m"} -G -S #{Rails.root.join('config', 'osm2pgsql.style')} -U #{db['username']} -d #{db['database']} -H #{db['host']} -p raw_osm '#{dump_file}'" or raise StandardError.new("Error importing data")
     end
 
     puts "Converting osm data"
 
-    OsmImport.import 'config/mapping.rb', :dbname => db['database'], :user => db['username'], :password => db['password'], :host => db['host']
+    OsmImport.import 'config/mapping.rb', :pg => { :dbname => db['database'], :user => db['username'], :password => db['password'], :host => db['host'] }, :projection => (geography ? nil : 900913)
 
     puts "Success!"
   end

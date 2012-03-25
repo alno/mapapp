@@ -12,7 +12,7 @@ class OsmImport::Mapper::Address < OsmImport::Mapper::Base
 
   def after_import(tt)
     tt.conn.exec "UPDATE #{tt.name} SET #{name}_city = NULL WHERE #{name}_city = 'undefined'"
-    tt.conn.exec "UPDATE #{tt.name} SET #{name}_city = c.name FROM raw_osm_polygon c WHERE geometry @ way AND ST_Contains(way, geometry) AND c.place IN ('city','town','village') AND c.name IS NOT NULL AND c.name <> '' AND #{name}_city IS NULL"
+    tt.conn.exec "UPDATE #{tt.name} SET #{name}_city = c.name FROM raw_osm_polygon c WHERE geometry && way AND ST_Contains(Geometry(way), Geometry(geometry)) AND c.place IN ('city','town','village') AND c.name IS NOT NULL AND c.name <> '' AND #{name}_city IS NULL"
   end
 
 end

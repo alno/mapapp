@@ -15,7 +15,7 @@ class OsmImport::Mapper::Center < OsmImport::Mapper::Base
   end
 
   def after_import(tt)
-    tt.conn.exec "UPDATE #{tt.name} SET #{name} = ST_Centroid(geometry) WHERE #{name} IS NULL"
+    tt.conn.exec "UPDATE #{tt.name} SET #{name} = ST_Centroid(Geometry(geometry)) WHERE #{name} IS NULL"
   end
 
 end
