@@ -58,7 +58,7 @@ $ ->
   hideSidebar = ->
     if sidebar.offset().left >= 0
       content.removeClass('with-sidebar')
-      sidebar.animate({left: - sidebar.width() - 10}, 200)
+      sidebar.animate({left: -400}, 200)
 
   updateSidebar = ->
     $('#sidebar .pagination a').click ->

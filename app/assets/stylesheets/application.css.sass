@@ -24,11 +24,11 @@ html, body
   margin: 10px
 
 #sidebar
-  position: fixed
+  position: absolute
   top: $navbarHeight
   bottom: 0px
   left: 0px
-  width: $sidebarWidth - $sidebarPadding - 1px
+  width: $sidebarWidth - 2*$sidebarPadding - 1px
   padding: $sidebarPadding
   border-right: 1px solid $navbarBackgroundHighlight
   z-index: 100
@@ -38,7 +38,7 @@ html, body
     margin: 10px 0
 
 #content
-  position: fixed
+  position: absolute
   top: $navbarHeight
   bottom: 0px
   left: 0
