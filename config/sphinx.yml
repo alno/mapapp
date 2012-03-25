@@ -1,5 +1,7 @@
 development:
   sql_range_step: 1000000
+  morphology: stem_ru
 
 production:
   sql_range_step: 1000000
+  morphology: stem_ru

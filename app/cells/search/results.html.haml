@@ -3,9 +3,9 @@
 
   %ul
     - @buildings.each_with_distance do |obj, distance|
-      - centroid = obj.centroid
+      - center = obj.center
 
-      %li.result{ 'data-lat' => centroid.y, 'data-lng' => centroid.x, 'data-zoom' => 14 }
+      %li.result{ 'data-lat' => center.y, 'data-lng' => center.x, 'data-zoom' => 14 }
         %a.name{ :href => '#' }= obj.name
 
         - if obj.respond_to?(:address) && obj.address
