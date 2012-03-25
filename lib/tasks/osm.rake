@@ -30,7 +30,7 @@ namespace :osm do
     system "cd '#{heightdir}' && rm -rf warped.tif && gdalwarp -of GTiff -co 'TILED=YES' -srcnodata 32767 -t_srs '+proj=merc +ellps=sphere +R=6378137 +a=6378137 +units=m' -rcs -order 3 -tr 30 30 -multi all.tif warped.tif" or raise StandardError.new("Error reprojecting data")
 
     puts "Generating hillshades..."
-    system "cd '#{heightdir}' && rm -rf hillshade.tif && '#{Rails.root.join('vendor', 'bin', 'hillshade')}' warped.tif hillshade.tif -z 16" or raise StandardError.new("Error generating hillshade")
+    system "cd '#{heightdir}' && rm -rf hillshade.tif && '#{Rails.root.join('vendor', 'bin', 'hillshade')}' warped.tif hillshade.tif -z 16 -wd 3" or raise StandardError.new("Error generating hillshade")
 
     puts "Success!"
   end
