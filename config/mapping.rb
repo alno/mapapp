@@ -56,5 +56,7 @@ polygons :objects do
   after_import do
     conn.exec "INSERT INTO #{name}(id,type,name,center,tags) SELECT osm_id, #{type_mapping} AS type, #{name_mapping} AS name, way, tags FROM raw_osm_point src WHERE #{conditions}"
     conn.exec "UPDATE #{name} SET address_city = COALESCE(#{name}.address_city,b.address_city), address_street = COALESCE(#{name}.address_street, b.address_street), address_housenumber = COALESCE(#{name}.address_housenumber, b.address_housenumber), address_postcode = COALESCE(#{name}.address_postcode, b.address_postcode) FROM new_osm_buildings b WHERE b.geometry && new_osm_objects.geometry AND ST_Intersects(b.geometry,new_osm_objects.geometry)"
+
+    conn.exec "UPDATE new_osm_buildings SET name = NULL FROM #{name} WHERE #{name}.id = new_osm_buildings.id" # Remove names from buildings to exclude them from search
   end
 end
