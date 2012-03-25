@@ -15,92 +15,119 @@
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([type] = 'farmland')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-1.png" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([type] = 'farmland')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-2.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([type] = 'farmland')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-0.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([type] = 'farm')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-1.png" />
+    <PolygonPatternSymbolizer file="images/farms-1.png" />
   </Rule>
   <Rule>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'farm')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-2.png" />
+    <PolygonPatternSymbolizer file="images/farms-2.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([type] = 'farm')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-0.png" />
+    <PolygonPatternSymbolizer file="images/farms-0.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([type] = 'allotments')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-1.png" />
+    <PolygonPatternSymbolizer file="images/farms-1.png" />
   </Rule>
   <Rule>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'allotments')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-2.png" />
+    <PolygonPatternSymbolizer file="images/farms-2.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([type] = 'allotments')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-0.png" />
+    <PolygonPatternSymbolizer file="images/farms-0.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([type] = 'farmyard')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-1.png" />
+    <PolygonPatternSymbolizer file="images/farms-1.png" />
   </Rule>
   <Rule>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'farmyard')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-2.png" />
+    <PolygonPatternSymbolizer file="images/farms-2.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([type] = 'farmyard')</Filter>
-    <PolygonPatternSymbolizer file="markers/farms-0.png" />
+    <PolygonPatternSymbolizer file="images/farms-0.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([type] = 'farmland')</Filter>
+    <PolygonPatternSymbolizer file="images/farms-1.png" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'farmland')</Filter>
+    <PolygonPatternSymbolizer file="images/farms-2.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <Filter>([type] = 'farmland')</Filter>
+    <PolygonPatternSymbolizer file="images/farms-0.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'wood')</Filter>
+    <PolygonPatternSymbolizer file="images/forest-2.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([type] = 'wood')</Filter>
+    <PolygonPatternSymbolizer file="images/forest-1.png" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([type] = 'wood')</Filter>
+    <PolygonPatternSymbolizer file="images/forest-3.png" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <Filter>([type] = 'wood')</Filter>
+    <PolygonPatternSymbolizer file="images/forest-0.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'forest')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-2.png" />
+    <PolygonPatternSymbolizer file="images/forest-2.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([type] = 'forest')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-1.png" />
+    <PolygonPatternSymbolizer file="images/forest-1.png" />
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'forest')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-3.png" />
+    <PolygonPatternSymbolizer file="images/forest-3.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([type] = 'forest')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-0.png" />
+    <PolygonPatternSymbolizer file="images/forest-0.png" />
   </Rule>
   <Rule>
     <Filter>([type] = 'village_green')</Filter>
     <PolygonSymbolizer fill="#b2e079" />
+  </Rule>
+  <Rule>
+    <Filter>([type] = 'military')</Filter>
+    <PolygonSymbolizer fill="#ffbbbb" />
+    <LineSymbolizer stroke="#ff5555" stroke-width="1" />
   </Rule>
   <Rule>
     <Filter>([type] = 'cemetery')</Filter>
@@ -124,16 +151,20 @@
   </Rule>
   <Rule>
     <Filter>([type] = 'quarry')</Filter>
-    <LinePatternSymbolizer file="markers/cliff-1.png" />
+    <LinePatternSymbolizer file="images/cliff-1.png" />
     <PolygonSymbolizer fill="#cccaca" />
+  </Rule>
+  <Rule>
+    <Filter>([type] = 'meadow')</Filter>
+    <PolygonSymbolizer fill="#b2e079" />
   </Rule>
   <Rule>
     <Filter>([type] = 'grass')</Filter>
     <PolygonSymbolizer fill="#b2e079" />
   </Rule>
   <Rule>
-    <Filter>([type] = 'meadow')</Filter>
-    <PolygonSymbolizer fill="#b2e079" />
+    <Filter>([type] = 'beach')</Filter>
+    <PolygonSymbolizer fill="#f6f699" />
   </Rule>
 </Style>
 <Layer name="territories"
@@ -146,7 +177,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_territories]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -154,6 +184,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -166,28 +201,6 @@
 <Style name="areas-inline_2_sec" filter-mode="first">
 </Style>
 <Style name="areas" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([type] = 'wood')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-2.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([type] = 'wood')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-1.png" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([type] = 'wood')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-3.png" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([type] = 'wood')</Filter>
-    <PolygonPatternSymbolizer file="markers/forest-0.png" />
-  </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <Filter>([type] = 'parking')</Filter>
@@ -226,8 +239,12 @@
     <LineSymbolizer stroke="#b3b373" />
   </Rule>
   <Rule>
-    <Filter>([type] = 'beach')</Filter>
-    <PolygonSymbolizer fill="#f6f699" />
+    <Filter>([type] = 'fuel')</Filter>
+    <PolygonSymbolizer fill="#6e5594" />
+  </Rule>
+  <Rule>
+    <Filter>([type] = 'track')</Filter>
+    <PolygonSymbolizer fill="#94d58c" />
   </Rule>
   <Rule>
     <Filter>([type] = 'pitch')</Filter>
@@ -276,7 +293,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_objects]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -284,6 +300,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -324,26 +345,80 @@
 <Style name="waterways" filter-mode="first">
   <Rule>
     <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([type] = 'river')</Filter>
     <LineSymbolizer stroke-width="2" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([type] = 'river')</Filter>
     <LineSymbolizer stroke-width="3" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <LineSymbolizer stroke-width="5" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+    <Filter>([type] = 'river')</Filter>
+    <LineSymbolizer stroke-width="4" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <LineSymbolizer stroke-width="7" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+    <Filter>([type] = 'river')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([type] = 'river')</Filter>
+    <LineSymbolizer stroke-width="6" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([type] = 'river')</Filter>
+    <LineSymbolizer stroke-width="8" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <MinScaleDenominator>1500</MinScaleDenominator>
+    <Filter>([type] = 'river')</Filter>
     <LineSymbolizer stroke-width="10" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>1500</MaxScaleDenominator>
+    <Filter>([type] = 'river')</Filter>
+    <LineSymbolizer stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([type] != 'river')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([type] != 'river')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] != 'river')</Filter>
+    <LineSymbolizer stroke-width="2" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] != 'river')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] != 'river')</Filter>
+    <LineSymbolizer stroke-width="4" stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
+  </Rule>
+  <Rule>
+    <LineSymbolizer stroke="#86b6cc" stroke-linecap="round" stroke-linejoin="round" />
   </Rule>
 </Style>
 <Layer name="waterways"
@@ -356,7 +431,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_waterways]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -364,6 +438,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -391,7 +470,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_waterareas]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -399,6 +477,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -415,17 +498,17 @@
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'cliff')</Filter>
-    <LinePatternSymbolizer file="markers/cliff-2.png" />
+    <LinePatternSymbolizer file="images/cliff-2.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <Filter>([type] = 'cliff')</Filter>
-    <LinePatternSymbolizer file="markers/cliff-1.png" />
+    <LinePatternSymbolizer file="images/cliff-1.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <Filter>([type] = 'enbankment')</Filter>
-    <LinePatternSymbolizer file="markers/cliff-1.png" />
+    <LinePatternSymbolizer file="images/cliff-1.png" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
@@ -515,7 +598,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_barriers]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -523,6 +605,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -574,7 +661,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[(SELECT *, ST_Area(geometry) AS area FROM osm_squares) AS t]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -582,6 +668,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -3817,7 +3908,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[(SELECT *, tags->'covered' AS covered, tags->'tunnel' AS tunnel , ST_Length(geometry) AS length, ST_Area(geometry) AS area FROM osm_roads) AS t]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -3825,6 +3915,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -3883,7 +3978,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[(SELECT *, tags->'covered' AS covered, ST_Area(geometry) AS area FROM osm_squares) AS t]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -3891,6 +3985,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -3939,7 +4038,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_buildings]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -3947,6 +4045,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -4139,7 +4242,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_rails]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -4147,6 +4249,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6033,7 +6140,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[(SELECT *, tags->'covered' AS covered, tags->'tunnel' AS tunnel , ST_Length(geometry) AS length FROM osm_roads WHERE (tags->'bridge') IS NOT NULL) AS t]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6041,6 +6147,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6057,17 +6168,17 @@
     <MaxScaleDenominator>750000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'village')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="12" fill="#000000" minimum-distance="50" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="12" fill="#000000" minimum-distance="50" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'town')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="16" fill="#000000" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="2" size="16" fill="#000000" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Bold" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="3" size="20" fill="#cc0000" text-transform="uppercase" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Bold" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="3" size="20" fill="#cc2222" text-transform="uppercase" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="place_labels"
@@ -6080,7 +6191,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_places]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6088,6 +6198,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6102,13 +6217,13 @@
 <Style name="building_labels-label" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <TextSymbolizer wrap-width="50" placement-type="simple" placements="N,S" label-position-tolerance="5" face-name="Ubuntu Regular" fill="#000000" halo-fill="rgba(250, 236, 212, 0.7)" halo-radius="1.5" size="12" dy="10" minimum-padding="5" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="50" placement-type="simple" placements="N,S" label-position-tolerance="5" face-name="Ubuntu Regular" fill="#000000" halo-fill="rgba(250, 236, 212, 0.7)" halo-radius="1.5" size="12" dy="10" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Style name="building_labels-number" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <TextSymbolizer wrap-width="40" placement-type="simple" placements="N,S" face-name="Ubuntu Regular" label-position-tolerance="50" fill="#000000" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1" size="11" minimum-distance="1" minimum-padding="5" placement="interior" ><![CDATA[[address_housenumber]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" placement-type="simple" placements="N,S" face-name="Ubuntu Regular" label-position-tolerance="50" fill="#000000" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="1" size="11" minimum-distance="1" minimum-padding="2" placement="interior" ><![CDATA[[address_housenumber]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="building_labels"
@@ -6122,7 +6237,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_buildings]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6130,6 +6244,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6146,95 +6265,95 @@
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'hospital')</Filter>
-    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'hospital')</Filter>
-    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'school')</Filter>
-    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'school')</Filter>
-    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'college')</Filter>
-    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'college')</Filter>
-    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'kindergarten')</Filter>
-    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'kindergarten')</Filter>
-    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'university')</Filter>
-    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'university')</Filter>
-    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(238, 240, 167, 0.8)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'common')</Filter>
-    <TextSymbolizer size="11" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" minimum-distance="5" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'common')</Filter>
-    <TextSymbolizer size="12" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" minimum-distance="5" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'playground')</Filter>
+    <TextSymbolizer size="11" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" minimum-distance="5" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'playground')</Filter>
+    <TextSymbolizer size="12" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" minimum-distance="5" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'park')</Filter>
-    <TextSymbolizer size="10" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="10" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" minimum-distance="5" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'park')</Filter>
-    <TextSymbolizer size="11" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" minimum-distance="5" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'park')</Filter>
-    <TextSymbolizer size="12" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([type] = 'playground')</Filter>
-    <TextSymbolizer size="11" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([type] = 'playground')</Filter>
-    <TextSymbolizer size="12" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" face-name="Ubuntu Bold" fill="#1c2506" halo-fill="#c2f089" halo-radius="1.5" placement-type="simple" wrap-width="40" minimum-distance="5" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="area_labels"
@@ -6246,8 +6365,7 @@
     <StyleName>area_labels-inline_1_ter</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[osm_objects]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * FROM osm_objects WHERE name IS NOT NULL) AS t]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6255,6 +6373,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6266,16 +6389,85 @@
 </Style>
 <Style name="territory_labels-inline_2_sec" filter-mode="first">
 </Style>
+<Style name="territory_labels" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'military')</Filter>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'military')</Filter>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(255, 255, 255, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'construction')</Filter>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(233, 231, 193, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'cemetery')</Filter>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(147, 199, 147, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'cemetery')</Filter>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(147, 199, 147, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] = 'cemetery')</Filter>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(147, 199, 147, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'industrial')</Filter>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(248, 247, 248, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'industrial')</Filter>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(248, 247, 248, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] = 'industrial')</Filter>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(248, 247, 248, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'quarry')</Filter>
+    <TextSymbolizer size="11" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(254, 254, 254, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'quarry')</Filter>
+    <TextSymbolizer size="12" wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(254, 254, 254, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] = 'quarry')</Filter>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" fill="#111111" halo-fill="rgba(254, 254, 254, 0.7)" halo-radius="1.5" minimum-distance="10" minimum-padding="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+</Style>
 <Layer name="territory_labels"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>territory_labels</StyleName>
     <StyleName>territory_labels-inline_2_sec</StyleName>
     <StyleName>territory_labels-inline_3_pri</StyleName>
     <StyleName>territory_labels-outline</StyleName>
     <StyleName>territory_labels-inline_1_ter</StyleName>
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
-       <Parameter name="table"><![CDATA[osm_territories]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="table"><![CDATA[(SELECT * FROM osm_territories WHERE name IS NOT NULL) AS t]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6283,6 +6475,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6297,17 +6494,17 @@
 <Style name="road_labels-ref" filter-mode="first">
   <Rule>
     <Filter>([ref] != '')</Filter>
-    <ShieldSymbolizer fill="#000000" face-name="Ubuntu Bold" character-spacing="2" file="markers/road-ref.png" placement="line" minimum-distance="30" spacing="400" minimum-padding="100" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer fill="#000000" face-name="Ubuntu Bold" character-spacing="2" file="images/road-ref.png" placement="line" minimum-distance="30" spacing="400" minimum-padding="10" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
 </Style>
 <Style name="road_labels" filter-mode="first">
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <TextSymbolizer size="11" minimum-path-length="50" fill="#333333" face-name="Ubuntu Regular" spacing="200" minimum-distance="10" placement-type="simple" halo-fill="rgba(255, 255, 255, 0.8)" avoid-edges="true" halo-radius="2" placement="line" minimum-padding="50" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" minimum-path-length="50" fill="#333333" face-name="Ubuntu Regular" spacing="200" minimum-distance="10" placement-type="simple" halo-fill="rgba(255, 255, 255, 0.8)" avoid-edges="true" halo-radius="2" placement="line" minimum-padding="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <TextSymbolizer size="12" fill="#333333" face-name="Ubuntu Regular" spacing="200" minimum-distance="10" placement-type="simple" halo-fill="rgba(255, 255, 255, 0.8)" avoid-edges="true" halo-radius="2" placement="line" minimum-padding="50" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" fill="#333333" face-name="Ubuntu Regular" spacing="200" minimum-distance="10" placement-type="simple" halo-fill="rgba(255, 255, 255, 0.8)" avoid-edges="true" halo-radius="2" placement="line" minimum-padding="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="road_labels"
@@ -6321,7 +6518,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_roads]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6329,6 +6525,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6343,7 +6544,8 @@
 <Style name="waterarea_labels" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <TextSymbolizer fill="#3e6c99" face-name="Ubuntu Bold" spacing="500" minimum-path-length="50" minimum-distance="20" wrap-width="40" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([type] != 'riverbank')</Filter>
+    <TextSymbolizer fill="#3e6c99" face-name="Ubuntu Bold" spacing="500" minimum-path-length="50" minimum-distance="20" minimum-padding="2" wrap-width="40" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="waterarea_labels"
@@ -6356,7 +6558,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_waterareas]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6364,6 +6565,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -6378,11 +6584,11 @@
 <Style name="waterway_labels" filter-mode="first">
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <TextSymbolizer size="11" minimum-path-length="50" fill="#3e6c99" face-name="Ubuntu Bold" spacing="500" minimum-padding="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" minimum-path-length="50" fill="#3e6c99" face-name="Ubuntu Bold" spacing="500" minimum-padding="2" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <TextSymbolizer size="12" fill="#3e6c99" face-name="Ubuntu Bold" spacing="500" minimum-path-length="50" minimum-padding="50" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" fill="#3e6c99" face-name="Ubuntu Bold" spacing="500" minimum-path-length="50" minimum-padding="2" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" placement="line" placement-type="simple" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="waterway_labels"
@@ -6395,7 +6601,6 @@
     <Datasource>
        <Parameter name="type"><![CDATA[postgis]]></Parameter>
        <Parameter name="table"><![CDATA[osm_waterways]]></Parameter>
-       <Parameter name="extent"><![CDATA[]]></Parameter>
        <Parameter name="key_field"><![CDATA[id]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="dbname"><![CDATA[gis]]></Parameter>
@@ -6403,6 +6608,11 @@
        <Parameter name="port"><![CDATA[5432]]></Parameter>
        <Parameter name="user"><![CDATA[gis]]></Parameter>
        <Parameter name="password"><![CDATA[zsedcft]]></Parameter>
+       <Parameter name="st_prefix"><![CDATA[true]]></Parameter>
+       <Parameter name="srid"><![CDATA[4326]]></Parameter>
+       <Parameter name="estimate_extent"><![CDATA[false]]></Parameter>
+       <Parameter name="extent_from_subquery"><![CDATA[false]]></Parameter>
+       <Parameter name="extent"><![CDATA[-180,-90,180,89.99]]></Parameter>
     </Datasource>
   </Layer>
 
