@@ -1,0 +1,7 @@
+%ul
+  - categories.each do |cat, children|
+    %li
+      = cat.name
+      = cat.object_count
+
+      = render 'layouts/categories', :categories => children

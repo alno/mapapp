@@ -6,6 +6,9 @@ ru:
       search: Поиск
       categories: Объекты
 
+  categories:
+    header: Типы объектов
+
   search:
     label: "Поиск:"
     no_query: "Введите какой-нибудь запрос для поиска"

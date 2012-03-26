@@ -32,4 +32,6 @@
 
           .pagination
         #sidebar_categories.tab-pane
-          Nothing yet
+          %h3= t "categories.header"
+
+          = render 'layouts/categories', :categories => Category.arrange

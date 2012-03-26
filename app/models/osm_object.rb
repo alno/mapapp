@@ -10,6 +10,8 @@ class OsmObject < ActiveRecord::Base
     has "RADIANS(ST_Y(GEOMETRY(center)))",  :as => :latitude,  :type => :float
     has "RADIANS(ST_X(GEOMETRY(center)))", :as => :longitude, :type => :float
 
+    has "(SELECT string_agg(replace(ancestry, '/', ','), ',') FROM categories JOIN unnest(type_array) ON type = unnest WHERE \"table\" = 'objects')", :as => :category_ids, :type => :multi, :facet => true
+
     where "name IS NOT NULL"
   end
 

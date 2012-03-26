@@ -4,4 +4,8 @@ class Category < ActiveRecord::Base
 
   has_ancestry
 
+  def object_count
+    Search.empty.category_counts[id]
+  end
+
 end

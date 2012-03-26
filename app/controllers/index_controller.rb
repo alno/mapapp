@@ -1,7 +1,7 @@
 class IndexController < ApplicationController
 
   def search
-    @search = Search.search(params)
+    @search = Search.new(params)
   end
 
 end

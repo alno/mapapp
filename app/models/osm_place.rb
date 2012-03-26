@@ -10,6 +10,8 @@ class OsmPlace < ActiveRecord::Base
     has "RADIANS(ST_Y(GEOMETRY(center)))",  :as => :latitude,  :type => :float
     has "RADIANS(ST_X(GEOMETRY(center)))", :as => :longitude, :type => :float
 
+    has "(SELECT replace(ancestry, '/', ',') FROM categories WHERE \"table\" = 'places' AND type = osm_places.type)", :as => :category_ids, :type => :multi, :facet => true
+
     where "name IS NOT NULL"
   end
 
