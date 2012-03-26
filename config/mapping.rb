@@ -50,8 +50,9 @@ polygons :buildings do
 end
 
 polygons :objects do
+  map :leisure, :amenity, :tourism, :historic, :shop, :office, :sport, :multi => true
+
   with :address, :center
-  map :leisure, :amenity, :tourism, :historic, :shop
 
   after_import do
     conn.exec "INSERT INTO #{name}(id,type,name,center,tags) SELECT osm_id, #{type_mapping} AS type, #{name_mapping} AS name, way, tags FROM raw_osm_point src WHERE #{conditions}"
