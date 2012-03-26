@@ -25,6 +25,14 @@ class OsmImport::Mapper::Type < OsmImport::Mapper::Base
     end
   end
 
+   def indexes
+    if @multi
+      { :type => "BTREE(type)", :type_array => "GIN(type_array)" }
+    else
+      { :type => "BTREE(type)" }
+    end
+  end
+
   def conditions
     [ @mappings.map{|m| map_cond(m)}.join(' OR ') ]
   end
@@ -39,11 +47,6 @@ class OsmImport::Mapper::Type < OsmImport::Mapper::Base
 
   def map_cond(m)
     m[1] ? "(src.tags->'#{m[0]}') IN ('#{m[1].join("','")}')" : "(src.tags->'#{m[0]}') IS NOT NULL"
-  end
-
-  def after_import(tt)
-    tt.conn.exec "UPDATE #{tt.name} SET #{name}_city = NULL WHERE #{name}_city = 'undefined'"
-    tt.conn.exec "UPDATE #{tt.name} SET #{name}_city = c.name FROM raw_osm_polygon c WHERE geometry && way AND ST_Contains(Geometry(way), Geometry(geometry)) AND c.place IN ('city','town','village') AND c.name IS NOT NULL AND c.name <> '' AND #{name}_city IS NULL"
   end
 
   def add_args(*args)

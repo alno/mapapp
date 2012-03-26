@@ -18,6 +18,10 @@ module OsmImport::Mapper
       { name => "src.tags->'#{name}'" }
     end
 
+    def indexes
+      {}
+    end
+
     def after_create(*args)
     end
 

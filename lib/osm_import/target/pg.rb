@@ -26,19 +26,20 @@ class OsmImport::Target::Pg < Struct.new(:options)
       conn.exec "DROP TABLE IF EXISTS #{new_prefix}#{table.name}"
     end
 
+    puts "Preparing target tables"
+
+    tts = schema.tables.map{|table| TargetTable.new self, conn, table }
+
     puts "Creating tables and importing data:"
 
-    schema.tables.each do |table|
-      tt = TargetTable.new self, conn, table # Initialize target table
+    tts.each do |tt|
       tt.create! # Create table
       tt.import! # Import data to it
     end
 
-    puts "Moving tables"
-    schema.tables.each do |table|
-      conn.exec "DROP TABLE IF EXISTS #{prefix}#{table.name}"
-      conn.exec "ALTER TABLE #{new_prefix}#{table.name} RENAME TO #{prefix}#{table.name}"
-      conn.exec "ALTER INDEX #{new_prefix}#{table.name}_geometry_index RENAME TO #{prefix}#{table.name}_geometry_index"
+    puts "Deploy tables"
+    tts.each do |tt|
+      tt.deploy!
     end
 
     puts "Restoring geometry columns"
@@ -112,12 +113,27 @@ class OsmImport::Target::Pg < Struct.new(:options)
       conn.exec "CREATE TABLE #{name}(#{fields.map{|k,v| "#{k} #{v}"}.join(', ')})"
       add_geometry_column :geometry, table.type
 
+      table.type_mapper.after_create self
+
       table.mappers.each do |key, mapper|
         mapper.after_create self
       end
 
       table.after_create_callbacks.each do |cb|
         instance_eval(&cb)
+      end
+    end
+
+    def indexes
+      @indexes ||= begin
+        res = table.type_mapper.indexes
+        res[:geometry] = "GIST(geometry)"
+
+        table.mappers.each do |key,mapper|
+          res.merge mapper.indexes
+        end
+
+        res
       end
     end
 
@@ -133,7 +149,11 @@ class OsmImport::Target::Pg < Struct.new(:options)
 
       # Creating indexes
 
-      conn.exec "CREATE INDEX #{name}_geometry_index ON #{name} USING GIST(geometry)"
+      indexes.each do |key, desc|
+        conn.exec "CREATE INDEX #{name}_#{key}_index ON #{name} USING #{desc}"
+      end
+
+      table.type_mapper.after_import self
 
       table.mappers.each do |key, mapper|
         mapper.after_import self
@@ -142,6 +162,17 @@ class OsmImport::Target::Pg < Struct.new(:options)
       table.after_import_callbacks.each do |cb|
         instance_eval(&cb)
       end
+    end
+
+    def deploy!
+      conn.exec "DROP TABLE IF EXISTS #{target.prefix}#{table.name}"
+      conn.exec "ALTER TABLE #{name} RENAME TO #{target.prefix}#{table.name}"
+      #conn.exec "ALTER INDEX #{name}_pkey RENAME TO #{target.prefix}#{table.name}_pkey"
+
+      indexes.each do |key,_|
+        conn.exec "ALTER INDEX #{name}_#{key}_index RENAME TO #{target.prefix}#{table.name}_#{key}_index"
+      end
+
     end
 
   end

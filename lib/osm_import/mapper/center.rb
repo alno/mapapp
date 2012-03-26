@@ -10,6 +10,10 @@ class OsmImport::Mapper::Center < OsmImport::Mapper::Base
     {}
   end
 
+  def indexes
+    { name => "GIST(#{name})" }
+  end
+
   def after_create(tt)
     tt.add_geometry_column name, :point
   end
