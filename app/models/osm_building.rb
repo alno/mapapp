@@ -10,7 +10,7 @@ class OsmBuilding < ActiveRecord::Base
     has "RADIANS(ST_Y(ST_CENTROID(GEOMETRY(geometry))))",  :as => :latitude,  :type => :float
     has "RADIANS(ST_X(ST_CENTROID(GEOMETRY(geometry))))", :as => :longitude, :type => :float
 
-    has "(SELECT replace(ancestry, '/', ',') FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :category_ids, :type => :multi, :facet => true
+    has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :category_ids, :type => :multi, :facet => true
 
     where "name IS NOT NULL"
   end

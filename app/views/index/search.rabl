@@ -2,7 +2,7 @@ object @search
 
 attributes :query, :params
 
-if @search.query
+if @search.valid
   node(:current_page) { |search| search.results.current_page }
   node(:page_count) { |search| search.results.page_count }
   node(:total_count) { |search| search.results.total_count }

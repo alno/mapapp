@@ -1,14 +1,16 @@
 class Search
 
-  attr_reader :params, :query
+  attr_reader :params, :query, :valid
 
   def initialize(params)
     @params = params
 
-    if params[:q].blank?
+    if params[:q].blank? && params[:categories].blank?
+      @valid = false
       @query = nil
       @options = {}
     else
+      @valid = true
       @query = params[:q]
       @options = { :page => params[:page] || 1, :per_page => 15 }
 
@@ -18,11 +20,16 @@ class Search
         @options[:longitude_attr] = "longitude"
         @options[:order] = "@geodist ASC, @relevance DESC"
       end
+
+      unless params[:categories].blank?
+        @options[:with] ||= {}
+        @options[:with][:category_ids] = params[:categories].split(',')
+      end
     end
   end
 
   def results
-    @query && (@results ||= ThinkingSphinx.search(query, @options))
+    @valid && (@results ||= ThinkingSphinx.search(query, @options))
   end
 
   def category_counts
