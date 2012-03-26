@@ -83,9 +83,9 @@ class OsmImport::Target::Pg < Struct.new(:options)
       @conn = conn
       @table = table
 
-      @mapping_cond = table.mapping.map{|k,v| v ? "(src.tags->'#{k}') IN ('#{v.join("','")}')" : "(src.tags->'#{k}') IS NOT NULL" }.join(' OR ')
+      @mapping_cond = table.type_mapper.conditions.join(' AND ')
+      @type_mapping = table.type_mapper.expression
 
-      @type_mapping = "CASE #{table.mapping.map{|k,v| v ? "WHEN (src.tags->'#{k}') IN ('#{v.join("','")}') THEN src.tags->'#{k}'" : "WHEN (src.tags->'#{k}') IS NOT NULL THEN src.tags->'#{k}'"}.join(' ')} END"
       @name_mapping = "NULLIF(COALESCE(src.tags->'name:ru', src.tags->'name', src.tags->'int_name'), '')"
 
       @fields = { :id => 'INT8 PRIMARY KEY', :type => 'VARCHAR(100) NOT NULL', :name => 'VARCHAR(255)', :tags => 'HSTORE' }
