@@ -7,12 +7,15 @@ gem 'rails', '3.2.2'
 
 gem 'pg'
 gem 'activerecord-postgis-adapter' # Working with geodata
+gem 'activerecord-postgres-hstore' # Working with hstore
+gem 'activerecord-postgres-array' # Working with arrays
 gem 'thinking-sphinx', '>= 2.0.10'
 
 gem 'yajl-ruby'
 
 gem 'cells'
 gem 'kaminari'
+gem 'ancestry'
 
 gem 'haml-rails'
 
