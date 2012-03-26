@@ -1,0 +1,17 @@
+
+ru:
+
+  search:
+    results:
+      header: "Результаты поиска для «%{query}»"
+
+  info:
+    tabs:
+      common: Контакты
+      tags: Тэги
+    blocks:
+      contacts: Контактная информация
+    keys:
+      website: Веб-сайт
+      phone: Телефон
+      fax: Факс

@@ -1,0 +1,11 @@
+
+en:
+
+  search:
+    results:
+      header: "Search results for «%{query}»"
+
+  info:
+    tabs:
+      common: Contacts
+      tags: Tags
