@@ -13,7 +13,6 @@ gem 'thinking-sphinx', '>= 2.0.10'
 
 gem 'yajl-ruby'
 
-gem 'kaminari'
 gem 'ancestry'
 
 gem 'haml-rails'
