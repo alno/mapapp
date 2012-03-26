@@ -76,21 +76,19 @@ class OsmImport::Target::Pg < Struct.new(:options)
 
   class TargetTable
 
-    attr_reader :target, :conn, :table, :mapping_cond, :type_mapping, :name_mapping, :fields, :conditions, :assigns
+    attr_reader :target, :conn, :table, :type_mapping, :name_mapping, :fields, :conditions, :assigns
 
     def initialize(target, conn, table)
       @target = target
       @conn = conn
       @table = table
 
-      @mapping_cond = table.type_mapper.conditions.join(' AND ')
       @type_mapping = table.type_mapper.expression
-
       @name_mapping = "NULLIF(COALESCE(src.tags->'name:ru', src.tags->'name', src.tags->'int_name'), '')"
 
-      @fields = { :id => 'INT8 PRIMARY KEY', :type => 'VARCHAR(100) NOT NULL', :name => 'VARCHAR(255)', :tags => 'HSTORE' }
-      @assigns = { :id => 'src.osm_id', :type => type_mapping, :name => name_mapping, :tags => 'src.tags' }
-      @conditions = [ mapping_cond ]
+      @fields = table.type_mapper.fields.merge :id => 'INT8 PRIMARY KEY',  :name => 'VARCHAR(255)', :tags => 'HSTORE'
+      @assigns = table.type_mapper.assigns.merge :id => 'src.osm_id', :name => name_mapping, :tags => 'src.tags'
+      @conditions = table.type_mapper.conditions
 
       table.mappers.each do |key, mapper|
         @fields.merge! mapper.fields

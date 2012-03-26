@@ -10,19 +10,35 @@ class OsmImport::Mapper::Type < OsmImport::Mapper::Base
   end
 
   def assigns
-    { "#{name}_street" => "src.tags->'addr:street'", "#{name}_housenumber" => "src.tags->'addr:housenumber'", "#{name}_city" => "src.tags->'addr:city'" , "#{name}_postcode" => "src.tags->'addr:postcode'" }
+    if @multi
+      { :type => expression, :type_array => expression_multi }
+    else
+      { :type => expression }
+    end
   end
 
   def fields
-    { "#{name}_street" => "VARCHAR(255)", "#{name}_housenumber" => 'VARCHAR(255)', "#{name}_city" => "VARCHAR(255)", "#{name}_postcode" => "VARCHAR(100)" }
+    if @multi
+      { :type => 'VARCHAR(100) NOT NULL', :type_array => 'VARCHAR(100)[]' }
+    else
+      { :type => 'VARCHAR(100) NOT NULL' }
+    end
   end
 
   def conditions
-    [ @mappings.map{|m| m[1] ? "(src.tags->'#{m[0]}') IN ('#{m[1].join("','")}')" : "(src.tags->'#{m[0]}') IS NOT NULL" }.join(' OR ') ]
+    [ @mappings.map{|m| map_cond(m)}.join(' OR ') ]
   end
 
   def expression
-    "CASE #{@mappings.map{|m| m[1] ? "WHEN (src.tags->'#{m[0]}') IN ('#{m[1].join("','")}') THEN src.tags->'#{m[0]}'" : "WHEN (src.tags->'#{m[0]}') IS NOT NULL THEN src.tags->'#{m[0]}'"}.join(' ')} END"
+    "CASE #{@mappings.map{|m| "WHEN #{map_cond(m)} THEN trim(regexp_replace(src.tags->'#{m[0]}', ',.*', ''))"}.join(' ')} END"
+  end
+
+  def expression_multi
+    "(#{@mappings.map{|m| "string_to_array(coalesce(CASE WHEN #{map_cond(m)} THEN replace(src.tags->'#{m[0]}',' ','') END,''),',')"}.join(' || ')})"
+  end
+
+  def map_cond(m)
+    m[1] ? "(src.tags->'#{m[0]}') IN ('#{m[1].join("','")}')" : "(src.tags->'#{m[0]}') IS NOT NULL"
   end
 
   def after_import(tt)
