@@ -2,8 +2,10 @@
 en:
 
   search:
+    label: "Search:"
     results:
       header: "Search results for «%{query}»"
+      nothing_found: "Nothing found =( Try to change query..."
 
   info:
     tabs:

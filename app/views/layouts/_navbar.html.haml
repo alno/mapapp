@@ -3,7 +3,7 @@
     .container-fluid
 
       %form#search_form.navbar-search.pull-left{ :action => "/" }
-        .search-label Поиск:
+        .search-label= t "search.label"
         %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q] }
 
       %ul.nav

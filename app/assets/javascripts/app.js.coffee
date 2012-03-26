@@ -28,10 +28,11 @@ class @App
       @map.removeLayer(@searchResultsLayer)
       @searchResultsLayer = null
 
+    @sidebar.find('.results').html('')
+    @sidebar.find('.pagination').html('')
+
     if data
-      @sidebar.find('.query').text(data.query)
-      @sidebar.find('.results').html('')
-      @sidebar.find('.pagination').html('')
+      @sidebar.find('h3').text(I18n.t("search.results.header", query: data.query))
 
       if data.results.length == 0
         @sidebar.find('.results').text(I18n.t('search.results.nothing_found'))
@@ -50,7 +51,7 @@ class @App
         @map.addLayer @searchResultsLayer
 
     else
-      @sidebar.html('Nothing to search')
+      @sidebar.find('h3').text(I18n.t("search.no_query"))
 
     @showSidebar()
 
