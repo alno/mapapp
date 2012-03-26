@@ -5,6 +5,8 @@ class OsmObject < ActiveRecord::Base
   define_index do
     indexes :name
 
+    indexes "(SELECT string_agg(keywords, ' ') FROM categories JOIN unnest(type_array) ON type = unnest WHERE \"table\" = 'objects')", :as => :keywords
+
     has "RADIANS(ST_Y(GEOMETRY(center)))",  :as => :latitude,  :type => :float
     has "RADIANS(ST_X(GEOMETRY(center)))", :as => :longitude, :type => :float
 
@@ -22,11 +24,11 @@ class OsmObject < ActiveRecord::Base
   end
 
   def categories
-    Category.where("table = 'places' AND type IN (?)", type_array)
+    Category.where(:table => 'objects').where('type IN (?)', type_array)
   end
 
   def types
-    type_array
+    type_array or []
   end
 
   def table

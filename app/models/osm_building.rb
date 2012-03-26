@@ -5,6 +5,8 @@ class OsmBuilding < ActiveRecord::Base
   define_index do
     indexes :name
 
+    indexes "(SELECT keywords FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :keywords
+
     has "RADIANS(ST_Y(ST_CENTROID(GEOMETRY(geometry))))",  :as => :latitude,  :type => :float
     has "RADIANS(ST_X(ST_CENTROID(GEOMETRY(geometry))))", :as => :longitude, :type => :float
 
@@ -30,7 +32,7 @@ class OsmBuilding < ActiveRecord::Base
   end
 
   def categories
-    Category.where("table = 'buildings' AND type = ?", type)
+    Category.where(:table => 'buildings', :type => type)
   end
 
   def types
