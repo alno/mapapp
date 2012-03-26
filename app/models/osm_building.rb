@@ -29,4 +29,16 @@ class OsmBuilding < ActiveRecord::Base
     end
   end
 
+  def categories
+    Category.where("table = 'buildings' AND type = ?", type)
+  end
+
+  def types
+    [type]
+  end
+
+  def table
+    'buildings'
+  end
+
 end

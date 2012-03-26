@@ -21,4 +21,16 @@ class OsmObject < ActiveRecord::Base
     end
   end
 
+  def categories
+    Category.where("table = 'places' AND type IN (?)", type_array)
+  end
+
+  def types
+    type_array
+  end
+
+  def table
+    'objects'
+  end
+
 end

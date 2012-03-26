@@ -13,11 +13,12 @@ gem 'thinking-sphinx', '>= 2.0.10'
 
 gem 'yajl-ruby'
 
-gem 'cells'
 gem 'kaminari'
 gem 'ancestry'
 
 gem 'haml-rails'
+gem 'rabl'
+gem 'active_attr'
 
 gem 'unicorn' # Use unicorn as the app server
 gem 'capistrano' # Deploy with Capistrano

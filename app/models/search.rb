@@ -1,11 +1,17 @@
-class SearchCell < Cell::Rails
+class Search
 
-  append_view_path Rails.root.join('app/views')
+  include ActiveAttr::Attributes
+  include ActiveAttr::MassAssignment
 
-  def results(params)
-    unless params[:q].blank?
-      @query = params[:q]
+  attribute :params
+  attribute :query
+  attribute :results
 
+  def self.search(params)
+    if params[:q].blank?
+      nil
+    else
+      query = params[:q]
       options = { :page => params[:page] || 1, :per_page => 15 }
 
       unless params[:lat].blank? || params[:lng].blank?
@@ -15,10 +21,8 @@ class SearchCell < Cell::Rails
         options[:order] = "@geodist ASC, @relevance DESC"
       end
 
-      @results = ThinkingSphinx.search @query, options
+      Search.new(:params => params, :query => query, :results => ThinkingSphinx.search(query, options))
     end
-
-    render
   end
 
 end

@@ -11,4 +11,16 @@ class OsmPlace < ActiveRecord::Base
     where "name IS NOT NULL"
   end
 
+  def categories
+    Category.where("table = 'places' AND type = ?", type)
+  end
+
+  def types
+    [type]
+  end
+
+  def table
+    'places'
+  end
+
 end

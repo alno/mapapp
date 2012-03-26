@@ -5,5 +5,12 @@
   %body
     = render 'layouts/navbar'
 
-    #content.basic
+    #content.map
       = yield
+
+    #sidebar{ :style => "left: -400px" }
+      %h3= raw(t("search.results.header", :query => '<span class="query"></span>'))
+
+      .results
+
+      .pagination
