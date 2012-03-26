@@ -4,6 +4,8 @@
 
   :javascript
     window.metadata = #{render 'layouts/metadata.json.rabl'}
+    I18n.defaultLocale = #{ I18n.default_locale.to_json }
+    I18n.locale = #{ I18n.locale.to_json }
 
   %body
     = render 'layouts/navbar'
@@ -11,7 +13,12 @@
     #content.map
       = yield
 
+    #sidebar_handle
+      %div
+        %a.icon-chevron-right
+
     #sidebar{ :style => "left: -400px" }
+      %a.close ×
       %h3= raw(t("search.results.header", :query => '<span class="query"></span>'))
 
       .results

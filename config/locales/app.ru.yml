@@ -4,6 +4,7 @@ ru:
   search:
     results:
       header: "Результаты поиска для «%{query}»"
+      nothing_found: "Ничего не найдено =( Попробуйте поменять запрос"
 
   info:
     tabs:

@@ -5,6 +5,13 @@ GIT
     ruby_mapnik (0.1.2)
       rice (>= 1.4.2)
 
+GIT
+  remote: git://github.com/fnando/i18n-js.git
+  revision: eeec14066b50f72876aa789c9b1f226172452798
+  specs:
+    i18n-js (2.1.2)
+      i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -193,6 +200,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   haml-rails
   historyjs-rails
+  i18n-js!
   jquery-rails
   pg
   rabl

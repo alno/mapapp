@@ -4,6 +4,9 @@
 #= require bootstrap-modal
 #= require bootstrap-tab
 
+#= require i18n
+#= require i18n/translations
+
 #= require_tree .
 
 $ ->
@@ -26,3 +29,10 @@ $ ->
 
     false # Don't send form in normal way
 
+  $('#sidebar .close').click ->
+    app.hideSidebar()
+    false
+
+  $('#sidebar_handle a').click ->
+    app.showSidebar()
+    true

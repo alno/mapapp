@@ -33,6 +33,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'historyjs-rails'
   gem 'bootstrap-sass'
+  gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer'

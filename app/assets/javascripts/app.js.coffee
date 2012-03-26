@@ -34,7 +34,7 @@ class @App
       @sidebar.find('.pagination').html('')
 
       if data.results.length == 0
-        @sidebar.find('.results').text('Nothing found =(')
+        @sidebar.find('.results').text(I18n.t('search.results.nothing_found'))
       else
         @searchResultsLayer = new L.LayerGroup()
 
