@@ -71,6 +71,8 @@ class @App
     size = 2
     container.html("")
 
+    return if count <= 1
+
     appendLink(1) if current - size > 1
     appendGap() if current - size > 2
 
@@ -85,11 +87,24 @@ class @App
     appendGap() if current + size < count - 1
     appendLink(count) if current + size < count
 
+  findCategories: (table, types) ->
+    cat for cat in metadata.categories when cat.table == table and types.indexOf(cat.type) >= 0
+
   buildResult: (result) ->
+    markerOptions = {}
+    resultStyle = {}
+
+    cats = @findCategories(result.table, result.types)
+    icons = ("/images/icons-classic/#{cat.icon}.png" for cat in cats when cat.icon)
+
+    if icon = icons[0]
+      resultStyle.background = "url(#{icon}) no-repeat left center"
+      markerOptions.icon = @buildIcon(icon)
+
     zoom = 14
     point = new L.LatLng(result.lat, result.lng)
-    marker = new L.Marker(point)
-    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address}</b>")
+    marker = new L.Marker(point, markerOptions)
+    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address}</b><p><a href=\"#\" onclick=\"app.showPage('#{result.table}/#{result.id}/page');false\">Подробнее...</a></p>")
     @searchResultsLayer.addLayer(marker)
 
     li = $('<li class="search-result">')
@@ -99,4 +114,38 @@ class @App
       marker.openPopup()
     )
     li.append($("<span class=\"address\">#{result.address}</span>")) if result.address
+    li.css(resultStyle)
     li
+
+  buildIcon: (url) ->
+    @iconCache = {} unless @iconCache
+    return @iconCache[url] if @iconCache[url]
+
+    iconClass = L.Icon.extend
+      options:
+        iconUrl: url
+        iconSize: new L.Point(32, 37)
+        iconAnchor: new L.Point(16, 35)
+        shadowUrl: '/images/marker-shadow.png'
+        shadowSize: new L.Point(50, 35)
+        popupAnchor: new L.Point(0, -25)
+
+    new iconClass()
+
+  showPopup: (data) ->
+    @prevPopup.modal('hide') if @prevPopup
+
+    popup = $("<div class=\"modal\"><div class=\"modal-header\"><a class=\"close\" data-dismiss=\"modal\">×</a><h3></h3></div><div class=\"modal-body\" /></div>")
+    popup.find('.modal-header h3').html(data.title)
+    popup.find('.modal-body').html(data.body)
+    popup.appendTo('body')
+    popup.modal(backdrop: false)
+    popup.on 'hidden', ->
+      popup.remove()
+      @prevPopup = null
+
+    @prevPopup = popup
+
+  showPage: (path) ->
+    $.get "/#{path}.json", (data) =>
+      @showPopup(data)

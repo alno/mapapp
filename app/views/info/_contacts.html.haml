@@ -1,0 +1,10 @@
+- keys = ['website', 'phone', 'fax']
+- if keys.any?{|k| tags[k]}
+  .contacts
+    %h4= t "info.blocks.contacts"
+
+    - keys.each do |key|
+      - if tags[key]
+        %b= t "info.keys.#{key}"
+        = tags[key]
+        %br

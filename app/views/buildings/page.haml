@@ -1,0 +1,10 @@
+%ul.nav.nav-tabs
+  %li.active= link_to t("info.tabs.common"), "#object-#{@building.id}-common", 'data-toggle' => 'tab'
+  %li= link_to t("info.tabs.tags"), "#object-#{@building.id}-tags", 'data-toggle' => 'tab'
+
+.tab-content
+  .tab-pane.active{ :id => "object-#{@building.id}-common" }
+    = render 'info/categories.html', :categories => @building.categories
+
+  .tab-pane{ :id => "object-#{@building.id}-tags" }
+    = render 'info/tags.html', :tags => @building.tags

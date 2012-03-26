@@ -1,11 +1,7 @@
 module IndexHelper
 
-  def nav_link(title, path)
-    if current_page? path
-      "<li class=\"active\">#{link_to title, path, :onclick => 'return false'}</li>".html_safe
-    else
-      "<li>#{link_to title, path}</li>".html_safe
-    end
+  def page_link(slug)
+    link_to(Page.find_by_slug(slug).try(:title) || slug, '#', :onclick => "app.showPage('pages/#{slug}');false")
   end
 
 end

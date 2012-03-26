@@ -1,0 +1,5 @@
+%ul.categories
+  - categories.each do |cat|
+    %li{ :style => "background: url(/images/icons-classic/#{cat.icon}.png) no-repeat left center" }
+      %a{ :href => '#' }= cat.name
+.clear-left

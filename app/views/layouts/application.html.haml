@@ -2,6 +2,9 @@
 %html
   = render 'layouts/header'
 
+  :javascript
+    window.metadata = #{render 'layouts/metadata.json.rabl'}
+
   %body
     = render 'layouts/navbar'
 

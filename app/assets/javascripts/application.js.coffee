@@ -1,7 +1,9 @@
 #= require jquery
 #= require jquery_ujs
 
-#= require history_jquery
+#= require bootstrap-modal
+#= require bootstrap-tab
+
 #= require_tree .
 
 $ ->
