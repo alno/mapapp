@@ -4,13 +4,9 @@ class Search
 
   def initialize(params)
     @params = params
+    @valid = !params[:q].blank? || !params[:categories].blank?
 
-    if params[:q].blank? && params[:categories].blank?
-      @valid = false
-      @query = nil
-      @options = {}
-    else
-      @valid = true
+    if @valid
       @query = params[:q]
       @options = { :page => params[:page] || 1, :per_page => 12 }
 
@@ -25,6 +21,9 @@ class Search
         @options[:with] ||= {}
         @options[:with][:category_ids] = params[:categories].split(',')
       end
+    else
+      @query = nil
+      @options = {}
     end
   end
 

@@ -87,8 +87,15 @@ class @App extends Spine.Controller
 
     @sidebar.find('.category').each ->
       cat = $(@)
-      cat.find('a').attr('href', "#search/#{data.params.lat}/#{data.params.lng}/#{data.query}/#{cat.data('id')}")
-      cat.find('.count').text(data.category_counts[parseInt(cat.data('id'))] || '')
+
+      if count = data.category_counts[parseInt(cat.data('id'))]
+        cat.find('.count').text(count)
+        cat.removeClass('empty')
+        cat.find('a').attr('href', "#search/#{data.params.lat}/#{data.params.lng}/#{data.query || ''}/#{cat.data('id')}")
+      else
+        cat.find('.count').text('')
+        cat.addClass('empty')
+        cat.find('a').attr('href', null)
 
     @sidebar.find('#sidebar_results_tab').tab('show')
     @showSidebar()
