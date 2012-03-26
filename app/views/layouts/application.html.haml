@@ -21,17 +21,13 @@
       %a.close ×
 
       %ul.nav.nav-tabs
-        %li.active= link_to t("sidebar.tabs.search"), "#sidebar_search", 'data-toggle' => 'tab', 'id' => 'sidebar_search_tab'
+        %li.active= link_to t("sidebar.tabs.results"), "#sidebar_results", 'data-toggle' => 'tab', 'id' => 'sidebar_results_tab'
         %li= link_to t("sidebar.tabs.categories"), "#sidebar_categories", 'data-toggle' => 'tab', 'id' => 'sidebar_categories_tab'
 
       .tab-content
-        #sidebar_search.tab-pane.active
-          %h3= t "search.no_query"
-
+        #sidebar_results.tab-pane.active
           .results
 
           .pagination
         #sidebar_categories.tab-pane
-          %h3= t "categories.header"
-
           = render 'layouts/categories', :categories => Category.arrange

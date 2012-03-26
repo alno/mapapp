@@ -3,8 +3,8 @@ ru:
 
   sidebar:
     tabs:
-      search: Поиск
-      categories: Объекты
+      results: Результаты
+      categories: Категории
 
   categories:
     header: Типы объектов

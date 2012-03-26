@@ -19,15 +19,9 @@ $ ->
       app.showSidebar()
 
   $('#search_form').submit ->
-    # TODO Add sidebar loading
-    # TODO Pushstate
-
     center = app.map.getCenter()
-
-    $.get "/search?#{$('#search_form').serialize()}&lat=#{center.lat}&lng=#{center.lng}", (data) ->
-      app.updateSearchResults(data)
-
-    false # Don't send form in normal way
+    app.navigate("search/#{center.lat}/#{center.lng}/#{$('#search_form .search-query').val()}")
+    false
 
   $('#sidebar .close').click ->
     app.hideSidebar()

@@ -1,6 +1,6 @@
 object @search
 
-attributes :query, :params
+attributes :query, :params, :category_counts
 
 if @search.valid
   node(:current_page) { |search| search.results.current_page }

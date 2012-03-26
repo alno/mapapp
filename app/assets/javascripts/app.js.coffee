@@ -1,6 +1,11 @@
-class @App
+#= require spine
+#= require spine/route
+
+class @App extends Spine.Controller
 
   constructor: ->
+    super
+
     @sidebar = $('#sidebar')
     @content = $('#content')
 
@@ -12,6 +17,33 @@ class @App
 
       @map.on 'dblclick', (e) =>
         @map.addLayer(new L.Marker(e.latlng))
+
+    @setupRoutes()
+    Spine.Route.setup()
+
+  setupRoutes: ->
+    app = @
+
+    routeSearch = (params) ->
+      redir = false
+
+      unless parseFloat(params.lat)
+        params.lat = app.map.getCenter().lat
+        redir = true
+
+      unless parseFloat(params.lng)
+        params.lng = app.map.getCenter().lng
+        redir = true
+
+      if redir
+        @navigate('search', params.lat, params.lng, params.q, params.categories)
+      else
+        $.get "/search.json", params, (data) ->
+          app.updateSearchResults(data)
+
+    @routes
+      "search/:lat/:lng/:q": routeSearch
+      "search/:lat/:lng/:q/:categories": routeSearch
 
   showSidebar: ->
     if @sidebar.offset().left < 0
@@ -31,8 +63,8 @@ class @App
     @sidebar.find('.results').html('')
     @sidebar.find('.pagination').html('')
 
-    if data
-      @sidebar.find('h3').text(I18n.t("search.results.header", query: data.query))
+    if data.results
+      $('#search_form .search-query').val(data.query)
 
       if data.results.length == 0
         @sidebar.find('.results').text(I18n.t('search.results.nothing_found'))
@@ -51,9 +83,14 @@ class @App
         @map.addLayer @searchResultsLayer
 
     else
-      @sidebar.find('h3').text(I18n.t("search.no_query"))
+      @sidebar.find('.results').text(I18n.t("search.no_query"))
 
-    @sidebar.find('#sidebar_search_tab').tab('show')
+    @sidebar.find('.category').each ->
+      cat = $(@)
+      cat.find('a').attr('href', "#search/#{data.params.lat}/#{data.params.lng}/#{data.query}/#{cat.data('id')}")
+      cat.find('.count').text(data.category_counts[parseInt(cat.data('id'))] || '')
+
+    @sidebar.find('#sidebar_results_tab').tab('show')
     @showSidebar()
 
   buildPaginator: (container, current, count, handler) ->

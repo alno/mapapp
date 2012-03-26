@@ -1,7 +1,7 @@
 %ul
   - categories.each do |cat, children|
-    %li
-      = cat.name
-      = cat.object_count
+    %li.category{ 'data-id' => cat.id }
+      = link_to cat.name, "#search/#{params[:lat]}/#{params[:lng]}/#{params[:q]}/#{cat.id}"
+      %span.count= cat.object_count
 
       = render 'layouts/categories', :categories => children
