@@ -77,7 +77,7 @@ class OsmImport::Target::Pg < Struct.new(:options)
 
   class TargetTable
 
-    attr_reader :target, :conn, :table, :type_mapping, :name_mapping, :fields, :conditions, :assigns
+    attr_reader :target, :conn, :table, :type_mapping, :type_array_mapping, :name_mapping, :fields, :conditions, :assigns
 
     def initialize(target, conn, table)
       @target = target
@@ -85,6 +85,7 @@ class OsmImport::Target::Pg < Struct.new(:options)
       @table = table
 
       @type_mapping = table.type_mapper.expression
+      @type_array_mapping = table.type_mapper.expression_multi
       @name_mapping = "NULLIF(COALESCE(src.tags->'name:ru', src.tags->'name', src.tags->'int_name'), '')"
 
       @fields = table.type_mapper.fields.merge :id => 'INT8 PRIMARY KEY',  :name => 'VARCHAR(255)', :tags => 'HSTORE'
