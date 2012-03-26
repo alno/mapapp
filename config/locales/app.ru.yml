@@ -1,6 +1,11 @@
 
 ru:
 
+  sidebar:
+    tabs:
+      search: Поиск
+      categories: Объекты
+
   search:
     label: "Поиск:"
     no_query: "Введите какой-нибудь запрос для поиска"

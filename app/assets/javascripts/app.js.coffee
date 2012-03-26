@@ -53,6 +53,7 @@ class @App
     else
       @sidebar.find('h3').text(I18n.t("search.no_query"))
 
+    @sidebar.find('#sidebar_search_tab').tab('show')
     @showSidebar()
 
   buildPaginator: (container, current, count, handler) ->

@@ -19,8 +19,17 @@
 
     #sidebar{ :style => "left: -400px" }
       %a.close ×
-      %h3= t "search.no_query"
 
-      .results
+      %ul.nav.nav-tabs
+        %li.active= link_to t("sidebar.tabs.search"), "#sidebar_search", 'data-toggle' => 'tab', 'id' => 'sidebar_search_tab'
+        %li= link_to t("sidebar.tabs.categories"), "#sidebar_categories", 'data-toggle' => 'tab', 'id' => 'sidebar_categories_tab'
 
-      .pagination
+      .tab-content
+        #sidebar_search.tab-pane.active
+          %h3= t "search.no_query"
+
+          .results
+
+          .pagination
+        #sidebar_categories.tab-pane
+          Nothing yet
