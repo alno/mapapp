@@ -10,8 +10,8 @@ end
 
 Category.find_or_create_by_name('Здоровье').tap do |health|
   health.children.find_or_create_by_name('Аптеки').update_attributes(:keywords => 'аптека', :table => 'objects', :type => 'pharmacy', :icon => 'drugstore', :default_object_name => 'Аптека')
-  health.children.find_or_create_by_name('Больницы').update_attributes(:keywords => 'больница клиника врач', :table => 'objects', :type => 'hospital', :icon => 'doctor', :default_object_name => 'Больница')
-  health.children.find_or_create_by_name('Клиники').update_attributes(:keywords => 'клиника врач', :table => 'objects', :type => 'doctors', :icon => 'doctor', :default_object_name => 'Клиника')
+  health.children.find_or_create_by_name('Больницы').update_attributes(:keywords => 'больница клиника врач', :table => 'objects', :type => 'hospital', :icon => 'medicine', :default_object_name => 'Больница')
+  health.children.find_or_create_by_name('Клиники').update_attributes(:keywords => 'клиника врач', :table => 'objects', :type => 'doctors', :icon => 'medicine', :default_object_name => 'Клиника')
   health.children.find_or_create_by_name('Зубные клиники').update_attributes(:keywords => 'зубной зубы клиника', :table => 'objects', :type => 'dentist', :icon => 'dentist', :default_object_name => 'Зубная клиника')
 end
 
