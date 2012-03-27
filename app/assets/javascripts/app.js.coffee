@@ -21,29 +21,38 @@ class @App extends Spine.Controller
     @setupRoutes()
     Spine.Route.setup()
 
+  routeSearch: (params) =>
+    redir = false
+
+    for key in ['lat', 'lng', 'q']
+      if params[key] == 'cur'
+        params[key] = @currentSearch && @currentSearch[key]
+        redir = true
+
+    if params.lat == 'cur'
+      params.lat = @currentSearch?.lat
+      redir = true
+
+    unless parseFloat(params.lat)
+      params.lat = app.map.getCenter().lat
+      redir = true
+
+    unless parseFloat(params.lng)
+      params.lng = app.map.getCenter().lng
+      redir = true
+
+    if redir
+      @navigate('search', params.lat, params.lng, params.q, params.categories)
+    else
+      @currentSearch = params
+
+      $.get "/search.json", params, (data) =>
+        @updateSearchResults(data)
+
   setupRoutes: ->
-    app = @
-
-    routeSearch = (params) ->
-      redir = false
-
-      unless parseFloat(params.lat)
-        params.lat = app.map.getCenter().lat
-        redir = true
-
-      unless parseFloat(params.lng)
-        params.lng = app.map.getCenter().lng
-        redir = true
-
-      if redir
-        @navigate('search', params.lat, params.lng, params.q, params.categories)
-      else
-        $.get "/search.json", params, (data) ->
-          app.updateSearchResults(data)
-
     @routes
-      "search/:lat/:lng/:q": routeSearch
-      "search/:lat/:lng/:q/:categories": routeSearch
+      "search/:lat/:lng/:q": @routeSearch
+      "search/:lat/:lng/:q/:categories": @routeSearch
 
   showSidebar: ->
     if @sidebar.offset().left < 0
@@ -150,7 +159,7 @@ class @App extends Spine.Controller
     zoom = 14
     point = new L.LatLng(result.lat, result.lng)
     marker = new L.Marker(point, markerOptions)
-    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address || ''}</b><p><a href=\"#\" onclick=\"app.showPage('#{result.table}/#{result.id}/page');false\">Подробнее...</a></p>")
+    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address || ''}</b><p><a href=\"#\" onclick=\"app.showPage('#{result.table}/#{result.id}/page');return false\">Подробнее...</a></p>")
     @searchResultsLayer.addLayer(marker)
 
     li = $('<li class="search-result">')
@@ -158,6 +167,7 @@ class @App extends Spine.Controller
       @map.panTo(point)
       @map.setZoom(zoom)
       marker.openPopup()
+      false
     )
     li.append($("<span class=\"address\">#{result.address}</span>")) if result.address
     li.css(resultStyle)

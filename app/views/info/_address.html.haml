@@ -1,0 +1,11 @@
+- if model.address
+  .info-block.address
+    %h4= t "info.blocks.address"
+
+    - if model.address_postcode
+      %b= t "info.keys.postcode"
+      = model.address_postcode
+      %br
+
+    %b= t "info.keys.address"
+    = model.address

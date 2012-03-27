@@ -1,6 +1,7 @@
 - keys = ['website', 'phone', 'fax']
+- tags = model.tags
 - if keys.any?{|k| tags[k]}
-  .contacts
+  .info-block.contacts
     %h4= t "info.blocks.contacts"
 
     - keys.each do |key|

@@ -2,8 +2,10 @@ development:
   sql_range_step: 1000000
   morphology: stem_ru
   max_matches: 100000
+  enable_star: true
 
 production:
   sql_range_step: 1000000
   morphology: stem_ru
   max_matches: 100000
+  enable_star: true

@@ -1,10 +1,15 @@
+require 'osm_models'
+
 class OsmBuilding < ActiveRecord::Base
 
   self.inheritance_column = "ar_type"
 
+  include OsmModels::Address
+  include OsmModels::Name
+
   define_index do
     indexes :name
-
+    indexes OsmBuilding.address_sql, :as => :address
     indexes "(SELECT keywords FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :keywords
 
     has "RADIANS(ST_Y(ST_CENTROID(GEOMETRY(geometry))))",  :as => :latitude,  :type => :float
@@ -13,25 +18,11 @@ class OsmBuilding < ActiveRecord::Base
     has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :category_ids, :type => :multi, :facet => true
   end
 
-  def name
-    self['name'] || category.default_object_name
-  end
-
-  def address
-    addr = [address_postcode, address_city, address_street, address_housenumber].compact
-
-    if addr.empty?
-      nil
-    else
-      addr.join(', ')
-    end
-  end
-
   def center
     if RGeo::Feature::Point === geometry
       geometry
     else
-      geometry.centroid
+      geometry.point_on_surface
     end
   end
 

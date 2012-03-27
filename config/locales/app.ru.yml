@@ -18,11 +18,22 @@ ru:
 
   info:
     tabs:
-      common: Контакты
+      common: Общее
       tags: Тэги
     blocks:
+      address: Адресная информация
       contacts: Контактная информация
     keys:
+      address: Адрес
+      postcode: Индекс
       website: Веб-сайт
       phone: Телефон
       fax: Факс
+
+  models:
+    osm_building:
+      default_name: Здание
+    osm_object:
+      default_name: Объект
+    osm_place:
+      default_name: Населенный пункт

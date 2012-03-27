@@ -1,6 +1,10 @@
+require 'osm_models'
+
 class OsmPlace < ActiveRecord::Base
 
   self.inheritance_column = "ar_type"
+
+  include OsmModels::Name
 
   define_index do
     indexes :name
@@ -13,10 +17,6 @@ class OsmPlace < ActiveRecord::Base
     has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'places' AND type = osm_places.type)", :as => :category_ids, :type => :multi, :facet => true
 
     where "name IS NOT NULL"
-  end
-
-  def name
-    self['name'] || category.default_object_name
   end
 
   def category

@@ -4,7 +4,7 @@
 
 .tab-content
   .tab-pane.active{ :id => "object-#{@place.id}-common" }
-    = render 'info/categories.html', :categories => @place.categories
+    = render 'info/categories.html', :model => @place
 
   .tab-pane{ :id => "object-#{@place.id}-tags" }
     = render 'info/tags.html', :tags => @place.tags
