@@ -1,10 +1,10 @@
 %ul.nav.nav-tabs
-  %li.active= link_to t("info.tabs.common"), "#object-#{@place.id}-common", 'data-toggle' => 'tab'
-  %li= link_to t("info.tabs.tags"), "#object-#{@place.id}-tags", 'data-toggle' => 'tab'
+  %li.active= link_to t("info.tabs.common"), "#place-#{@place.id}-common", 'data-toggle' => 'tab'
+  %li= link_to t("info.tabs.tags"), "#place-#{@place.id}-tags", 'data-toggle' => 'tab'
 
 .tab-content
-  .tab-pane.active{ :id => "object-#{@place.id}-common" }
+  .tab-pane.active{ :id => "place-#{@place.id}-common" }
     = render 'info/categories.html', :model => @place
 
-  .tab-pane{ :id => "object-#{@place.id}-tags" }
+  .tab-pane{ :id => "place-#{@place.id}-tags" }
     = render 'info/tags.html', :tags => @place.tags

@@ -19,11 +19,7 @@ class OsmBuilding < ActiveRecord::Base
   end
 
   def center
-    if RGeo::Feature::Point === geometry
-      geometry
-    else
-      geometry.point_on_surface
-    end
+    geometry.point_on_surface
   end
 
   def category

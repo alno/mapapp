@@ -20,6 +20,10 @@ Mapapp::Application.routes.draw do
     get :page, :on => :member
   end
 
+  resources :roads, :only => [:show] do
+    get :page, :on => :member
+  end
+
   resources :pages, :only => [:show]
 
 end

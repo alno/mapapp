@@ -8,7 +8,6 @@ class OsmPlace < ActiveRecord::Base
 
   define_index do
     indexes :name
-
     indexes "(SELECT keywords FROM categories WHERE \"table\" = 'places' AND type = osm_places.type)", :as => :keywords
 
     has "RADIANS(ST_Y(GEOMETRY(center)))",  :as => :latitude,  :type => :float
