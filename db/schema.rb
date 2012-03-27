@@ -16,12 +16,13 @@ ActiveRecord::Schema.define(:version => 20120326145203) do
     t.string   "ancestry"
     t.string   "table"
     t.string   "type"
-    t.string   "name",        :null => false
+    t.string   "name",                :null => false
     t.text     "description"
     t.string   "icon"
     t.string   "keywords"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "default_object_name"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"

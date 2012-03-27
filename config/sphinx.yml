@@ -1,7 +1,9 @@
 development:
   sql_range_step: 1000000
   morphology: stem_ru
+  max_matches: 100000
 
 production:
   sql_range_step: 1000000
   morphology: stem_ru
+  max_matches: 100000

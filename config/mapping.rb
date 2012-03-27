@@ -52,6 +52,10 @@ end
 polygons :objects do
   map :leisure, :amenity, :tourism, :historic, :shop, :office, :sport, :multi => true
 
+  # TODO merge doityourself and hardware shops
+  # TODO merge chemist and pharmacy
+  # TODO merge hotel and motel
+
   with :address, :center
 
   after_import do

@@ -15,6 +15,14 @@ class OsmPlace < ActiveRecord::Base
     where "name IS NOT NULL"
   end
 
+  def name
+    self['name'] || category.default_object_name
+  end
+
+  def category
+    Category.where(:table => 'places', :type => type).first
+  end
+
   def categories
     Category.where(:table => 'places', :type => type)
   end

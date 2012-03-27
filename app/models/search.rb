@@ -32,7 +32,7 @@ class Search
   end
 
   def category_counts
-    @category_counts ||= Hash[ThinkingSphinx.search(query, :group_function => :attr, :group_by => 'category_ids', :ids_only => true).results[:matches].map{|m| a = m[:attributes]; [a['@groupby'], a['@count']]}]
+    @category_counts ||= Hash[ThinkingSphinx.search(query, :group_function => :attr, :limit => 1000, :max_matches => 100000, :group_by => 'category_ids', :ids_only => true).results[:matches].map{|m| a = m[:attributes]; [a['@groupby'], a['@count']]}]
   end
 
   def self.empty

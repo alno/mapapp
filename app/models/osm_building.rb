@@ -11,8 +11,10 @@ class OsmBuilding < ActiveRecord::Base
     has "RADIANS(ST_X(ST_CENTROID(GEOMETRY(geometry))))", :as => :longitude, :type => :float
 
     has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :category_ids, :type => :multi, :facet => true
+  end
 
-    where "name IS NOT NULL"
+  def name
+    self['name'] || category.default_object_name
   end
 
   def address
@@ -31,6 +33,10 @@ class OsmBuilding < ActiveRecord::Base
     else
       geometry.centroid
     end
+  end
+
+  def category
+    Category.where(:table => 'buildings', :type => type).first
   end
 
   def categories

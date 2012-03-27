@@ -11,6 +11,7 @@ class CreateCategories < ActiveRecord::Migration
       t.string :icon
 
       t.string :keywords
+      t.string :default_object_name
 
       t.timestamps
     end

@@ -11,8 +11,10 @@ class OsmObject < ActiveRecord::Base
     has "RADIANS(ST_X(GEOMETRY(center)))", :as => :longitude, :type => :float
 
     has "(SELECT string_agg(replace(ancestry, '/', ',') || ',' || categories.id, ',') FROM categories JOIN unnest(type_array) ON type = unnest WHERE \"table\" = 'objects')", :as => :category_ids, :type => :multi, :facet => true
+  end
 
-    where "name IS NOT NULL"
+  def name
+    self['name'] || category.default_object_name
   end
 
   def address
@@ -23,6 +25,10 @@ class OsmObject < ActiveRecord::Base
     else
       addr.join(', ')
     end
+  end
+
+  def category
+    Category.where(:table => 'objects', :type => type).first
   end
 
   def categories
