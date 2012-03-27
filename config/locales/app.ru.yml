@@ -29,6 +29,8 @@ ru:
       website: Веб-сайт
       phone: Телефон
       fax: Факс
+    links:
+      osm_browse: Информация об объекте на OpenStreetMap
 
   models:
     osm_building:

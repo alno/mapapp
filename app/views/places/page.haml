@@ -7,4 +7,5 @@
     = render 'info/categories.html', :model => @place
 
   .tab-pane{ :id => "place-#{@place.id}-tags" }
+    = osm_link @place
     = render 'info/tags.html', :tags => @place.tags

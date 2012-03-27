@@ -8,4 +8,5 @@
     = render 'info/address.html', :model => @building
 
   .tab-pane{ :id => "building-#{@building.id}-tags" }
+    = osm_link @building
     = render 'info/tags.html', :tags => @building.tags

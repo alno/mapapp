@@ -88,14 +88,22 @@ class OsmImport::Target::Pg < Struct.new(:options)
       @type_array_mapping = table.type_mapper.expression_multi
       @name_mapping = "NULLIF(COALESCE(src.tags->'name:ru', src.tags->'name', src.tags->'int_name'), '')"
 
-      @fields = table.type_mapper.fields.merge :id => 'INT8 PRIMARY KEY',  :name => 'VARCHAR(255)', :tags => 'HSTORE'
-      @assigns = table.type_mapper.assigns.merge :id => 'src.osm_id', :name => name_mapping, :tags => 'src.tags'
+      @fields = table.type_mapper.fields.merge :id => 'INT8 PRIMARY KEY',  :name => 'VARCHAR(255)', :tags => 'HSTORE', :osm_type => 'VARCHAR(10)'
+      @assigns = table.type_mapper.assigns.merge :id => osm_id_expr, :name => name_mapping, :tags => 'src.tags', :osm_type => osm_type_expr
       @conditions = table.type_mapper.conditions
 
       table.mappers.each do |key, mapper|
         @fields.merge! mapper.fields
         @assigns.merge! mapper.assigns
       end
+    end
+
+    def osm_id_expr
+      "ABS(src.osm_id)"
+    end
+
+    def osm_type_expr(t = table.type)
+      "CASE WHEN src.osm_id < 0 THEN 'relation' ELSE '#{if t.to_s == 'point' then 'node' else 'way' end}' END"
     end
 
     def add_geometry_column(column, type)

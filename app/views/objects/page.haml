@@ -9,4 +9,5 @@
     = render 'info/contacts.html', :model => @object
 
   .tab-pane{ :id => "object-#{@object.id}-tags" }
+    = osm_link @object
     = render 'info/tags.html', :tags => @object.tags
