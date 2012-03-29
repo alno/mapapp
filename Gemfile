@@ -21,8 +21,9 @@ gem 'active_attr'
 
 gem 'whenever' # Cron tasks
 
+gem 'unicorn' # Use unicorn as the app server
+
 group :development do
-  gem 'unicorn' # Use unicorn as the app server
   gem 'capistrano' # Deploy with Capistrano
   gem 'capistrano-unicorn'
 end
