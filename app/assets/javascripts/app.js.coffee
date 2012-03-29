@@ -64,6 +64,17 @@ class @App extends Spine.Controller
       @content.removeClass('with-sidebar')
       @sidebar.animate({left: -400}, 200)
 
+  showSelectionLayer: (layer) ->
+    @hideSelectionLayer()
+
+    @selectionLayer = layer
+    @map.addLayer(@selectionLayer)
+
+  hideSelectionLayer: ->
+    if @selectionLayer
+      @map.removeLayer(@selectionLayer)
+      @selectionLayer = null
+
   updateSearchResults: (data)->
     if @searchResultsLayer
       @map.removeLayer(@searchResultsLayer)
@@ -146,32 +157,9 @@ class @App extends Spine.Controller
     cat for cat in metadata.categories when cat.table == table and types.indexOf(cat.type) >= 0
 
   buildResult: (result) ->
-    markerOptions = {}
-    resultStyle = {}
-
-    cats = @findCategories(result.table, result.types)
-    icons = ("/images/icons-classic/#{cat.icon}.png" for cat in cats when cat.icon)
-
-    if icon = icons[0]
-      resultStyle.background = "url(#{icon}) no-repeat left center"
-      markerOptions.icon = @buildIcon(icon)
-
-    zoom = 14
-    point = new L.LatLng(result.lat, result.lng)
-    marker = new L.Marker(point, markerOptions)
-    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address || ''}</b><p><a href=\"#\" onclick=\"app.showObject('#{result.table}','#{result.id}');return false\">Подробнее...</a></p>")
-    @searchResultsLayer.addLayer(marker)
-
-    li = $('<li class="search-result">')
-    li.append($("<a class=\"name\" href=\"#\">#{result.name}</a>").click =>
-      @map.panTo(point)
-      @map.setZoom(zoom)
-      marker.openPopup()
-      false
-    )
-    li.append($("<span class=\"address\">#{result.address}</span>")) if result.address
-    li.css(resultStyle)
-    li
+    res = new SearchResult(@, result)
+    @searchResultsLayer.addLayer(res.getMarker())
+    res.getNode()
 
   buildIcon: (url) ->
     @iconCache = {} unless @iconCache
@@ -205,7 +193,3 @@ class @App extends Spine.Controller
   showPage: (path) ->
     $.get "/#{path}.json", (data) =>
       @showPopup(data)
-
-  showObject: (table, id) ->
-    $.get "/#{table}/#{id}.json", (data) =>
-      @showPopup title: data.name, body: data.info

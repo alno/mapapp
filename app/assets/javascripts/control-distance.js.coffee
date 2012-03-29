@@ -1,4 +1,3 @@
-#= require leaflet
 
 length = (path) ->
   points = path.getLatLngs()

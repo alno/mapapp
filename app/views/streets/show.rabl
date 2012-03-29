@@ -9,3 +9,7 @@ end
 node :info do
   controller.render_to_string 'info'
 end
+
+node :geojson do
+  RGeo::GeoJSON.encode(@street.geometry)
+end

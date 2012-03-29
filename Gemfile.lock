@@ -146,6 +146,8 @@ GEM
       activerecord (>= 3.0.3)
       arel (>= 2.0.6)
       rgeo (>= 0.3.4)
+    rgeo-geojson (0.2.3)
+      rgeo (>= 0.3.7)
     rice (1.4.3)
     riddle (1.5.1)
     ruby-debug (0.10.4)
@@ -207,6 +209,8 @@ DEPENDENCIES
   pg
   rabl
   rails (= 3.2.2)
+  rgeo
+  rgeo-geojson
   ruby-debug
   ruby_mapnik!
   sass-rails (~> 3.2.3)

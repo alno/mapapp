@@ -7,6 +7,8 @@
 #= require i18n
 #= require i18n/translations
 
+#= require leaflet-src
+
 #= require_tree .
 
 $ ->

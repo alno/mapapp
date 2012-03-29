@@ -1,5 +1,9 @@
 %head
   %title Kaluga map
   = stylesheet_link_tag "application", :media => "all"
+
+  :javascript
+    window.L_ROOT_URL = '/'
+
   = javascript_include_tag "application"
   = csrf_meta_tags

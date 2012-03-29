@@ -11,6 +11,9 @@ gem 'activerecord-postgres-hstore' # Working with hstore
 gem 'activerecord-postgres-array' # Working with arrays
 gem 'thinking-sphinx', '>= 2.0.10'
 
+gem 'rgeo'
+gem 'rgeo-geojson'
+
 gem 'yajl-ruby'
 
 gem 'ancestry'
