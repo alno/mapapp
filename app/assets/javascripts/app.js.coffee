@@ -159,7 +159,7 @@ class @App extends Spine.Controller
     zoom = 14
     point = new L.LatLng(result.lat, result.lng)
     marker = new L.Marker(point, markerOptions)
-    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address || ''}</b><p><a href=\"#\" onclick=\"app.showPage('#{result.table}/#{result.id}/page');return false\">Подробнее...</a></p>")
+    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address || ''}</b><p><a href=\"#\" onclick=\"app.showPage('#{result.table}/#{result.id}/info');return false\">Подробнее...</a></p>")
     @searchResultsLayer.addLayer(marker)
 
     li = $('<li class="search-result">')

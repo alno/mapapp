@@ -4,11 +4,11 @@ class StreetsController < ApplicationController
     @street = OsmStreet.find params[:id]
   end
 
-  def page
+  def info
     @street = OsmStreet.find params[:id]
     @title = @street.name
 
-    render :layout => 'page'
+    render :layout => 'info'
   end
 
 end

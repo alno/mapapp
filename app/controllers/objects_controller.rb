@@ -4,11 +4,11 @@ class ObjectsController < ApplicationController
     @object = OsmObject.find params[:id]
   end
 
-  def page
+  def info
     @object = OsmObject.find params[:id]
     @title = @object.name
 
-    render :layout => 'page'
+    render :layout => 'info'
   end
 
 end

@@ -4,11 +4,11 @@ class BuildingsController < ApplicationController
     @building = OsmBuilding.find params[:id]
   end
 
-  def page
+  def info
     @building = OsmBuilding.find params[:id]
     @title = @building.address
 
-    render :layout => 'page'
+    render :layout => 'info'
   end
 
 end
