@@ -58,13 +58,24 @@ class @SearchResult
   getNode: ->
     return @node if @node
 
+    if @data.table == 'places'
+      minZoom = 10
+      maxZoom = 12
+    else if @data.table == 'streets'
+      minZoom = 13
+      maxZoom = 15
+    else
+      minZoom = 16
+      maxZoom = 18
+
     nodeStyle = {}
     nodeStyle.background = "url(#{@icons[0]}) no-repeat left center" if @icons.length > 0
 
     linkMore = $("<a class=\"name\" href=\"#\">#{@data.name}</a>")
     linkMore.click =>
       @app.map.panTo(@point)
-      @app.map.setZoom(14)
+      @app.map.setZoom(minZoom) if @app.map.getZoom() < minZoom
+      @app.map.setZoom(maxZoom) if @app.map.getZoom() > maxZoom
       @getMarker().openPopup()
       false
 
