@@ -29,6 +29,10 @@ class @App extends Spine.Controller
         params[key] = @currentSearch && @currentSearch[key]
         redir = true
 
+    if params.q and params.q.match(/%\w{2}%/)
+      params.q = decodeURIComponent(params.q)
+      redir = true
+
     if params.lat == 'cur'
       params.lat = @currentSearch?.lat
       redir = true
