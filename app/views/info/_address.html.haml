@@ -2,9 +2,9 @@
   .info-block.address
     %h4= t "info.blocks.address"
 
-    - if model.address_postcode
+    - if model.postcode
       %b= t "info.keys.postcode"
-      = model.address_postcode
+      = model.postcode
       %br
 
     %b= t "info.keys.address"

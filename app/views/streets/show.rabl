@@ -1,4 +1,4 @@
-object @road
+object @street
 
 attributes :id, :name, :table, :types, :tags
 

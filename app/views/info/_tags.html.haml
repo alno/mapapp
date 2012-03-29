@@ -1,4 +1,4 @@
 %dl.dl-horizontal
-  - tags.each do |key, value|
+  - tags.try :each do |key, value|
     %dt= key
     %dd= value

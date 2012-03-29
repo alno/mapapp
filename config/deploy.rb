@@ -21,24 +21,16 @@ require 'bundler/capistrano'
 
 namespace :deploy do
 
-  desc "Restarting unicorn"
+  desc "Restarting application"
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "cd #{current_path} ; script/delayed_job restart"
-    run "cd #{current_path} ; ([ -f tmp/pids/unicorn.pid ] && kill -USR2 `cat tmp/pids/unicorn.pid`) || bundle exec unicorn -c config/unicorn.rb -E production -D"
-
-    thinking_sphinx.restart
-  end
-
-  desc "Rude restart application"
-  task :rude_restart, :roles => :app do
-    run "cd #{current_path} ; script/delayed_job stop; script/delayed_job start"
-    run "cd #{current_path} ; pkill -f unicorn; sleep 0.5; pkill -f unicorn; sleep 0.5 ; bundle exec unicorn -c config/unicorn.rb -E production -D "
-
     thinking_sphinx.restart
   end
 
   task :start, :roles => :app do
-    rude_restart
+    run "cd #{current_path} ; script/delayed_job stop; script/delayed_job start"
+    thinking_sphinx.restart
+    unicorn.start
   end
 
   after "deploy:migrate", :roles => :app do
@@ -47,11 +39,11 @@ namespace :deploy do
 end
 
 after "deploy:update_code", roles => :app do
-  run "ln -nfs #{shared_path}/config/unicorn.rb #{release_path}/config/unicorn.rb"
+  run "mkdir -p #{release_path}/config/unicorn"
+  run "ln -nfs #{shared_path}/config/unicorn.rb   #{release_path}/config/unicorn/production.rb"
   run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 
-  run "ln -s #{shared_path}/tiles #{release_path}/public/tiles"
-
+  run "ln -nfs #{shared_path}/tiles  #{release_path}/public/tiles"
   run "ln -nfs #{shared_path}/sphinx #{release_path}/db/sphinx"
 
   run "cd #{release_path} && bundle exec rake osm:import UPDATE=1"
@@ -60,5 +52,6 @@ end
 
 load 'deploy/assets'
 
+require 'capistrano-unicorn'
 require 'whenever/capistrano'
 require 'thinking_sphinx/deploy/capistrano'

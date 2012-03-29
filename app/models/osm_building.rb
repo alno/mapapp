@@ -9,6 +9,7 @@ class OsmBuilding < ActiveRecord::Base
 
   define_index do
     indexes :name
+    indexes :city
     indexes OsmBuilding.address_sql, :as => :address
     indexes "(SELECT keywords FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :keywords
 

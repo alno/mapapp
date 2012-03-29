@@ -25,10 +25,14 @@ class Search
 
       class_count = counts_by('class_crc')
 
-      if [OsmPlace,OsmRoad].any? {|k| class_count[k.name.to_crc32].to_i > 0 }
+      if class_count[OsmPlace.name.to_crc32].to_i > 0
         @fields = [:name, :keywords]
-        Rails.logger.info "There are address part objects in results, excluding address field from search"
+        Rails.logger.info "There are places in results, excluding address and city fields from search"
+      elsif class_count[OsmStreet.name.to_crc32].to_i > 0
+        @fields = [:name, :keywords, :city]
+        Rails.logger.info "There are streets in results, excluding address fields from search"
       end
+
     else
       @query = nil
       @options = {}

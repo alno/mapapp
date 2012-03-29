@@ -9,6 +9,7 @@ class OsmObject < ActiveRecord::Base
 
   define_index do
     indexes :name
+    indexes :city
     indexes OsmObject.address_sql, :as => :address
     indexes "(SELECT string_agg(keywords, ' ') FROM categories JOIN unnest(type_array) ON type = unnest WHERE \"table\" = 'objects')", :as => :keywords
 

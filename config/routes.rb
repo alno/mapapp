@@ -20,7 +20,7 @@ Mapapp::Application.routes.draw do
     get :page, :on => :member
   end
 
-  resources :roads, :only => [:show] do
+  resources :streets, :only => [:show] do
     get :page, :on => :member
   end
 
