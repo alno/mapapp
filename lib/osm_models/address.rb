@@ -2,10 +2,11 @@ module OsmModels::Address
 
   extend ActiveSupport::Concern
 
-  ADDRESS_FIELDS = [:address_city, :address_street, :address_housenumber]
+  DISPLAY_ADDRESS_FIELDS = [:city, :street, :housenumber]
+  ALL_ADDRESS_FIELDS = [:postcode, :city, :street, :housenumber]
 
   def address
-    addr = ADDRESS_FIELDS.map{|f| self[f] }.compact
+    addr = DISPLAY_ADDRESS_FIELDS.map{|f| self[f] }.compact
 
     if addr.empty?
       nil
@@ -16,12 +17,12 @@ module OsmModels::Address
 
   module ClassMethods
 
-    def address_fields
-      ADDRESS_FIELDS
+    def display_address_fields
+      DISPLAY_ADDRESS_FIELDS
     end
 
     def address_sql
-      ADDRESS_FIELDS.map{|f| "COALESCE(#{f},'')" }.join(" || ' ' || ")
+      ALL_ADDRESS_FIELDS.map{|f| "COALESCE(#{f},'')" }.join(" || ' ' || ")
     end
 
   end

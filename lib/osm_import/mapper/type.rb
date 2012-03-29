@@ -2,6 +2,8 @@ require 'osm_import/mapper'
 
 class OsmImport::Mapper::Type < OsmImport::Mapper::Base
 
+  attr_reader :mappings
+
   def initialize(*args)
     super
 

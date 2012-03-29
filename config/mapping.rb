@@ -1,4 +1,4 @@
-polygons :places do
+multipolygons :places do
   with :center
 
   map :place => [:city, :town, :village]
@@ -10,9 +10,22 @@ polygons :places do
 end
 
 lines :roads do
-  with :ref => :string
+  with :ref => :string, :place_id => :id
 
   map :highway
+
+  after_import do
+    conn.exec "UPDATE #{name} SET place_id = new_osm_places.id from new_osm_places where st_intersects(new_osm_places.geometry,new_osm_roads.geometry) and new_osm_places.name is not null"
+  end
+end
+
+multilines :streets do
+  with :center, :city => :string, :place_id => :id
+
+  after_create do # TODO More intellectual type selection
+    conn.exec "INSERT INTO #{name}(id,osm_type,type,geometry,name,place_id) SELECT MIN(id), MIN(osm_type), 'street', ST_Multi(ST_Union(Geometry(geometry))), name, place_id FROM new_osm_roads WHERE name IS NOT NULL AND place_id IS NOT NULL GROUP BY name, place_id"
+    conn.exec "UPDATE #{name} SET city = (SELECT name FROM new_osm_places WHERE id = place_id)"
+  end
 end
 
 lines :rails do
@@ -27,7 +40,7 @@ lines :waterways do
   map :waterway => [:stream, :river, :canal, :drain, :ditch], :barrier => :ditch
 end
 
-polygons :waterareas do
+multipolygons :waterareas do
   map :waterway => [:riverbank, :drain, :pond], :natural => [:water, :lake, :bay], :landuse => [:basin, :reservoir]
 end
 
@@ -39,17 +52,17 @@ lines :barriers do
   end
 end
 
-polygons :territories do
+multipolygons :territories do
   map :landuse, :natural => [:wood, :scrub, :wetland, :beach]
 end
 
-polygons :buildings do
+multipolygons :buildings do
   map :building, :power => :generator
 
   with :address
 end
 
-polygons :objects do
+multipolygons :objects do
   map :leisure, :amenity, :tourism, :historic, :shop, :office, :sport, :multi => true
 
   # TODO merge doityourself and hardware shops
@@ -60,7 +73,9 @@ polygons :objects do
 
   after_import do
     conn.exec "INSERT INTO #{name}(id,osm_type,type,type_array,name,center,tags) SELECT #{osm_id_expr}, #{osm_type_expr :point}, #{type_mapping}, #{type_array_mapping}, #{name_mapping}, way, tags FROM raw_osm_point src WHERE #{conditions}"
-    conn.exec "UPDATE #{name} SET address_city = COALESCE(#{name}.address_city,b.address_city), address_street = COALESCE(#{name}.address_street, b.address_street), address_housenumber = COALESCE(#{name}.address_housenumber, b.address_housenumber), address_postcode = COALESCE(#{name}.address_postcode, b.address_postcode) FROM new_osm_buildings b WHERE ST_Intersects(b.geometry,new_osm_objects.geometry) OR ST_Intersects(b.geometry,new_osm_objects.center)"
+    conn.exec "UPDATE #{name} SET city = COALESCE(#{name}.city,b.city), street = COALESCE(#{name}.street, b.street), housenumber = COALESCE(#{name}.housenumber, b.housenumber), postcode = COALESCE(#{name}.postcode, b.postcode) FROM new_osm_buildings b WHERE ST_Intersects(b.geometry,new_osm_objects.geometry) OR ST_Intersects(b.geometry,new_osm_objects.center)"
+    conn.exec "UPDATE #{name} SET city = p.name FROM new_osm_places p WHERE #{name}.geometry && p.geometry AND ST_Contains(Geometry(p.geometry), Geometry(#{name}.geometry)) AND p.type IN ('city','town','village') AND p.name IS NOT NULL AND city IS NULL AND #{name}.geometry IS NOT NULL"
+    conn.exec "UPDATE #{name} SET city = p.name FROM new_osm_places p WHERE #{name}.center && p.geometry AND ST_Contains(Geometry(p.geometry), Geometry(#{name}.center)) AND p.type IN ('city','town','village') AND p.name IS NOT NULL AND city IS NULL AND #{name}.geometry IS NULL"
 
     conn.exec "UPDATE new_osm_buildings SET name = NULL FROM #{name} WHERE #{name}.id = new_osm_buildings.id" # Remove names from buildings to exclude them from search
   end

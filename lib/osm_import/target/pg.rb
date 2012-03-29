@@ -51,7 +51,7 @@ class OsmImport::Target::Pg < Struct.new(:options)
     conn.close
   end
 
-  GEOTYPES = { 'point' => 'POINT', 'line' => 'LINESTRING', 'polygon' => 'MULTIPOLYGON' }
+  GEOTYPES = { 'point' => 'POINT', 'line' => 'LINESTRING', 'polygon' => 'POLYGON', 'multiline' => 'MULTILINESTRING', 'multipolygon' => 'MULTIPOLYGON' }
 
   def geometry_type(type)
     GEOTYPES[type.to_s] or raise StandardError.new("Unknown geometry type #{type.inspect}")
@@ -147,14 +147,16 @@ class OsmImport::Target::Pg < Struct.new(:options)
     end
 
     def import!
-      if table.type == 'polygon'
-        geometry_assign = 'ST_Multi(way)'
-      else
-        geometry_assign = 'way'
-      end
+      unless table.type_mapper.mappings.empty?
+        if table.type =~ /^multi/
+          geometry_expr = 'ST_Multi(way)'
+        else
+          geometry_expr = 'way'
+        end
 
-      field_keys = fields.keys.to_a
-      conn.exec "INSERT INTO #{name}(geometry, #{field_keys.join(', ')}) SELECT #{geometry_assign} AS geometry, #{field_keys.map{|k| "#{assigns[k]} AS #{k}"}.join(',')} FROM raw_osm_#{table.type} src WHERE #{conditions.join(' AND ')}"
+        field_keys = fields.keys.to_a
+        conn.exec "INSERT INTO #{name}(geometry, #{field_keys.join(', ')}) SELECT #{geometry_expr} AS geometry, #{field_keys.map{|k| "#{assigns[k]} AS #{k}"}.join(',')} FROM raw_osm_#{table.type.gsub('multi','')} src WHERE #{conditions.join(' AND ')}"
+      end
 
       # Creating indexes
 

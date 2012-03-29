@@ -30,6 +30,19 @@ module OsmImport::Mapper
 
   end
 
-  class String < Base; end
+  class String < Base
+  end
+
+  class Id < Base
+
+    def fields
+      { name => "INT8" }
+    end
+
+    def assigns
+      { name => "(src.tags->'#{name}')::INT8" }
+    end
+
+  end
 
 end

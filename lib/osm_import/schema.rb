@@ -20,6 +20,14 @@ class OsmImport::Schema
 
   class Dsl < Struct.new(:schema)
 
+    def multipolygons(name, &block)
+      table :multipolygons, name, &block
+    end
+
+    def multilines(name, &block)
+      table :multilines, name, &block
+    end
+
     def polygons(name, &block)
       table :polygons, name, &block
     end
