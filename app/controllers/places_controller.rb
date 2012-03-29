@@ -4,11 +4,4 @@ class PlacesController < ApplicationController
     @place = OsmPlace.find params[:id]
   end
 
-  def info
-    @place = OsmPlace.find params[:id]
-    @title = @place.name
-
-    render :layout => 'info'
-  end
-
 end

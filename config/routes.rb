@@ -4,25 +4,11 @@ Mapapp::Application.routes.draw do
 
   root :to => 'index#index'
 
-  resources :categories, :only => [:index] do
-    get :info, :on => :member
-  end
-
-  resources :objects, :only => [:show] do
-    get :info, :on => :member
-  end
-
-  resources :places, :only => [:show] do
-    get :info, :on => :member
-  end
-
-  resources :buildings, :only => [:show] do
-    get :info, :on => :member
-  end
-
-  resources :streets, :only => [:show] do
-    get :info, :on => :member
-  end
+  resources :categories, :only => [:index]
+  resources :objects, :only => [:show]
+  resources :places, :only => [:show]
+  resources :buildings, :only => [:show]
+  resources :streets, :only => [:show]
 
   resources :pages, :only => [:show]
 

@@ -159,7 +159,7 @@ class @App extends Spine.Controller
     zoom = 14
     point = new L.LatLng(result.lat, result.lng)
     marker = new L.Marker(point, markerOptions)
-    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address || ''}</b><p><a href=\"#\" onclick=\"app.showPage('#{result.table}/#{result.id}/info');return false\">Подробнее...</a></p>")
+    marker.bindPopup("<h3>#{result.name}</h3><b>#{result.address || ''}</b><p><a href=\"#\" onclick=\"app.showObject('#{result.table}','#{result.id}');return false\">Подробнее...</a></p>")
     @searchResultsLayer.addLayer(marker)
 
     li = $('<li class="search-result">')
@@ -205,3 +205,7 @@ class @App extends Spine.Controller
   showPage: (path) ->
     $.get "/#{path}.json", (data) =>
       @showPopup(data)
+
+  showObject: (table, id) ->
+    $.get "/#{table}/#{id}.json", (data) =>
+      @showPopup title: data.name, body: data.info
