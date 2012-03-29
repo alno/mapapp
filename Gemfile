@@ -19,9 +19,13 @@ gem 'haml-rails'
 gem 'rabl'
 gem 'active_attr'
 
-gem 'unicorn' # Use unicorn as the app server
-gem 'capistrano' # Deploy with Capistrano
 gem 'whenever' # Cron tasks
+
+group :development do
+  gem 'unicorn' # Use unicorn as the app server
+  gem 'capistrano' # Deploy with Capistrano
+  gem 'capistrano-unicorn'
+end
 
 group :rendering do
   gem 'ruby_mapnik', :git => 'git://github.com/alno/Ruby-Mapnik.git'
