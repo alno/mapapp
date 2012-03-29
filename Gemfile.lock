@@ -6,17 +6,18 @@ GIT
       rice (>= 1.4.2)
 
 GIT
+  remote: git://github.com/alno/osm-import.git
+  revision: 349568a0f02959cc1d36eaca54e256ea6629f5ec
+  specs:
+    osm-import (0.0.0)
+      pg (>= 0.11.0)
+
+GIT
   remote: git://github.com/fnando/i18n-js.git
   revision: eeec14066b50f72876aa789c9b1f226172452798
   specs:
     i18n-js (2.1.2)
       i18n
-
-PATH
-  remote: ~/Projects/Map/osm-import
-  specs:
-    osm-import (0.0.0)
-      pg (>= 0.11.0)
 
 GEM
   remote: https://rubygems.org/
