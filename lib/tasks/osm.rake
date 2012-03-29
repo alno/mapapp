@@ -39,8 +39,6 @@ namespace :osm do
   task :import do
     geography = true
 
-    require 'osm_import'
-
     ENV['DB_CONFIG'] ||= Rails.root.join('config', 'database.yml')
 
     db = YAML.load(File.open ENV['DB_CONFIG'])[Rails.env]

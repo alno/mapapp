@@ -12,6 +12,12 @@ GIT
     i18n-js (2.1.2)
       i18n
 
+PATH
+  remote: ~/Projects/Map/osm-import
+  specs:
+    osm-import (0.0.0)
+      pg (>= 0.11.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -206,6 +212,7 @@ DEPENDENCIES
   haml-rails
   i18n-js!
   jquery-rails
+  osm-import!
   pg
   rabl
   rails (= 3.2.2)

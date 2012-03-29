@@ -14,6 +14,8 @@ gem 'thinking-sphinx', '>= 2.0.10'
 gem 'rgeo'
 gem 'rgeo-geojson'
 
+gem 'osm-import', :git => 'git://github.com/alno/osm-import.git' # :path => '/home/alno/Projects/Map/osm-import'
+
 gem 'yajl-ruby'
 
 gem 'ancestry'
