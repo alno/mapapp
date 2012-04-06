@@ -23,12 +23,14 @@ class Search
         @options[:with][:category_ids] = params[:categories].split(',')
       end
 
-      if OsmPlace.search_count(query) > 0
-        @fields = [:name, :keywords]
-        Rails.logger.info "There are places in results, excluding address and city fields from search"
-      elsif OsmStreet.search_count(query) > 0
-        @fields = [:name, :keywords, :city]
-        Rails.logger.info "There are streets in results, excluding address fields from search"
+      unless @query.blank?
+        if OsmPlace.search_count(query) > 0
+          @fields = [:name, :keywords]
+          Rails.logger.info "There are places in results, excluding address and city fields from search"
+        elsif OsmStreet.search_count(query) > 0
+          @fields = [:name, :keywords, :city]
+          Rails.logger.info "There are streets in results, excluding address fields from search"
+        end
       end
 
     else
