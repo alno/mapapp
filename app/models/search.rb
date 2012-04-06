@@ -23,12 +23,10 @@ class Search
         @options[:with][:category_ids] = params[:categories].split(',')
       end
 
-      class_count = counts_by('class_crc')
-
-      if class_count[OsmPlace.name.to_crc32].to_i > 0
+      if OsmPlace.search_count(query) > 0
         @fields = [:name, :keywords]
         Rails.logger.info "There are places in results, excluding address and city fields from search"
-      elsif class_count[OsmStreet.name.to_crc32].to_i > 0
+      elsif OsmStreet.search_count(query) > 0
         @fields = [:name, :keywords, :city]
         Rails.logger.info "There are streets in results, excluding address fields from search"
       end
