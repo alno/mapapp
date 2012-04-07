@@ -63,7 +63,7 @@ multipolygons :buildings do
 end
 
 multipolygons :objects do
-  map :leisure, :amenity, :tourism, :historic, :shop, :office, :sport, :multi => true
+  map :leisure, :amenity, :tourism, :historic, :shop, :office, :sport, :landuse => [:cemetery], :multi => true
 
   # TODO merge doityourself and hardware shops
   # TODO merge chemist and pharmacy
