@@ -23,7 +23,7 @@ class OsmPlace < ActiveRecord::Base
   end
 
   def categories
-    Category.where(:table => 'places').where('types @> ARRAY[?]', type)
+    Category.where(:table => 'places').where('types @> ARRAY[?]::varchar(255)[]', type)
   end
 
   def types

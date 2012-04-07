@@ -28,7 +28,7 @@ class OsmBuilding < ActiveRecord::Base
   end
 
   def categories
-    Category.where(:table => 'buildings').where('types @> ARRAY[?]', type)
+    Category.where(:table => 'buildings').where('types @> ARRAY[?]::varchar(255)[]', type)
   end
 
   def types
@@ -37,6 +37,10 @@ class OsmBuilding < ActiveRecord::Base
 
   def table
     'buildings'
+  end
+
+  def objects
+    OsmObject.where('ST_Intersects((SELECT geometry FROM osm_buildings WHERE id = ?), center)', id)
   end
 
 end

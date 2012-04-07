@@ -28,7 +28,7 @@ class OsmStreet < ActiveRecord::Base
   end
 
   def categories
-    Category.where(:table => 'streets').where('types @> ARRAY[?]', type)
+    Category.where(:table => 'streets').where('types @> ARRAY[?]::varchar(255)[]', type)
   end
 
   def types
