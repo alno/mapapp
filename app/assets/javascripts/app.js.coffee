@@ -158,7 +158,7 @@ class @App extends Spine.Controller
     appendLink(count) if current + size < count
 
   findCategories: (table, types) ->
-    cat for cat in metadata.categories when cat.table == table and types.indexOf(cat.type) >= 0
+    cat for cat in metadata.categories when cat.table == table and _.any(cat.types, (ctype) -> _.include(types, ctype))
 
   buildResult: (result) ->
     res = new SearchResult(@, result)
