@@ -85,11 +85,13 @@ html, body
   .leaflet-left
     left: $sidebarWidth
 
-ul.search-results
+ul.search-results,
+ul.object-list
   list-style-type: none
   padding: 0px
   margin: 0px
 
+  li.object,
   li.search-result
     display: block
     margin-bottom: 10px
@@ -99,8 +101,8 @@ ul.search-results
     a
       display: block
 
-    &.type-school
-      background: url(/images/icons/school.png) no-repeat left top
+ul.object-list
+  margin-top: 10px
 
 .pagination
   margin: 5px 0

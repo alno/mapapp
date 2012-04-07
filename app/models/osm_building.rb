@@ -40,7 +40,7 @@ class OsmBuilding < ActiveRecord::Base
   end
 
   def objects
-    OsmObject.where('ST_Intersects((SELECT geometry FROM osm_buildings WHERE id = ?), center)', id)
+    OsmObject.joins(', osm_buildings src').where('ST_Intersects(src.geometry, osm_objects.center) AND src.id = ?', id)
   end
 
 end

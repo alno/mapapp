@@ -20,9 +20,13 @@ ru:
     tabs:
       common: Общее
       tags: Тэги
+      in_building: В здании
+      nearest_similar: Похожие рядом
     blocks:
       address: Адресная информация
       contacts: Контактная информация
+      in_building: В этом здании
+      nearest_similar: Ближайшие похожие объекты
     keys:
       address: Адрес
       postcode: Индекс

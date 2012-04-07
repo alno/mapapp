@@ -1,5 +1,6 @@
 %ul.nav.nav-tabs
   %li.active= link_to t("info.tabs.common"), "#object-#{@object.id}-common", 'data-toggle' => 'tab'
+  %li= link_to t("info.tabs.nearest_similar"), "#building-#{@object.id}-nearest_similar", 'data-toggle' => 'tab'
   %li= link_to t("info.tabs.tags"), "#object-#{@object.id}-tags", 'data-toggle' => 'tab'
 
 .tab-content
@@ -7,6 +8,10 @@
     = render 'info/categories.html', :model => @object
     = render 'info/address.html', :model => @object
     = render 'info/contacts.html', :model => @object
+
+  .tab-pane{ :id => "building-#{@object.id}-nearest_similar" }
+    %h4= t("info.blocks.nearest_similar")
+    = render 'info/objects.html', :objects => @object.nearest_similar.limit(5)
 
   .tab-pane{ :id => "object-#{@object.id}-tags" }
     = osm_link @object

@@ -197,3 +197,7 @@ class @App extends Spine.Controller
   showPage: (path) ->
     $.get "/#{path}.json", (data) =>
       @showPopup(data)
+
+  showInfo: (table, id) ->
+    $.get "/#{table}/#{id}.json", (data) =>
+      @showPopup title: data.name, body: data.info

@@ -1,11 +1,16 @@
 %ul.nav.nav-tabs
   %li.active= link_to t("info.tabs.common"), "#building-#{@building.id}-common", 'data-toggle' => 'tab'
+  %li= link_to t("info.tabs.in_building"), "#building-#{@building.id}-in_building", 'data-toggle' => 'tab'
   %li= link_to t("info.tabs.tags"), "#building-#{@building.id}-tags", 'data-toggle' => 'tab'
 
 .tab-content
   .tab-pane.active{ :id => "building-#{@building.id}-common" }
     = render 'info/categories.html', :model => @building
     = render 'info/address.html', :model => @building
+
+  .tab-pane{ :id => "building-#{@building.id}-in_building" }
+    %h4= t("info.blocks.in_building")
+    = render 'info/objects.html', :objects => @building.objects
 
   .tab-pane{ :id => "building-#{@building.id}-tags" }
     = osm_link @building

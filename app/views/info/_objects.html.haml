@@ -1,0 +1,8 @@
+%ul.object-list
+  - objects.each do |obj|
+    - icon = obj.categories.detect(&:icon).try(:icon)
+
+    %li.object{ :style => icon ? "background: url(/images/icons-classic/#{icon}.png) no-repeat left center" : "" }
+      %a.name{ :href => "#", :onclick => "app.showInfo('objects', #{obj.id}); return false;" }= obj.name
+      - if obj.address
+        %span.address= obj.address

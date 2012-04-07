@@ -35,4 +35,8 @@ class OsmObject < ActiveRecord::Base
     'objects'
   end
 
+  def nearest_similar
+    OsmObject.joins(', osm_objects src').where('osm_objects.types && src.types AND src.id = ?', id).order('ST_Distance(osm_objects.center, src.center) ASC')
+  end
+
 end
