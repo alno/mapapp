@@ -72,7 +72,7 @@ multipolygons :objects do
   with :address, :center
 
   after_import do
-    conn.exec "INSERT INTO #{name}(id,osm_type,type,type_array,name,center,tags) SELECT #{osm_id_expr}, #{osm_type_expr :point}, #{type_mapping}, #{type_array_mapping}, #{name_mapping}, way, tags FROM raw_osm_point src WHERE #{conditions}"
+    conn.exec "INSERT INTO #{name}(id,osm_type,type,types,name,center,tags) SELECT #{osm_id_expr}, #{osm_type_expr :point}, #{type_mapping}, #{types_mapping}, #{name_mapping}, way, tags FROM raw_osm_point src WHERE #{conditions}"
     conn.exec "UPDATE #{name} SET city = COALESCE(#{name}.city,b.city), street = COALESCE(#{name}.street, b.street), housenumber = COALESCE(#{name}.housenumber, b.housenumber), postcode = COALESCE(#{name}.postcode, b.postcode) FROM new_osm_buildings b WHERE ST_Intersects(b.geometry,new_osm_objects.geometry) OR ST_Intersects(b.geometry,new_osm_objects.center)"
     conn.exec "UPDATE #{name} SET city = p.name FROM new_osm_places p WHERE #{name}.geometry && p.geometry AND ST_Contains(Geometry(p.geometry), Geometry(#{name}.geometry)) AND p.type IN ('city','town','village') AND p.name IS NOT NULL AND city IS NULL AND #{name}.geometry IS NOT NULL"
     conn.exec "UPDATE #{name} SET city = p.name FROM new_osm_places p WHERE #{name}.center && p.geometry AND ST_Contains(Geometry(p.geometry), Geometry(#{name}.center)) AND p.type IN ('city','town','village') AND p.name IS NOT NULL AND city IS NULL AND #{name}.geometry IS NULL"

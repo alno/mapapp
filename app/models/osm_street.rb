@@ -9,12 +9,12 @@ class OsmStreet < ActiveRecord::Base
   define_index do
     indexes :name
     indexes :city
-    indexes "(SELECT keywords FROM categories WHERE \"table\" = 'streets' AND type = osm_streets.type)", :as => :keywords
+    indexes "(SELECT keywords FROM categories WHERE \"table\" = 'streets' AND types @> ARRAY[osm_streets.type])", :as => :keywords
 
     has "RADIANS(ST_Y(GEOMETRY(center)))",  :as => :latitude,  :type => :float
     has "RADIANS(ST_X(GEOMETRY(center)))", :as => :longitude, :type => :float
 
-    has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'streets' AND type = osm_streets.type)", :as => :category_ids, :type => :multi, :facet => true
+    has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'streets' AND types @> ARRAY[osm_streets.type])", :as => :category_ids, :type => :multi, :facet => true
 
     where "name IS NOT NULL AND NOT (name ILIKE '%(%дубл_р%)%')"
   end
@@ -24,11 +24,11 @@ class OsmStreet < ActiveRecord::Base
   end
 
   def category
-    Category.where(:table => 'streets', :type => type).first
+    categories.first
   end
 
   def categories
-    Category.where(:table => 'streets', :type => type)
+    Category.where(:table => 'streets').where('types @> ARRAY[?]', type)
   end
 
   def types

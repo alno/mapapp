@@ -1,5 +1,5 @@
 object Metadata.new
 
 child :categories do
-  attributes :id, :parent_id, :name, :table, :type, :icon
+  attributes :id, :parent_id, :name, :table, :types, :icon
 end

@@ -11,12 +11,12 @@ class OsmBuilding < ActiveRecord::Base
     indexes :name
     indexes :city
     indexes OsmBuilding.address_sql, :as => :address
-    indexes "(SELECT keywords FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :keywords
+    indexes "(SELECT keywords FROM categories WHERE \"table\" = 'buildings' AND types @> ARRAY[osm_buildings.type])", :as => :keywords
 
     has "RADIANS(ST_Y(ST_CENTROID(GEOMETRY(geometry))))",  :as => :latitude,  :type => :float
     has "RADIANS(ST_X(ST_CENTROID(GEOMETRY(geometry))))", :as => :longitude, :type => :float
 
-    has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'buildings' AND type = osm_buildings.type)", :as => :category_ids, :type => :multi, :facet => true
+    has "(SELECT replace(ancestry, '/', ',') || ',' || categories.id FROM categories WHERE \"table\" = 'buildings' AND types @> ARRAY[osm_buildings.type])", :as => :category_ids, :type => :multi, :facet => true
   end
 
   def center
@@ -24,11 +24,11 @@ class OsmBuilding < ActiveRecord::Base
   end
 
   def category
-    Category.where(:table => 'buildings', :type => type).first
+    categories.first
   end
 
   def categories
-    Category.where(:table => 'buildings', :type => type)
+    Category.where(:table => 'buildings').where('types @> ARRAY[?]', type)
   end
 
   def types

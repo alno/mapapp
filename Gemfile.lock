@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/alno/osm-import.git
-  revision: 349568a0f02959cc1d36eaca54e256ea6629f5ec
+  revision: b58477dbfb0fcbb1af9b5f70edfc692fe7727192
   specs:
     osm-import (0.0.0)
       pg (>= 0.11.0)

@@ -1,3 +1,3 @@
 collection @categories
 
-attributes :id, :parent_id, :name, :table, :type, :icon, :object_count
+attributes :id, :parent_id, :name, :table, :types, :icon, :object_count

@@ -1,9 +1,9 @@
 class CreateCategories < ActiveRecord::Migration
-  def change
+  def up
     create_table :categories do |t|
       t.string :ancestry
       t.string :table
-      t.string :type
+      t.string_array :types
 
       t.string :name, :null => false
       t.text :description
@@ -18,6 +18,11 @@ class CreateCategories < ActiveRecord::Migration
 
     add_index :categories, :ancestry
     add_index :categories, :name, :unique => true
-    add_index :categories, [:table, :type], :unique => true
+
+    execute "CREATE INDEX ON categories USING GIN(types)"
+  end
+
+  def down
+    drop_table :categories
   end
 end
