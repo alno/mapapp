@@ -60,7 +60,7 @@ namespace :osm do
 
       puts "Importing osm data..."
       ENV['PGPASS'] = db['password']
-      system "cd '#{importdir}' && '#{Rails.root.join('vendor', 'bin', 'osm2pgsql')}' -e 1-18 -o expire.list -x -j #{geography ? "-l" : "-m"} -G -S #{Rails.root.join('config', 'osm2pgsql.style')} -U #{db['username']} -d #{db['database']} -H #{db['host']} -p raw_osm '#{dump_file}'" or raise StandardError.new("Error importing data")
+      system "cd '#{importdir}' && '#{Rails.root.join('vendor', 'bin', 'osm2pgsql')}' -e 1-18 -o expire.list -j #{geography ? "-l" : "-m"} -G -S #{Rails.root.join('config', 'osm2pgsql.style')} -U #{db['username']} -d #{db['database']} -H #{db['host']} -p raw_osm '#{dump_file}'" or raise StandardError.new("Error importing data")
     end
 
     puts "Converting osm data"
