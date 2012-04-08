@@ -27,11 +27,12 @@ Category.find_or_create_by_name('Спорт').tap do |sport|
 end
 
 Category.find_or_create_by_name('Досуг').tap do |leisure|
-  leisure.children.find_or_create_by_name('Парки').update_attributes(:keywords => 'парк', :table => 'objects', :types => ['park'])
+  leisure.children.find_or_create_by_name('Парки').update_attributes(:keywords => 'парк', :table => 'objects', :types => ['park','garden'])
   leisure.children.find_or_create_by_name('Детские площадки').update_attributes(:keywords => 'детская площадка', :table => 'objects', :types => ['playground'], :default_object_name => 'Детская площадка')
   leisure.children.find_or_create_by_name('Фонтаны').update_attributes(:keywords => 'фонтан', :table => 'objects', :types => ['fountain'], :icon => 'fountain-2', :default_object_name => 'Фонтан')
   leisure.children.find_or_create_by_name('Кинотеатры').update_attributes(:keywords => 'кино кинотеатр', :table => 'objects', :types => ['cinema'], :icon => 'cinema', :default_object_name => 'Кинотеатр')
   leisure.children.find_or_create_by_name('Театры').update_attributes(:keywords => 'кино кинотеатр', :table => 'objects', :types => ['theatre'], :icon => 'theater', :default_object_name => 'Театр')
+  leisure.children.find_or_create_by_name('Катки').update_attributes(:keywords => 'каток коньки', :table => 'objects', :types => ['ice_rink'], :icon => 'iceskating', :default_object_name => 'Каток')
 end
 
 Category.find_or_create_by_name('Торговля').tap do |shop|
@@ -55,13 +56,15 @@ Category.find_or_create_by_name('Торговля').tap do |shop|
   shop.children.find_or_create_by_name('Алкоголь').update_attributes(:keywords => 'магазин алкоголь', :table => 'objects', :types => ['alcohol'], :default_object_name => 'Алкоголь')
   shop.children.find_or_create_by_name('Выпечка').update_attributes(:keywords => 'пекарня выпечка', :table => 'objects', :types => ['bakery'], :default_object_name => 'Выпечка')
   shop.children.find_or_create_by_name('Мясо').update_attributes(:keywords => 'мясо', :table => 'objects', :types => ['butcher'], :default_object_name => 'Мясной')
-  shop.children.find_or_create_by_name('Универмаги').update_attributes(:keywords => 'универмаг', :table => 'objects', :types => ['department_store'], :default_object_name => 'Универмаг')
+  shop.children.find_or_create_by_name('Универмаги').update_attributes(:keywords => 'универмаг', :table => 'objects', :types => ['department_store'], :icon => 'departmentstore', :default_object_name => 'Универмаг')
   shop.children.find_or_create_by_name('Оптика').update_attributes(:keywords => 'оптика очки', :table => 'objects', :types => ['optician'], :default_object_name => 'Оптика')
   shop.children.find_or_create_by_name('Часы').update_attributes(:keywords => 'оптика очки', :table => 'objects', :types => ['clock'], :default_object_name => 'Часы')
-  shop.children.find_or_create_by_name('Кондитерские').update_attributes(:keywords => 'кондитерская сладости конфеты', :table => 'objects', :types => ['confectionery'], :default_object_name => 'Кондитерская')
+  shop.children.find_or_create_by_name('Кондитерские').update_attributes(:keywords => 'кондитерская сладости конфеты', :table => 'objects', :types => ['confectionery'], :icon => 'patisserie', :default_object_name => 'Кондитерская')
   shop.children.find_or_create_by_name('Спортивные магазины').update_attributes(:keywords => 'спорт спортивный магазин', :table => 'objects', :types => ['sports'], :default_object_name => 'Спортивный магазин')
   shop.children.find_or_create_by_name('Детские товары').update_attributes(:keywords => 'детские товары', :table => 'objects', :types => ['baby_goods'], :default_object_name => 'Детские товары')
   shop.children.find_or_create_by_name('Электроника').update_attributes(:keywords => 'магазин электроника', :table => 'objects', :types => ['electronics','hifi'], :default_object_name => 'Магазин электроники')
+  shop.children.find_or_create_by_name('Фотостудии').update_attributes(:keywords => 'магазин фотостудии', :table => 'objects', :types => ['photo','photostudio'], :icon => 'photography', :default_object_name => 'Фотостудия')
+  shop.children.find_or_create_by_name('Фрукты, овощи').update_attributes(:keywords => 'магазин фрукты овощи', :table => 'objects', :types => ['greengrocer'], :icon => 'grocery', :default_object_name => 'Фрукты, овощи')
 end
 
 Category.find_or_create_by_name('Авто', :keywords => 'автомобиль автомоблильный машина').tap do |auto|
@@ -71,6 +74,7 @@ Category.find_or_create_by_name('Авто', :keywords => 'автомобиль �
   auto.children.find_or_create_by_name('Автозапчасти').update_attributes(:keywords => 'автозапчасти запастные части', :table => 'objects', :types => ['car_parts'], :icon => 'carrepair', :default_object_name => 'Автозапчасти')
   auto.children.find_or_create_by_name('Заправки').update_attributes(:keywords => 'заправка автозаправка', :table => 'objects', :types => ['fuel'], :icon => 'filling-station', :default_object_name => 'Автозаправка')
   auto.children.find_or_create_by_name('Парковки').update_attributes(:keywords => 'автопарковка стоянка', :table => 'objects', :types => ['parking'], :icon => 'filling-station', :default_object_name => 'Парковка')
+  auto.children.find_or_create_by_name('Автошкола').update_attributes(:keywords => 'автошкола вождение', :table => 'objects', :types => ['driving_school'], :default_object_name => 'Автошкола')
 end
 
 Category.find_or_create_by_name('Услуги').tap do |service|
@@ -96,23 +100,32 @@ Category.find_or_create_by_name('Прочее').tap do |other|
   other.children.find_or_create_by_name('Религия').tap do |religy|
     religy.update_attributes(:keywords => 'храм место поклонения', :table => 'objects', :types => ['place_of_worship'], :default_object_name => 'Место поклонения')
   end
+
   other.children.find_or_create_by_name('Музеи').update_attributes(:keywords => 'музей', :table => 'objects', :types => ['museum'], :default_object_name => 'Музей')
   other.children.find_or_create_by_name('Библиотеки').update_attributes(:keywords => 'библиотека', :table => 'objects', :types => ['library'], :icon => 'library', :default_object_name => 'Библиотека')
   other.children.find_or_create_by_name('Центры искусств').update_attributes(:keywords => 'центр искусств', :table => 'objects', :types => ['arts_centre'], :default_object_name => 'Центр искусств')
   other.children.find_or_create_by_name('Танцевальные залы').update_attributes(:keywords => 'танцевальный зал', :table => 'objects', :types => ['dance'], :default_object_name => 'Танцевальный зал')
+
   other.children.find_or_create_by_name('Достопримечательности').tap do |memorial|
     memorial.update_attributes(:keywords => 'достопримечательность')
     memorial.children.find_or_create_by_name('Мемориалы').update_attributes(:keywords => 'мемориал памятник', :table => 'objects', :types => ['memorial'], :icon => 'memorial', :default_object_name => 'Памятник')
     memorial.children.find_or_create_by_name('Монументы').update_attributes(:keywords => 'монумент', :table => 'objects', :types => ['monument'], :icon => 'monument', :default_object_name => 'Монумент')
     memorial.children.find_or_create_by_name('Artworks').update_attributes(:keywords => 'произведение искусства', :table => 'objects', :types => ['artwork'], :icon => 'monument', :default_object_name => 'Artwork')
   end
+
   other.children.find_or_create_by_name('Полиция').update_attributes(:keywords => 'отделение полиции', :table => 'objects', :types => ['police'], :icon => 'police', :default_object_name => 'Отделение полиции')
   other.children.find_or_create_by_name('Пожарные').update_attributes(:keywords => 'пожарные отделение', :table => 'objects', :types => ['fire_station'], :icon => 'firemen', :default_object_name => 'Пожарная станция')
   other.children.find_or_create_by_name('Туалеты').update_attributes(:keywords => 'туалет', :table => 'objects', :types => ['toilets'], :icon => 'toilets', :default_object_name => 'Туалет')
   other.children.find_or_create_by_name('Информация').update_attributes(:keywords => 'информация', :table => 'objects', :types => ['information'], :default_object_name => 'Информация')
-  other.children.find_or_create_by_name('Администрация').update_attributes(:keywords => 'администрация', :table => 'objects', :types => ['townhall','goverment'], :default_object_name => 'Администрация')
+  other.children.find_or_create_by_name('Администрация').update_attributes(:keywords => 'администрация', :table => 'objects', :types => ['townhall','goverment','government'], :default_object_name => 'Администрация')
   other.children.find_or_create_by_name('Мусорные баки').update_attributes(:keywords => 'мусорный бак', :table => 'objects', :types => ['recycling','waste_disposal'], :default_object_name => 'Мусорный бак')
   other.children.find_or_create_by_name('Урны').update_attributes(:keywords => 'мусорная корзина урна', :table => 'objects', :types => ['waste_basket'], :default_object_name => 'Урна')
+  other.children.find_or_create_by_name('Кладбища').update_attributes(:keywords => 'кладбище', :table => 'objects', :types => ['cemetery','grave_yard'], :default_object_name => 'Кладбище')
+  other.children.find_or_create_by_name('Руины').update_attributes(:keywords => 'руины', :table => 'objects', :types => ['ruins'], :icon => 'ruins-2', :default_object_name => 'Руины')
+
+  other.children.find_or_create_by_name('Питьевая вода').update_attributes(:keywords => 'питьевая вода', :table => 'objects', :types => ['drinking_water'], :icon => 'drinkingwater', :default_object_name => 'Питьевая вода')
+  other.children.find_or_create_by_name('Колодцы, колонки').update_attributes(:keywords => 'колодце колонка', :table => 'objects', :types => ['water_well','well','artesian_well'], :icon => 'waterwellpump', :default_object_name => 'Колодец, колонка')
+  other.children.find_or_create_by_name('Родники').update_attributes(:keywords => 'родник', :table => 'objects', :types => ['spring'], :default_object_name => 'Родник')
 end
 
 # Pages

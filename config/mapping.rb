@@ -57,17 +57,13 @@ multipolygons :territories do
 end
 
 multipolygons :buildings do
-  map :building, :power => :generator
+  map :building, :power => :generator, :man_made => [:water_tower, :reservoir_covered, :tank, :water_tank, :water_works, :wastewater_plant, :tower, :communications_tower, :monitoring_station]
 
   with :address
 end
 
 multipolygons :objects do
-  map :leisure, :amenity, :tourism, :historic, :shop, :office, :sport, :landuse => [:cemetery], :multi => true
-
-  # TODO merge doityourself and hardware shops
-  # TODO merge chemist and pharmacy
-  # TODO merge hotel and motel
+  map :leisure, :amenity, :tourism, :shop, :office, :sport, :man_made => [:well, :water_well, :artesian_well], :historic => [:monument, :memorial, :ruins], :landuse => [:cemetery], :natural => [:spring], :multi => true
 
   with :address, :center
 
