@@ -44,11 +44,11 @@ multipolygons :waterareas do
   map :waterway => [:riverbank, :drain, :pond], :natural => [:water, :lake, :bay], :landuse => [:basin, :reservoir]
 end
 
-lines :barriers do
+multilines :barriers do
   map :barrier, :natural => :cliff, :man_made => :enbankment
 
   after_import do
-    conn.exec "INSERT INTO #{name}(id,osm_type,type,geometry) SELECT #{osm_id_expr}, #{osm_type_expr :polygon}, #{type_mapping} AS type, ST_Boundary(way) FROM raw_osm_polygon src WHERE #{conditions}"
+    conn.exec "INSERT INTO #{name}(id,osm_type,type,geometry) SELECT #{osm_id_expr}, #{osm_type_expr :polygon}, #{type_mapping} AS type, ST_Multi(ST_Boundary(way)) FROM raw_osm_polygon src WHERE #{conditions}"
   end
 end
 
