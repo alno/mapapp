@@ -1,5 +1,10 @@
 development: &base
+  secret_token: 'ddaf263e7a1f30085cbb07769c027b9c8376eecef8645030d7f779c3ef4696070693cf9e15173b5edb5ad9766e85383029e99a1ddfb4e851ac755fa631f6b993'
   map:
+    init:
+      lat: 54.5302
+      lng: 36.2597
+      zoom: 12
     min_zoom: 10
     max_zoom: 18
     styles:
