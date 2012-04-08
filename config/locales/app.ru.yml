@@ -1,6 +1,9 @@
 
 ru:
 
+  application:
+    title: Карта Калуги
+
   sidebar:
     tabs:
       results: Результаты

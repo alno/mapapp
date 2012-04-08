@@ -39,10 +39,18 @@ namespace :deploy do
 end
 
 after "deploy:update_code", roles => :app do
-  run "mkdir -p #{release_path}/config/unicorn"
-  run "ln -nfs #{shared_path}/config/unicorn.rb   #{release_path}/config/unicorn/production.rb"
-  run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 
+  # Create base configs from samples
+  ['database', 'sphinx', 'mapapp'].each do |config|
+    run "yes n | cp -i #{release_path}/config/#{config}.yml.sample #{shared_path}/config/#{config}.yml"
+    run "ln -nfs #{shared_path}/config/#{config}.yml #{release_path}/config/#{config}.yml"
+  end
+
+  # Link unicorn config
+  run "mkdir -p #{release_path}/config/unicorn"
+  run "ln -nfs #{shared_path}/config/unicorn.rb #{release_path}/config/unicorn/production.rb"
+
+  # Link tiles and sphinx directories
   run "ln -nfs #{shared_path}/tiles  #{release_path}/public/tiles"
   run "ln -nfs #{shared_path}/sphinx #{release_path}/db/sphinx"
 

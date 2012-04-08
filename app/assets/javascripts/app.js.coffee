@@ -12,7 +12,7 @@ class @App extends Spine.Controller
     $('#map').each =>
       @map = new L.Map('map')
       @map.addControl(new L.Control.Distance())
-      @map.setView(new L.LatLng(54.5302,36.2597,1), 12)
+      @map.setView(new L.LatLng(metadata.config.map.init.lat, metadata.config.map.init.lng,1), metadata.config.map.init.zoom)
 
     app = @
     $('#style_switch button').click ->
@@ -30,8 +30,8 @@ class @App extends Spine.Controller
     unless @styleLayerCache[style]
       @styleLayerCache[style] = new L.TileLayer "http://map.alno.name/tiles/#{style}/{z}/{x}/{y}.png",
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-        minZoom: 8
-        maxZoom: 18
+        minZoom: metadata.config.map.min_zoom
+        maxZoom: metadata.config.map.max_zoom
 
     @map.addLayer(@styleLayerCache[style])
     @map.removeLayer(layer) for s, layer of @styleLayerCache when s != style
