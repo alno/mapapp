@@ -78,8 +78,9 @@ namespace :osm do
     db = YAML.load(File.open db_conf_file)[Rails.env]
     minzoom = (ENV['MINZOOM'] || 10).to_i
     maxzoom = (ENV['MAXZOOM'] || 18).to_i
+    styles = (ENV['STYLES'].try(:split, ',') || ['default', 'light'])
 
-    ['default', 'light'].each do |style|
+    styles.each do |style|
 
       if File.exists? Rails.root.join('..', '..', 'shared')
         heightdir = Rails.root.join('..', '..', 'shared', 'heights')
@@ -126,7 +127,11 @@ namespace :osm do
         (minx..maxx).each do |x|
           FileUtils.mkdir_p "#{tmpdir}/tiles/#{z}/#{x}"
           (miny..maxy).each do |y|
-            Mapnik::Tile.new(z,x,y).render(map, "#{tmpdir}/tiles/#{z}/#{x}/#{y}.png", "png256")
+            tile = "#{tmpdir}/tiles/#{z}/#{x}/#{y}"
+
+            Mapnik::Tile.new(z,x,y).render(map, "#{tile}.png", "png256")
+
+            system "pngnq -f -n 50 '#{tile}.png' && mv '#{tile}-nq8.png' '#{tile}.png'" if style == 'light'
           end
         end
 
