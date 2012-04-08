@@ -1,5 +1,5 @@
 set :application, "kalugamap"
-set :repository,  "kalugamap@s1.alno.name:/home/kalugamap/git/kalugamap"
+set :repository,  "git://github.com/alno/mapapp.git"
 
 set :user, "kalugamap"
 set :use_sudo, false

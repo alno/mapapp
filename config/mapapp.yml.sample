@@ -1,5 +1,5 @@
 development: &base
-  secret_token: 'ddaf263e7a1f30085cbb07769c027b9c8376eecef8645030d7f779c3ef4696070693cf9e15173b5edb5ad9766e85383029e99a1ddfb4e851ac755fa631f6b993'
+  secret_token: 'you should change it to something secret (for example to output of `rake secret`)'
   map:
     init:
       lat: 54.5302
