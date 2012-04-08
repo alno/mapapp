@@ -18,3 +18,6 @@ config/*.sphinx.conf
 db/sphinx
 log/searchd.development.pid
 vendor/bundle
+config/mapapp.yml
+config/database.yml
+config/sphinx.yml

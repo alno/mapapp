@@ -76,9 +76,13 @@ namespace :osm do
 
     db_conf_file = ENV['DB_CONFIG'] || Rails.root.join('config', 'database.yml')
     db = YAML.load(File.open db_conf_file)[Rails.env]
-    minzoom = (ENV['MINZOOM'] || 10).to_i
-    maxzoom = (ENV['MAXZOOM'] || 18).to_i
-    styles = (ENV['STYLES'].try(:split, ',') || ['default', 'light'])
+
+    app_conf_file = ENV['APP_CONFIG'] || Rails.root.join('config', 'mapapp.yml')
+    app = YAML.load(File.open app_conf_file)[Rails.env]
+
+    minzoom = (ENV['MINZOOM'] || app['map']['min_zoom']).to_i
+    maxzoom = (ENV['MAXZOOM'] || app['map']['max_zoom']).to_i
+    styles = (ENV['STYLES'].try(:split, ',') || app['map']['styles'])
 
     styles.each do |style|
 

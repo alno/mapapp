@@ -1,0 +1,19 @@
+
+development: &base
+  adapter: postgis
+  host: localhost
+  encoding: unicode
+  database: gis
+  pool: 5
+  username: gis
+  password: zsedcft
+
+production: *base
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: mapapp_test
+  pool: 5
+  username: mapapp
+  password:

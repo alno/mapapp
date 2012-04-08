@@ -1,0 +1,10 @@
+development: &base
+  map:
+    min_zoom: 10
+    max_zoom: 18
+    styles:
+      - default
+      - light
+
+test: *base
+production: *base

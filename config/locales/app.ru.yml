@@ -36,6 +36,11 @@ ru:
     links:
       osm_browse: Информация об объекте на OpenStreetMap
 
+  map:
+    styles:
+      default: Обычный
+      light: Легкий
+
   models:
     osm_building:
       default_name: Здание

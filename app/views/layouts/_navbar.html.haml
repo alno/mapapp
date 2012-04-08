@@ -7,8 +7,8 @@
         %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q] }
 
       #style_switch.btn-group.pull-right{ 'data-toggle' => 'buttons-radio' }
-        %button.btn{ 'data-style' => 'default' } Обычный
-        %button.btn{ 'data-style' => 'light' } Легкий
+        - Mapapp.config['map']['styles'].each do |style|
+          %button.btn{ 'data-style' => style }= t "map.styles.#{style}"
 
       %ul.nav
         %li.divider-vertical

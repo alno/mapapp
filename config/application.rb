@@ -16,6 +16,11 @@ if defined?(Bundler)
 end
 
 module Mapapp
+
+  def self.config
+    @config ||= YAML.load(File.open Rails.root.join('config', 'mapapp.yml'))[Rails.env]
+  end
+
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
