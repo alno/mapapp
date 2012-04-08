@@ -38,6 +38,7 @@ ru:
       fax: Факс
     links:
       osm_browse: Информация об объекте на OpenStreetMap
+      more: Подробнее...
 
   map:
     styles:
