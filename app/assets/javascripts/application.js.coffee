@@ -5,6 +5,7 @@
 
 #= require bootstrap-modal
 #= require bootstrap-tab
+#= require bootstrap-button
 
 #= require i18n
 #= require i18n/translations

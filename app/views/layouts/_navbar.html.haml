@@ -6,6 +6,10 @@
         .search-label= t "search.label"
         %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q] }
 
+      #style_switch.btn-group.pull-right{ 'data-toggle' => 'buttons-radio' }
+        %button.btn{ 'data-style' => 'default' } Обычный
+        %button.btn{ 'data-style' => 'light' } Легкий
+
       %ul.nav
         %li.divider-vertical
         %li= page_link :about

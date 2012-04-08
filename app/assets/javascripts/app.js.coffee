@@ -12,14 +12,29 @@ class @App extends Spine.Controller
     $('#map').each =>
       @map = new L.Map('map')
       @map.addControl(new L.Control.Distance())
-      @map.addLayer(Layers.base)
       @map.setView(new L.LatLng(54.5302,36.2597,1), 12)
 
-      @map.on 'dblclick', (e) =>
-        @map.addLayer(new L.Marker(e.latlng))
+    app = @
+    $('#style_switch button').click ->
+      $(@).button('toggle')
+      app.selectStyle($(@).data('style'))
+
+    $('#style_switch button').first().click()
 
     @setupRoutes()
     Spine.Route.setup()
+
+  selectStyle: (style) ->
+    @styleLayerCache = {} unless @styleLayerCache
+
+    unless @styleLayerCache[style]
+      @styleLayerCache[style] = new L.TileLayer "http://map.alno.name/tiles/#{style}/{z}/{x}/{y}.png",
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+        minZoom: 8
+        maxZoom: 18
+
+    @map.addLayer(@styleLayerCache[style])
+    @map.removeLayer(layer) for s, layer of @styleLayerCache when s != style
 
   routeSearch: (params) =>
     redir = false
