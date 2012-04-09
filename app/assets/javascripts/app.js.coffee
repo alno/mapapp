@@ -16,6 +16,11 @@ class @App extends Spine.Controller
       @map = new L.Map('map')
       @map.addControl(new L.Control.Distance())
       @map.setView(new L.LatLng(metadata.config.map.init.lat, metadata.config.map.init.lng,1), metadata.config.map.init.zoom)
+      @map.on 'popupopen', (e) ->
+        setTimeout((-> e.popup._updateLayout()), 100)
+        setTimeout((-> e.popup._updateLayout()), 300)
+        setTimeout((-> e.popup._updateLayout()), 700)
+        setTimeout((-> e.popup._updateLayout()), 1500)
 
     app = @
     $('#style_switch button').click ->
