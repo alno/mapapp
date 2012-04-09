@@ -10,7 +10,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.string :author_url
       t.integer :width
       t.integer :height
-      t.point :location, :geographic => true, :srid => 4326
+      t.point :location, :geographic => true, :srid => 4326, :null => false
 
       t.timestamps
     end

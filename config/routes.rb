@@ -12,4 +12,6 @@ Mapapp::Application.routes.draw do
 
   resources :pages, :only => [:show]
 
+  resources :photos, :only => [:index]
+
 end

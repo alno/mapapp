@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(:version => 20120409195001) do
     t.string   "author_url"
     t.integer  "width"
     t.integer  "height"
-    t.spatial  "location",    :limit => {:type=>"point", :geographic=>true, :srid=>4326}
+    t.spatial  "location",    :limit => {:type=>"point", :geographic=>true, :srid=>4326}, :null => false
     t.datetime "created_at",                                                              :null => false
     t.datetime "updated_at",                                                              :null => false
   end

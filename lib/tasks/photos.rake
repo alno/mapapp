@@ -7,7 +7,7 @@ namespace :photos do
 
       params = {}
       params[:set] = 'public'
-      params[:size] = 'medium'
+      params[:size] = 'small'
       params[:minx] = Mapapp.config['map']['bbox']['min_lng']
       params[:maxx] = Mapapp.config['map']['bbox']['max_lng']
       params[:miny] = Mapapp.config['map']['bbox']['min_lat']
@@ -25,12 +25,12 @@ namespace :photos do
           photo.url = photo_json['photo_url']
           photo.title = photo_json['photo_title']
           photo.image_url = photo_json['photo_file_url']
-          photo.thumb_url = photo_json['photo_file_url'].gsub('/medium/','/thumb/')
+          photo.thumb_url = photo_json['photo_file_url'].gsub('/small/','/thumb/')
           photo.author_name = photo_json['owner_name']
           photo.author_url = photo_json['owner_url']
           photo.width = photo_json['width']
           photo.height = photo_json['height']
-          photo.location = RGeo::Geos.factory(:srid => 4326, :srs_database => RGeo::CoordSys::SRSDatabase::ActiveRecordTable.new)
+          photo.location = RGeo::Geos.factory(:srid => 4326, :srs_database => RGeo::CoordSys::SRSDatabase::ActiveRecordTable.new).point(photo_json['longitude'], photo_json['latitude'])
           photo.save!
         end
 

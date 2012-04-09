@@ -12,6 +12,7 @@ class @App extends Spine.Controller
     $('#map').each =>
       @map = new L.Map('map')
       @map.addControl(new L.Control.Distance())
+      @map.addLayer(new PhotoLayer())
       @map.setView(new L.LatLng(metadata.config.map.init.lat, metadata.config.map.init.lng,1), metadata.config.map.init.zoom)
 
     app = @
