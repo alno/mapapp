@@ -1,0 +1,13 @@
+%div{ :style => "width: #{photo.width}" }
+  %a{ :href => 'http://www.panoramio.com', :target => '_blank' }
+    %img{ :src => 'http://www.panoramio.com/img/logo-small.gif', :width => 119, :height => 25 }
+  %br
+  %br
+  %a{ :href => photo.url, :target => '_blank' }
+    %img{ :src => photo.image_url, :width => photo.width, :height => photo.height }
+  %br
+  %b
+    %a{ :href => photo.url, :target => '_blank' }= photo.title
+  %br
+    by
+    %a{ :href => photo.author_url, :target => '_blank' }= photo.author_name

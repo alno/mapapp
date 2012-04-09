@@ -11,10 +11,8 @@ class @Photo
     markerOptions = {}
     markerOptions.icon = app.buildIcon('/images/icons-classic/photo.png')
 
-    popupContent = $("<div><a href=\"http://www.panoramio.com/\" target=\"_blank\"><img src=\"http://www.panoramio.com/img/logo-small.gif\" /></a><br /><br /><a href=\"#{@data.url}\" target=\"_blank\"><img src=\"#{@data.image_url}\" /></a><br /><b><a href=\"#{@data.url}\" target=\"_blank\">#{@data.title}</a></b><br />by <a href=\"#{@data.author_url}\" target=\"_blank\">#{@data.author_name}</a></div>")
-
     @marker = new L.Marker(@point, markerOptions)
-    @marker.bindPopup popupContent[0]
+    @marker.bindPopup @data.popup
     @marker
 
 class @PhotoLayer
