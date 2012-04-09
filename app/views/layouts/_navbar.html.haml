@@ -6,9 +6,16 @@
         .search-label= t "search.label"
         %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q] }
 
-      #style_switch.btn-group.pull-right{ 'data-toggle' => 'buttons-radio' }
-        - Mapapp.config['map']['styles'].each do |style|
-          %button.btn{ 'data-style' => style }= t "map.styles.#{style}"
+      %ul.nav.pull-right
+
+        %li#layer_checks.btn-group{ 'data-toggle' => 'buttons-checkbox' }
+          %button.btn{ 'data-layer' => 'photos' }= t "map.layers.photos"
+
+        %li.divider-vertical
+
+        %li#style_switch.btn-group{ 'data-toggle' => 'buttons-radio' }
+          - Mapapp.config['map']['styles'].each do |style|
+            %button.btn{ 'data-style' => style }= t "map.styles.#{style}"
 
       %ul.nav
         %li.divider-vertical

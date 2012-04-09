@@ -9,10 +9,12 @@ class @App extends Spine.Controller
     @sidebar = $('#sidebar')
     @content = $('#content')
 
+    @layers =
+      photos: new PhotoLayer()
+
     $('#map').each =>
       @map = new L.Map('map')
       @map.addControl(new L.Control.Distance())
-      @map.addLayer(new PhotoLayer())
       @map.setView(new L.LatLng(metadata.config.map.init.lat, metadata.config.map.init.lng,1), metadata.config.map.init.zoom)
 
     app = @
@@ -21,6 +23,14 @@ class @App extends Spine.Controller
       app.selectStyle($(@).data('style'))
 
     $('#style_switch button').first().click()
+
+    $('#layer_checks button').click ->
+      layer = app.layers[$(@).data('layer')]
+
+      if $(@).hasClass('active')
+        app.map.removeLayer(layer)
+      else
+        app.map.addLayer(layer)
 
     @setupRoutes()
     Spine.Route.setup()

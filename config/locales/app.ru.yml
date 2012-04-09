@@ -44,6 +44,8 @@ ru:
     styles:
       default: Обычный
       light: Легкий
+    layers:
+      photos: Фотографии
 
   models:
     osm_building:
