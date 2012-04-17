@@ -1,6 +1,6 @@
 = OSM-based map application
 
-Well, it's Rails-based local map application with <s>blackj</s>search and POI categories using OpenStreetMap data.
+Well, it's Rails-based local map application with bla.. sorry, search and POI categories presenting OpenStreetMap data.
 
 You may use it for any (relatively small) region which is presented in OpenStreetMap - your country, city, district, favourite park or living room (well, really you should map your living room on OpenStreetMap first).
 
