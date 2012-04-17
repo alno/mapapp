@@ -15,6 +15,7 @@ development: &base
     styles:
       - default
       - light
+    style_base: 'http://{s}.kalugamap.ru/tiles'
 
 test: *base
 production: *base

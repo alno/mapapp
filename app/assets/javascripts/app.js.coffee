@@ -44,7 +44,7 @@ class @App extends Spine.Controller
     @styleLayerCache = {} unless @styleLayerCache
 
     unless @styleLayerCache[style]
-      @styleLayerCache[style] = new L.TileLayer "http://map.alno.name/tiles/#{style}/{z}/{x}/{y}.png",
+      @styleLayerCache[style] = new L.TileLayer "#{metadata.config.map.style_base}/#{style}/{z}/{x}/{y}.png",
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
         minZoom: metadata.config.map.min_zoom
         maxZoom: metadata.config.map.max_zoom

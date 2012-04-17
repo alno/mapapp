@@ -40,6 +40,9 @@ class @PhotoLayer
 
     @map = undefined
 
+  getAttribution: ->
+    'Photos provided by <a href="http://panoramio.com/">Panoramio</a>. Photos are under the copyright of their owners.'
+
   update: ->
     $.get "/photos.json?bbox=#{@map.getBounds().toBBoxString()}", (photosData) =>
       newPhotos = {}
