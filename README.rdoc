@@ -5,7 +5,7 @@ You can see a working example at http://kalugamap.ru
 
 You may use it for any (relatively small) region which is presented in OpenStreetMap - your country, city, district, favourite park or living room (well, really you should map your living room on OpenStreetMap first).
 
-You may tune bundled styles, which are generated using excellent {TileMill}[http://mapbox.com/tilemill/] application from {this project}[https://github.com/alno/mapstyle].
+You may tune bundled styles, which are generated using excellent {TileMill}[http://mapbox.com/tilemill/] application from {these stylesheets}[https://github.com/alno/mapstyle].
 It's really easy to create your own sky-and-pink map style for your girlfriend, for example.
 
 == Dependencies
