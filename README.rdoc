@@ -1,2 +1,67 @@
-== OSM-based map application
+= OSM-based map application
 
+Well, it's Rails-based local map application with <s>blackj</s>search and POI categories using OpenStreetMap data.
+
+You may use it for any (relatively small) region which is presented in OpenStreetMap - your country, city, district, favourite park or living room (well, really you should map your living room on OpenStreetMap first).
+
+You may tune bundled styles, which are generated using excellent {TileMill}[http://mapbox.com/tilemill/] application from {here}[https://github.com/alno/mapstyle].
+It's really easy to create your own sky-and-pink map style for your girlfriend, for example.
+
+== Dependencies
+
+First of all you need:
+
+* {Postgresql}[http://www.postgresql.org/] database installed (in Ubuntu it's <tt>postgresql-9.1</tt> package)
+* {Postgis}[http://postgis.refractions.net/] extension for spatial data representation (in Ubuntu it's <tt>postgresql-9.1-postgis</tt> package)
+* {Sphinx}[http://sphinxsearch.com/] search engine (in Ubuntu it's <tt>sphinxsearch</tt> package)
+
+If you want to render map tiles, when you also need:
+
+* {Mapnik}[http://mapnik.org/](dev) installed (in Ubuntu you may use package <tt>libmapnik-dev</tt> from https://launchpad.net/~mapnik/+archive/nightly-trunk).
+* {GDal}[http://www.gdal.org/] with its Python wrappers installed (in Ubuntu they are <tt>gdal-bin</tt> and <tt>python-gdal</tt> packages)
+
+=== Bundled dependencies
+
+There are bundled versions of {Osm2pgsql}[http://wiki.openstreetmap.org/wiki/Osm2pgsql] and hillshading tools in <tt>vendor/bin</tt> compiled for x86_64 architecture.
+
+Why bundling them? There are two different reasons:
+
+* Tools for SRTM procesing and hillshade generation usually are not present in repositories, so you need to compile it by yourself.
+* Usually Osm2pgsql tool from repositories is compiled without OSMID64 flag, so it can't present big object identifiers.
+
+So, don't bother about these problems and just use bundled versions if you are lucky to have 64-bit architecture.
+If you don't - so, be ready for some {fun}[http://dwarffortresswiki.org/index.php/Fun].
+Well, really, there is nothing scary in compiling it by yourself =)
+And maybe I'll bundle 32-bit versions also.
+
+== Installation
+
+Well, installation is simple - clone this repository:
+
+  git clone git://github.com/alno/mapapp.git
+
+Or download zipball from:
+
+  https://github.com/alno/mapapp/zipball/master
+
+And then move to database preparation.
+
+== Preparing database
+
+Well, there was a manual in OSM wiki, I should find it and link here...
+
+== Configuring
+
+There are 3 configuration files for now:
+
+* <tt>mapapp.yml</tt> - your application settings
+* <tt>database.yml</tt> - database settings (did you expect anything else?)
+* <tt>sphinx.yml</tt> - sphinx search engine settings
+
+For each file there is corresponding <tt>.sample</tt> file which you may use as a base for configuring.
+
+=== Contributors
+
+* Alexey Noskov ({alno}[https://github.com/alno])
+
+Copyright © 2012 Alexey Noskov, released under the {MIT license}[http://www.opensource.org/licenses/MIT]
