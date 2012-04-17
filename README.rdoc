@@ -1,6 +1,7 @@
 = OSM-based map application
 
 Well, it's Rails-based local map application with bla.. sorry, search and POI categories presenting OpenStreetMap data.
+You can see a working example at http://kalugamap.ru/
 
 You may use it for any (relatively small) region which is presented in OpenStreetMap - your country, city, district, favourite park or living room (well, really you should map your living room on OpenStreetMap first).
 
@@ -24,7 +25,7 @@ If you want to render map tiles, when you also need:
 
 There are bundled versions of {Osm2pgsql}[http://wiki.openstreetmap.org/wiki/Osm2pgsql] and hillshading tools in <tt>vendor/bin</tt> compiled for x86_64 architecture.
 
-Why bundling them? There are two different reasons:
+Why bundling them? There are reasons:
 
 * Tools for SRTM procesing and hillshade generation usually are not present in repositories, so you need to compile it by yourself.
 * Usually Osm2pgsql tool from repositories is compiled without OSMID64 flag, so it can't present big object identifiers.
@@ -54,11 +55,28 @@ Well, there was a manual in OSM wiki, I should find it and link here...
 
 There are 3 configuration files for now:
 
-* <tt>mapapp.yml</tt> - your application settings
 * <tt>database.yml</tt> - database settings (did you expect anything else?)
 * <tt>sphinx.yml</tt> - sphinx search engine settings
+* <tt>mapapp.yml</tt> - your application settings
 
 For each file there is corresponding <tt>.sample</tt> file which you may use as a base for configuring.
+
+In <tt>database.yml</tt> you should set your database name, host, username, password...
+*Caveat!* Database adapter should be <tt>postgis</tt> according to used geo adapter requirements.
+
+In <tt>sphinx.yml</tt> you may set which stemmer to use. Yes, there are some other options, but you should change them only if you know them
+
+And there are plenty of options in <tt>mapapp.yml</tt>:
+
+* +secret_token+ - you really need to change it to something secret, as it's used in subscription of your session data to prevent some attacks
+* +map+ - map options
+
+  * +init+ - initial position of map (latitude, longitude and zoom level)
+  * +bbox+ - bounding box of diplayed data
+  * +min_zoom+ - minimal zoom level
+  * +max_zoom+ - maximal (nearest) zoom level
+  * +styles+ - map styles you want to display on map
+  * +style_base+ - base url for your tiles
 
 === Contributors
 
