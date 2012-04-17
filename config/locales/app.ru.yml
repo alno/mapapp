@@ -22,14 +22,16 @@ ru:
   info:
     tabs:
       common: Общее
-      tags: Тэги
       in_building: В здании
       nearest_similar: Похожие рядом
+      osm: Данные OSM
     blocks:
       address: Адресная информация
       contacts: Контактная информация
       in_building: В этом здании
       nearest_similar: Ближайшие похожие объекты
+      osm_links: Объект на OpenStreetMap
+      osm_tags: Теги объекта
     keys:
       address: Адрес
       postcode: Индекс
@@ -37,7 +39,8 @@ ru:
       phone: Телефон
       fax: Факс
     links:
-      osm_browse: Информация об объекте на OpenStreetMap
+      osm_browse: Информация об объекте
+      osm_history: История изменений
       more: Подробнее...
 
   map:

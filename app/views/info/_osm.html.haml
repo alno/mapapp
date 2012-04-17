@@ -1,0 +1,9 @@
+%h4= t("info.blocks.osm_links")
+
+%p
+  = osm_browse_link object
+  %br
+  = osm_history_link object
+
+%h4= t("info.blocks.osm_tags")
+= render 'info/tags.html', :tags => object.tags

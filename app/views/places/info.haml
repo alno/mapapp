@@ -1,11 +1,10 @@
 %ul.nav.nav-tabs
   %li.active= link_to t("info.tabs.common"), "#place-#{@place.id}-common", 'data-toggle' => 'tab'
-  %li= link_to t("info.tabs.tags"), "#place-#{@place.id}-tags", 'data-toggle' => 'tab'
+  %li= link_to t("info.tabs.osm"), "#place-#{@place.id}-osm", 'data-toggle' => 'tab'
 
 .tab-content
   .tab-pane.active{ :id => "place-#{@place.id}-common" }
     = render 'info/categories.html', :model => @place
 
-  .tab-pane{ :id => "place-#{@place.id}-tags" }
-    = osm_link @place
-    = render 'info/tags.html', :tags => @place.tags
+  .tab-pane{ :id => "place-#{@place.id}-osm" }
+    = render 'info/osm.html', :object => @place
