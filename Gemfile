@@ -31,6 +31,7 @@ gem 'unicorn' # Use unicorn as the app server
 group :development do
   gem 'capistrano' # Deploy with Capistrano
   gem 'capistrano-unicorn'
+  gem 'vendorer'
 end
 
 group :rendering do
