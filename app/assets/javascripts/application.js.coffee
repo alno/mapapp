@@ -24,9 +24,9 @@ $ ->
     else
       app.showSidebar()
 
-  $('#mode_search').submit ->
+  $('#search_form').submit ->
     center = app.map.getCenter()
-    app.navigate("search/#{center.lat}/#{center.lng}/#{$('#mode_search .search-query').val()}")
+    app.navigate("search/#{center.lat}/#{center.lng}/#{$('#search_form .search-query').val()}")
     false
 
   $('#sidebar .close').click ->

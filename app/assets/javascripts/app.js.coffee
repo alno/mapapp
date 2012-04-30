@@ -141,7 +141,7 @@ class @App extends Spine.Controller
     @sidebar.find('.pagination').html('')
 
     if data.results
-      $('#mode_search .search-query').val(data.query)
+      $('#search_form .search-query').val(data.query)
 
       if data.results.length == 0
         @sidebar.find('.results').text(I18n.t('search.results.nothing_found'))
