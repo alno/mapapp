@@ -1,0 +1,22 @@
+#sidebar_handle
+  %div
+    %a.icon-chevron-right
+
+#sidebar{ :style => "left: -400px" }
+  %a.close ×
+
+  .mode_dependent.mode_search
+    %ul.nav.nav-tabs
+      %li.active= link_to t("sidebar.tabs.results"), "#sidebar_results", 'data-toggle' => 'tab', 'id' => 'sidebar_results_tab'
+      %li= link_to t("sidebar.tabs.categories"), "#sidebar_categories", 'data-toggle' => 'tab', 'id' => 'sidebar_categories_tab'
+
+    .tab-content
+      #sidebar_results.tab-pane.active
+        .results
+
+        .pagination
+      #sidebar_categories.tab-pane
+        = render 'layouts/categories', :categories => Category.arrange
+
+  .mode_dependent.mode_validators
+    %ul#sidebar_error_selector

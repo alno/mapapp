@@ -1,6 +1,14 @@
 #= require spine
 #= require spine/route
 
+#= require_self
+
+#= require control-distance
+#= require layer-photos
+#= require search_result
+
+#= require_tree ./modes
+
 class @App extends Spine.Controller
 
   constructor: ->
@@ -11,6 +19,10 @@ class @App extends Spine.Controller
 
     @layers =
       photos: new PhotoLayer()
+
+    @modes =
+      validators: new App.Validators(@)
+      search: new App.Search(@)
 
     $('#map').each =>
       @map = new L.Map('map')
@@ -84,8 +96,18 @@ class @App extends Spine.Controller
       $.get "/search.json", params, (data) =>
         @updateSearchResults(data)
 
+  switchMode: (name) ->
+    $('#mode_select a.dropdown-toggle span').text(I18n.t("#{name}.label"))
+    $('.mode_dependent').hide()
+    $(".mode_#{name}").show()
+
+    mode.exit() for key, mode of @modes when key != name
+    @modes[name].enter()
+
   setupRoutes: ->
     @routes
+      "validators": => @switchMode('validators')
+      "search": => @switchMode('search')
       "search/:lat/:lng/:q": @routeSearch
       "search/:lat/:lng/:q/:categories": @routeSearch
 
@@ -119,7 +141,7 @@ class @App extends Spine.Controller
     @sidebar.find('.pagination').html('')
 
     if data.results
-      $('#search_form .search-query').val(data.query)
+      $('#mode_search .search-query').val(data.query)
 
       if data.results.length == 0
         @sidebar.find('.results').text(I18n.t('search.results.nothing_found'))

@@ -6,13 +6,14 @@
 #= require bootstrap-modal
 #= require bootstrap-tab
 #= require bootstrap-button
+#= require bootstrap-dropdown
 
 #= require i18n
 #= require i18n/translations
 
 #= require leaflet-src
 
-#= require_tree .
+#= require app
 
 $ ->
   window.app = new App()
@@ -23,9 +24,9 @@ $ ->
     else
       app.showSidebar()
 
-  $('#search_form').submit ->
+  $('#mode_search').submit ->
     center = app.map.getCenter()
-    app.navigate("search/#{center.lat}/#{center.lng}/#{$('#search_form .search-query').val()}")
+    app.navigate("search/#{center.lat}/#{center.lng}/#{$('#mode_search .search-query').val()}")
     false
 
   $('#sidebar .close').click ->

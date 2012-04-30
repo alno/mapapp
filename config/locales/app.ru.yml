@@ -12,8 +12,11 @@ ru:
   categories:
     header: Типы объектов
 
+  validators:
+    label: "Валидаторы"
+
   search:
-    label: "Поиск:"
+    label: "Поиск"
     no_query: "Введите какой-нибудь запрос для поиска"
     results:
       header: "Результаты поиска для «%{query}»"

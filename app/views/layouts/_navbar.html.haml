@@ -2,11 +2,24 @@
   .navbar-inner
     .container-fluid
 
-      %form#search_form.navbar-search.pull-left{ :action => "/" }
-        .search-label= t "search.label"
-        %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q] }
+      %ul.nav.pull-left
+        %li.dropdown#mode_select
+          %a.dropdown-toggle{ :href => '#mode_select', 'data-toggle' => "dropdown" }
+            %span= t("search.label")
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to t("search.label"), '#search'
+            %li= link_to t("validators.label"), '#validators'
+
+      %form#search_form.mode_dependent.mode_search.navbar-search.pull-left{ :action => "/" }
+        %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q], :style => 'width: 400px'}
 
       %ul.nav.pull-right
+
+        %li= page_link :about
+        %li= page_link :credits
+
+        %li.divider-vertical
 
         %li#layer_checks.btn-group{ 'data-toggle' => 'buttons-checkbox' }
           %button.btn{ 'data-layer' => 'photos' }= t "map.layers.photos"
@@ -16,8 +29,3 @@
         %li#style_switch.btn-group{ 'data-toggle' => 'buttons-radio' }
           - Mapapp.config['map']['styles'].each do |style|
             %button.btn{ 'data-style' => style }= t "map.styles.#{style}"
-
-      %ul.nav
-        %li.divider-vertical
-        %li= page_link :about
-        %li= page_link :credits
