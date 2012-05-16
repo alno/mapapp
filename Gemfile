@@ -30,7 +30,7 @@ gem 'unicorn' # Use unicorn as the app server
 
 group :development do
   gem 'capistrano' # Deploy with Capistrano
-  gem 'capistrano-unicorn'
+  gem 'capistrano-unicorn', :git => 'git://github.com/sosedoff/capistrano-unicorn.git'
   gem 'vendorer'
 end
 

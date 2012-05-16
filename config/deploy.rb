@@ -46,9 +46,7 @@ after "deploy:update_code", roles => :app do
     run "ln -nfs #{shared_path}/config/#{config}.yml #{release_path}/config/#{config}.yml"
   end
 
-  # Link unicorn config
-  run "mkdir -p #{release_path}/config/unicorn"
-  run "ln -nfs #{shared_path}/config/unicorn.rb #{release_path}/config/unicorn/production.rb"
+  run "ln -nfs #{shared_path}/config/unicorn.rb #{release_path}/config/unicorn.rb"
 
   # Link tiles and sphinx directories
   run "ln -nfs #{shared_path}/tiles  #{release_path}/public/tiles"
