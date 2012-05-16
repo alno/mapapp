@@ -1,5 +1,5 @@
 /*
-jquery.animate-enhanced plugin v0.90
+jquery.animate-enhanced plugin v0.91
 ---
 http://github.com/benbarnett/jQuery-Animate-Enhanced
 http://benbarnett.net
@@ -44,6 +44,9 @@ Usage (exactly the same as it would be normally):
 	});
 
 Changelog:
+	0.91 (2/4/2012):
+		- Merge Pull Request #74 - Unit Management
+
 	0.90 (7/3/2012):
 		- Adding public $.toggleDisabledByDefault() feature to disable entire plugin by default (Issue #73)
 
@@ -206,6 +209,7 @@ Changelog:
 				left : 0
 			}
 		},
+		valUnit = 'px',
 
 		DATA_KEY = 'jQe',
 		CUBIC_BEZIER_OPEN = 'cubic-bezier(',
@@ -235,6 +239,18 @@ Changelog:
 		jQuery.expr.filters.animated = function(elem) {
 			return jQuery(elem).data('events') && jQuery(elem).data('events')[transitionEndEvent] ? true : originalAnimatedFilter.call(this, elem);
 		};
+	}
+
+
+	/**
+		@private
+		@name _getUnit
+		@function
+		@description Return unit value ("px", "%", "em" for re-use correct one when translating)
+		@param {variant} [val] Target value
+	*/
+	function _getUnit(val){
+		return val.match(/\D+$/);
 	}
 
 
@@ -435,6 +451,7 @@ Changelog:
 		@param {variant} [val]
 	*/
 	function _cleanValue(val) {
+		valUnit = _getUnit(val);
 		return parseFloat(val.replace(/px/i, ''));
 	}
 
@@ -561,7 +578,7 @@ Changelog:
 						}
 						if (isTranslatable && typeof selfCSSData.meta !== 'undefined') {
 							for (var j = 0, dir; (dir = directions[j]); ++j) {
-								restore[dir] = selfCSSData.meta[dir + '_o'] + 'px';
+								restore[dir] = selfCSSData.meta[dir + '_o'] + valUnit;
 							}
 						}
 					}
@@ -627,7 +644,7 @@ Changelog:
 							p,
 							opt.duration,
 							cssEasing,
-							isDirection && prop.avoidTransforms === true ? cleanVal + 'px' : cleanVal,
+							isDirection && prop.avoidTransforms === true ? cleanVal + valUnit : cleanVal,
 							isDirection && prop.avoidTransforms !== true,
 							isTranslatable,
 							prop.useTranslate3d === true);
@@ -731,8 +748,8 @@ Changelog:
 									var explodedMatrix = restore[prop].replace(/^matrix\(/i, '').split(/, |\)$/g);
 
 									// apply the explicit left/top props
-									restore['left'] = (parseFloat(explodedMatrix[4]) + parseFloat(self.css('left')) + 'px') || 'auto';
-									restore['top'] = (parseFloat(explodedMatrix[5]) + parseFloat(self.css('top')) + 'px') || 'auto';
+									restore['left'] = (parseFloat(explodedMatrix[4]) + parseFloat(self.css('left')) + valUnit) || 'auto';
+									restore['top'] = (parseFloat(explodedMatrix[5]) + parseFloat(self.css('top')) + valUnit) || 'auto';
 
 									// remove the transformations
 									for (i = cssPrefixes.length - 1; i >= 0; i--) {
