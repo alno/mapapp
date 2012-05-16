@@ -9,6 +9,8 @@
 
 #= require_tree ./modes
 
+#= require osmjs.weather-layer
+
 class @App extends Spine.Controller
 
   constructor: ->
@@ -19,6 +21,7 @@ class @App extends Spine.Controller
 
     @layers =
       photos: new PhotoLayer()
+      weather: new OsmJs.Weather.LeafletLayer({lang: I18n.locale})
 
     @modes =
       validators: new App.Validators(@)

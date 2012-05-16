@@ -52,6 +52,7 @@ ru:
       light: Легкий
     layers:
       photos: Фотографии
+      weather: Погода
 
   models:
     osm_building:
