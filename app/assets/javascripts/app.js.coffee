@@ -49,6 +49,7 @@ class @App extends Spine.Controller
       else
         app.map.addLayer(layer)
 
+    @switchMode('search')
     @setupRoutes()
     Spine.Route.setup()
 
@@ -231,7 +232,7 @@ class @App extends Spine.Controller
         shadowSize: new L.Point(50, 35)
         popupAnchor: new L.Point(0, -25)
 
-    new iconClass()
+    @iconCache[url] = new iconClass()
 
   showPopup: (data) ->
     @prevPopup.modal('hide') if @prevPopup
