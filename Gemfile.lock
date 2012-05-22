@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/alno/Ruby-Mapnik.git
-  revision: 958910b17bce3d2c94227728d44578fb94b21da4
+  revision: e2ac6b6517c6fb8f7b0d8d4a1a8e7cd1f6d4795b
   specs:
     ruby_mapnik (0.1.2)
       rice (>= 1.4.2)

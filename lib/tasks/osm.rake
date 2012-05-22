@@ -4,16 +4,19 @@ namespace :osm do
 
   desc "Prepare hillshade data"
   task :hillshade do
+    app_conf_file = ENV['APP_CONFIG'] || Rails.root.join('config', 'mapapp.yml')
+    app = YAML.load(File.open app_conf_file)[Rails.env]
+
     if File.exists? Rails.root.join('..', '..', 'shared')
       heightdir = Rails.root.join('..', '..', 'shared', 'heights')
     else
       heightdir = Rails.root.join('tmp', 'heights')
     end
 
-    min_lat = 53
-    max_lat = 56
-    min_lon = 33
-    max_lon = 38
+    min_lat = app['map']['bbox']['min_lat'].to_f.floor
+    max_lat = app['map']['bbox']['max_lat'].to_f.ceil
+    min_lon = app['map']['bbox']['min_lng'].to_f.floor
+    max_lon = app['map']['bbox']['max_lng'].to_f.ceil
 
     puts "Downloading height data..."
 
@@ -73,6 +76,7 @@ namespace :osm do
   desc "Render map"
   task :render do
     require 'ruby_mapnik'
+    require 'map_utils'
 
     db_conf_file = ENV['DB_CONFIG'] || Rails.root.join('config', 'database.yml')
     db = YAML.load(File.open db_conf_file)[Rails.env]
@@ -120,12 +124,15 @@ namespace :osm do
 
       puts "Rendering..."
 
-      minx = 614
-      maxx = 615
-      miny = 325
-      maxy = 326
+      min_lat = app['map']['bbox']['min_lat'].to_f
+      max_lat = app['map']['bbox']['max_lat'].to_f
+      min_lng = app['map']['bbox']['min_lng'].to_f
+      max_lng = app['map']['bbox']['max_lng'].to_f
 
       (minzoom..maxzoom).each do |z|
+        minx, maxy = MapUtils.zoom_lat_lng_to_x_y(z, min_lat, min_lng).map(&:floor)
+        maxx, miny = MapUtils.zoom_lat_lng_to_x_y(z, max_lat, max_lng).map(&:floor)
+
         puts "Startinx zoom: #{[z, minx, miny, maxx, maxy].inspect}"
 
         (minx..maxx).each do |x|
@@ -143,11 +150,6 @@ namespace :osm do
 
         FileUtils.rm_rf "#{tiledir}/#{z}"
         FileUtils.move "#{tmpdir}/tiles/#{z}", "#{tiledir}/#{z}"
-
-        minx = minx * 2
-        miny = miny * 2
-        maxx = maxx * 2 + 1
-        maxy = maxy * 2 + 1
       end
 
       puts "Rendering style '#{style}' completed!"

@@ -6,10 +6,10 @@ development: &base
       lng: 36.2597
       zoom: 12
     bbox:
-      min_lat: 54.3677585240684
+      min_lat: 54.367759
       min_lng: 35.859375
-      max_lat: 54.7753458593645
-      max_lng: 36.5625
+      max_lat: 54.775345
+      max_lng: 36.562495
     min_zoom: 10
     max_zoom: 18
     styles:
