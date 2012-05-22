@@ -34,19 +34,19 @@
   </Rule>
   <Rule>
     <Filter>([type] = 'allotments')</Filter>
-    <PolygonSymbolizer fill="#bdd16d" />
+    <PolygonSymbolizer fill="#c9d989" />
   </Rule>
   <Rule>
     <Filter>([type] = 'farmyard')</Filter>
-    <PolygonSymbolizer fill="#bdd16d" />
+    <PolygonSymbolizer fill="#c9d989" />
   </Rule>
   <Rule>
     <Filter>([type] = 'farm')</Filter>
-    <PolygonSymbolizer fill="#bdd16d" />
+    <PolygonSymbolizer fill="#c9d989" />
   </Rule>
   <Rule>
     <Filter>([type] = 'farmland')</Filter>
-    <PolygonSymbolizer fill="#bdd16d" />
+    <PolygonSymbolizer fill="#c9d989" />
   </Rule>
   <Rule>
     <Filter>([type] = 'garages')</Filter>
@@ -83,11 +83,11 @@
   </Rule>
   <Rule>
     <Filter>([type] = 'wood')</Filter>
-    <PolygonSymbolizer fill="#77a152" />
+    <PolygonSymbolizer fill="#609e4b" />
   </Rule>
   <Rule>
     <Filter>([type] = 'forest')</Filter>
-    <PolygonSymbolizer fill="#77a152" />
+    <PolygonSymbolizer fill="#609e4b" />
   </Rule>
 </Style>
 <Layer name="territories"
@@ -6217,17 +6217,17 @@
     <MaxScaleDenominator>750000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'village')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="#ffffff" halo-radius="1.5" size="12" fill="#000000" minimum-distance="50" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" size="14" fill="#000000" minimum-distance="50" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'town')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="#ffffff" halo-radius="1.5" size="16" fill="#000000" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Regular" halo-fill="rgba(255, 255, 255, 0.8)" halo-radius="2" size="16" fill="#000000" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city')</Filter>
-    <TextSymbolizer wrap-width="40" face-name="Ubuntu Bold" halo-fill="#ffffff" halo-radius="2" size="20" fill="#cc2222" text-transform="uppercase" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="40" face-name="Ubuntu Bold" halo-fill="rgba(255, 255, 255, 0.9)" halo-radius="2.5" size="20" fill="#cc2222" text-transform="uppercase" minimum-padding="2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="place_labels"
