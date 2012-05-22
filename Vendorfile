@@ -4,3 +4,6 @@ file 'vendor/assets/javascripts/osmjs.validators-sources.js', 'https://raw.githu
 file 'vendor/assets/javascripts/osmjs.weather-layer.js', 'https://raw.github.com/alno/osm-js-libs/master/dist/weather/leaflet-layer.js'
 
 file 'vendor/assets/javascripts/jquery.animate-enhanced.js', 'https://raw.github.com/benbarnett/jQuery-Animate-Enhanced/master/scripts/src/jquery.animate-enhanced.js'
+
+file 'config/mapnik/embossed.xml', 'https://raw.github.com/alno/mapstyle/master/dist/embossed.xml'
+file 'config/mapnik/simple.xml', 'https://raw.github.com/alno/mapstyle/master/dist/simple.xml'

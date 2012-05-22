@@ -13,8 +13,8 @@ development: &base
     min_zoom: 10
     max_zoom: 18
     styles:
-      - default
-      - light
+      - embossed
+      - simple
     style_base: 'http://{s}.kalugamap.ru/tiles'
 
 test: *base

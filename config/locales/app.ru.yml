@@ -48,8 +48,8 @@ ru:
 
   map:
     styles:
-      default: Обычный
-      light: Легкий
+      embossed: Рельефный
+      simple: Обычный
     layers:
       photos: Фотографии
       weather: Погода
