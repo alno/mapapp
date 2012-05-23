@@ -42,7 +42,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'jquery-rails'
-  gem 'spine-rails'
   gem 'underscore-rails'
   gem 'bootstrap-sass'
   gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'

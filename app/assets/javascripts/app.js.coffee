@@ -1,5 +1,5 @@
-#= require spine
-#= require spine/route
+#= require osmjs.weather-layer
+#= require jquery.bbq
 
 #= require_self
 
@@ -9,13 +9,9 @@
 
 #= require_tree ./modes
 
-#= require osmjs.weather-layer
-
-class @App extends Spine.Controller
+class @App
 
   constructor: ->
-    super
-
     @sidebar = $('#sidebar')
     @content = $('#content')
 
@@ -27,6 +23,8 @@ class @App extends Spine.Controller
       validators: new App.Validators(@)
       search: new App.Search(@)
 
+    @defaultMode = 'search'
+
     $('#map').each =>
       @map = new L.Map('map')
       @map.setView(new L.LatLng(metadata.config.map.init.lat, metadata.config.map.init.lng,1), metadata.config.map.init.zoom)
@@ -37,6 +35,11 @@ class @App extends Spine.Controller
         setTimeout((-> e.popup._update()), 300)
         setTimeout((-> e.popup._update()), 700)
         setTimeout((-> e.popup._update()), 1500)
+      @map.on 'moveend', =>
+        @navigate
+          lat: @map.getCenter().lat
+          lon: @map.getCenter().lng
+          zoom: @map.getZoom()
 
     app = @
     $('#style_switch button').click ->
@@ -53,9 +56,49 @@ class @App extends Spine.Controller
       else
         app.map.addLayer(layer)
 
-    @switchMode('search')
     @setupRoutes()
-    Spine.Route.setup()
+
+  setupRoutes: ->
+    w = $(window)
+    w.bind 'hashchange', =>
+      @route $.deparam((location.hash or '').slice(1))
+    w.trigger 'hashchange'
+
+  navigate: (params, force = false) ->
+    params = $.extend($.deparam((location.hash or '').slice(1)), params) unless force
+    location.hash = $.param(params)
+
+  route: (params) ->
+    changed = false
+
+    unless parseFloat(params.lat)
+      params.lat = @map.getCenter().lat
+      changed = true
+
+    unless parseFloat(params.lon)
+      params.lon = @map.getCenter().lng
+      changed = true
+
+    unless parseInt(params.zoom)
+      params.zoom = @map.getZoom()
+      changed = true
+
+    unless @modes[params.mode]
+      params.mode = @defaultMode
+      changed = true
+
+    return @navigate(params) if changed
+
+    @switchMode(params.mode)
+
+    unless parseFloat(params.lat) == @map.getCenter().lat and parseFloat(params.lon) == @map.getCenter().lng and parseInt(params.zoom) == @map.getZoom()
+      @map.setView(new L.LatLng(params.lat, params.lon,1), params.zoom)
+
+    if params.mode == 'search' and params.query != @currentQuery
+      @currentQuery = params.query
+
+      $.get "/search.json", {lat: params.lat, lng: params.lon, q: params.query}, (data) =>
+        @updateSearchResults(data)
 
   selectStyle: (style) ->
     @styleLayerCache = {} unless @styleLayerCache
@@ -69,38 +112,6 @@ class @App extends Spine.Controller
     @map.addLayer(@styleLayerCache[style])
     @map.removeLayer(layer) for s, layer of @styleLayerCache when s != style
 
-  routeSearch: (params) =>
-    redir = false
-
-    for key in ['lat', 'lng', 'q']
-      if params[key] == 'cur'
-        params[key] = @currentSearch && @currentSearch[key]
-        redir = true
-
-    if params.q and params.q.match(/%\w{2}%/)
-      params.q = decodeURIComponent(params.q)
-      redir = true
-
-    if params.lat == 'cur'
-      params.lat = @currentSearch?.lat
-      redir = true
-
-    unless parseFloat(params.lat)
-      params.lat = app.map.getCenter().lat
-      redir = true
-
-    unless parseFloat(params.lng)
-      params.lng = app.map.getCenter().lng
-      redir = true
-
-    if redir
-      @navigate('search', params.lat, params.lng, params.q, params.categories)
-    else
-      @currentSearch = params
-
-      $.get "/search.json", params, (data) =>
-        @updateSearchResults(data)
-
   switchMode: (name) ->
     $('#mode_select a.dropdown-toggle span').text(I18n.t("#{name}.label"))
     $('.mode_dependent').hide()
@@ -108,13 +119,6 @@ class @App extends Spine.Controller
 
     mode.exit() for key, mode of @modes when key != name
     @modes[name].enter()
-
-  setupRoutes: ->
-    @routes
-      "validators": => @switchMode('validators')
-      "search": => @switchMode('search')
-      "search/:lat/:lng/:q": @routeSearch
-      "search/:lat/:lng/:q/:categories": @routeSearch
 
   showSidebar: ->
     if @sidebar.offset().left < 0

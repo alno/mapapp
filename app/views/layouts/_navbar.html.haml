@@ -8,8 +8,8 @@
             %span= t("search.label")
             %b.caret
           %ul.dropdown-menu
-            %li= link_to t("search.label"), '#search'
-            %li= link_to t("validators.label"), '#validators'
+            %li= link_to t("search.label"), '#mode=search'
+            %li= link_to t("validators.label"), '#mode=validators'
 
       %form#search_form.mode_dependent.mode_search.navbar-search.pull-left{ :action => "/" }
         %input.search-query{ :type => "text", :placeholder => "Search", :name => "q", :value => params[:q], :style => 'width: 400px'}
