@@ -94,11 +94,7 @@ class @App
     unless parseFloat(params.lat) == @map.getCenter().lat and parseFloat(params.lon) == @map.getCenter().lng and parseInt(params.zoom) == @map.getZoom()
       @map.setView(new L.LatLng(params.lat, params.lon,1), params.zoom)
 
-    if params.mode == 'search' and params.query != @currentQuery
-      @currentQuery = params.query
-
-      $.get "/search.json", {lat: params.lat, lng: params.lon, q: params.query}, (data) =>
-        @updateSearchResults(data)
+    @modes[params.mode].route(params) if @modes[params.mode].route
 
   selectStyle: (style) ->
     @styleLayerCache = {} unless @styleLayerCache
@@ -184,7 +180,6 @@ class @App
         cat.find('a').attr('href', null)
 
     @sidebar.find('#sidebar_results_tab').tab('show')
-    @showSidebar()
 
   buildPaginator: (container, current, count, handler) ->
     appendLink = (page) ->
