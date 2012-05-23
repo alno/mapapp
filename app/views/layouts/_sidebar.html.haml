@@ -24,3 +24,10 @@
 
   .mode_dependent.mode_validators
     %ul#sidebar_error_selector
+
+  .mode_dependent.mode_editing
+    %ul.edit_tools
+      %li.marker= link_to t('editing.create_marker'), '#', 'data-tool' => 'marker'
+      %li.polyline= link_to t('editing.create_polyline'), '#', 'data-tool' => 'polyline'
+      %li.polygon= link_to t('editing.create_polygon'), '#', 'data-tool' => 'polygon'
+

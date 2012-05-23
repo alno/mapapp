@@ -15,17 +15,9 @@ class @App
     @sidebar = $('#sidebar')
     @content = $('#content')
 
-    @layers =
-      photos: new App.PhotoLayer()
-      weather: new OsmJs.Weather.LeafletLayer({lang: I18n.locale})
-
-    @modes =
-      validators: new App.Validators(@)
-      search: new App.Search(@)
-
-    @defaultMode = 'search'
-
     @setupMap()
+    @setupLayers()
+    @setupModes()
     @setupRoutes()
 
   setupMap: ->
@@ -45,6 +37,18 @@ class @App
           lon: @map.getCenter().lng
           zoom: @map.getZoom()
 
+  setupLayers: ->
+    @layers =
+      photos: new App.PhotoLayer()
+      weather: new OsmJs.Weather.LeafletLayer({lang: I18n.locale})
+
+  setupModes: ->
+    @defaultMode = 'search'
+    @modes =
+      validators: new App.Validators(@)
+      search: new App.Search(@)
+      editing: new App.Editing(@)
+
   setupRoutes: ->
     @lastParams = {}
 
@@ -62,6 +66,10 @@ class @App
   route: (params) ->
     changed = false
 
+    for k, v of @lastParams when typeof params[k] == 'undefined'
+      params[k] = v
+      changed = true
+
     unless parseFloat(params.lat)
       params.lat = @map.getCenter().lat
       changed = true
@@ -76,10 +84,6 @@ class @App
 
     unless @modes[params.mode]
       params.mode = @defaultMode
-      changed = true
-
-    for k, v of @lastParams when typeof params[k] == 'undefined'
-      params[k] = v
       changed = true
 
     return @navigate(params) if changed

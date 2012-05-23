@@ -22,6 +22,9 @@ ru:
       header: "Результаты поиска для «%{query}»"
       nothing_found: "Ничего не найдено =( Попробуйте поменять запрос"
 
+  editing:
+    label: Редактирование
+
   info:
     tabs:
       common: Общее
