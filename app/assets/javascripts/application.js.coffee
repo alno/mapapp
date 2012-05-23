@@ -38,3 +38,17 @@ $ ->
   $('#sidebar_handle a').click ->
     app.showSidebar()
     true
+
+  $('#style_switch button').click ->
+    $(@).button('toggle')
+    app.selectStyle($(@).data('style'))
+
+  $('#style_switch button').first().click()
+
+  $('#layer_checks button').click ->
+    layer = app.layers[$(@).data('layer')]
+
+    if $(@).hasClass('active')
+      app.map.removeLayer(layer)
+    else
+      app.map.addLayer(layer)

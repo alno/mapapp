@@ -25,6 +25,10 @@ class @App
 
     @defaultMode = 'search'
 
+    @setupMap()
+    @setupRoutes()
+
+  setupMap: ->
     $('#map').each =>
       @map = new L.Map('map')
       @map.setView(new L.LatLng(metadata.config.map.init.lat, metadata.config.map.init.lng,1), metadata.config.map.init.zoom)
@@ -41,25 +45,9 @@ class @App
           lon: @map.getCenter().lng
           zoom: @map.getZoom()
 
-    app = @
-    $('#style_switch button').click ->
-      $(@).button('toggle')
-      app.selectStyle($(@).data('style'))
-
-    $('#style_switch button').first().click()
-
-    $('#layer_checks button').click ->
-      layer = app.layers[$(@).data('layer')]
-
-      if $(@).hasClass('active')
-        app.map.removeLayer(layer)
-      else
-        app.map.addLayer(layer)
-
-    @lastParams = {}
-    @setupRoutes()
-
   setupRoutes: ->
+    @lastParams = {}
+
     w = $(window)
     w.bind 'hashchange', =>
       @route $.deparam((location.hash or '').slice(1))
