@@ -5,7 +5,6 @@
 
 #= require control-distance
 #= require layer-photos
-#= require search_result
 #= require utils
 
 #= require_tree ./modes
@@ -146,43 +145,8 @@ class @App
       @map.removeLayer(@selectionLayer)
       @selectionLayer = null
 
-  updateSearchResults: (data) ->
-    if @searchResultsLayer
-      @map.removeLayer(@searchResultsLayer)
-      @searchResultsLayer = null
-
-    @sidebar.find('.results').html('')
-    @sidebar.find('.pagination').html('')
-
-    if data.results
-      $('#search_form .search-query').val(data.query)
-
-      if data.results.length == 0
-        @sidebar.find('.results').text(I18n.t('search.results.nothing_found'))
-      else
-        @searchResultsLayer = new L.LayerGroup()
-
-        ul = $('<ul class="search-results">')
-        ul.append(@buildResult(result)) for result in data.results
-        ul.appendTo(@sidebar.find('.results'))
-
-        App.Utils.buildPaginator @sidebar.find('.pagination'), data.current_page, data.page_count, (page) =>
-          $.getJSON "/search", jQuery.extend(data.params, page: page), (newData) =>
-            @updateSearchResults(newData)
-          false
-
-        @map.addLayer @searchResultsLayer
-
-    else
-      @sidebar.find('.results').text(I18n.t("search.no_query"))
-
   findCategories: (table, types) ->
     cat for cat in metadata.categories when cat.table == table and _.any(cat.types, (ctype) -> _.include(types, ctype))
-
-  buildResult: (result) ->
-    res = new SearchResult(@, result)
-    @searchResultsLayer.addLayer(res.getMarker())
-    res.getNode()
 
   showPopup: (data) ->
     @prevPopup.modal('hide') if @prevPopup

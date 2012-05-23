@@ -1,5 +1,5 @@
 
-class @SearchResult
+class @App.Search.Result
 
   constructor: (@app, @data) ->
 
