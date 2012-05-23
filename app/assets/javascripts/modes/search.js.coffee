@@ -10,11 +10,15 @@ class @App.Search
     queryHash = "#{params.lat}/#{params.lon}/#{params.query}/#{params.categories}"
 
     if queryHash != @lastQueryHash
-      reopenResults = params.query != @lastQuery
+      requery = params.query != @lastQuery
 
       @lastQueryHash = queryHash
       @lastQuery = params.query
 
       $.get "/search.json", {lat: params.lat, lng: params.lon, q: params.query, categories: params.categories}, (data) =>
         @app.updateSearchResults(data)
-        @app.showSidebar() if reopenResults
+        @app.showSidebar() if requery
+
+      if requery
+        $.get "/counts.json", {q: params.query}, (data) =>
+          @app.updateSearchCounts(data)

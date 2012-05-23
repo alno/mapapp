@@ -145,7 +145,7 @@ class @App
       @map.removeLayer(@selectionLayer)
       @selectionLayer = null
 
-  updateSearchResults: (data)->
+  updateSearchResults: (data) ->
     if @searchResultsLayer
       @map.removeLayer(@searchResultsLayer)
       @searchResultsLayer = null
@@ -175,6 +175,7 @@ class @App
     else
       @sidebar.find('.results').text(I18n.t("search.no_query"))
 
+  updateSearchCounts: (data) ->
     @sidebar.find('.category_total .count').text(data.category_counts.all)
     @sidebar.find('.category').each ->
       cat = $(@)

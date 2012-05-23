@@ -1,6 +1,7 @@
 Mapapp::Application.routes.draw do
 
   get 'search' => 'index#search'
+  get 'counts' => 'index#counts'
 
   root :to => 'index#index'
 
