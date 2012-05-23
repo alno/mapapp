@@ -29,8 +29,9 @@ class @App extends Spine.Controller
 
     $('#map').each =>
       @map = new L.Map('map')
-      @map.addControl(new L.Control.Distance())
       @map.setView(new L.LatLng(metadata.config.map.init.lat, metadata.config.map.init.lng,1), metadata.config.map.init.zoom)
+      @map.addControl(new L.Control.Distance())
+      @map.addControl(new L.Control.Scale())
       @map.on 'popupopen', (e) ->
         setTimeout((-> e.popup._update()), 100)
         setTimeout((-> e.popup._update()), 300)

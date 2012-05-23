@@ -12,6 +12,7 @@
 #= require i18n/translations
 
 #= require leaflet-src
+#= require leaflet.scale
 
 #= require app
 
