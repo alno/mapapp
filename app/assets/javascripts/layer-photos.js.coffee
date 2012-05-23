@@ -9,7 +9,7 @@ class @Photo
     return @marker if @marker
 
     markerOptions = {}
-    markerOptions.icon = app.buildIcon('/images/icons-classic/photo.png')
+    markerOptions.icon = App.Utils.buildIcon('/images/icons-classic/photo.png')
 
     @marker = new L.Marker(@point, markerOptions)
     @marker.bindPopup @data.popup

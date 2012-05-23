@@ -6,6 +6,7 @@
 #= require control-distance
 #= require layer-photos
 #= require search_result
+#= require utils
 
 #= require_tree ./modes
 
@@ -165,7 +166,7 @@ class @App
         ul.append(@buildResult(result)) for result in data.results
         ul.appendTo(@sidebar.find('.results'))
 
-        @buildPaginator @sidebar.find('.pagination'), data.current_page, data.page_count, (page) =>
+        App.Utils.buildPaginator @sidebar.find('.pagination'), data.current_page, data.page_count, (page) =>
           $.getJSON "/search", jQuery.extend(data.params, page: page), (newData) =>
             @updateSearchResults(newData)
           false
@@ -175,55 +176,6 @@ class @App
     else
       @sidebar.find('.results').text(I18n.t("search.no_query"))
 
-  updateSearchCounts: (data) ->
-    @sidebar.find('.category_total .count').text(data.category_counts.all)
-    @sidebar.find('.category').each ->
-      cat = $(@)
-
-      if count = data.category_counts[parseInt(cat.data('id'))]
-        cat.find('.count').text(count)
-        cat.removeClass('empty')
-        cat.find('a').attr('href', "#categories=#{cat.data('id')}")
-      else
-        cat.find('.count').text('')
-        cat.addClass('empty')
-        cat.find('a').attr('href', null)
-
-    @sidebar.find('#sidebar_results_tab').tab('show')
-
-  buildPaginator: (container, current, count, handler) ->
-    appendLink = (page) ->
-      link = $("<a href=\"#\">#{page}</a>")
-      link.click ->
-        handler(page)
-
-      container.append($("<span />").append(link))
-
-    appendGap = ->
-      container.append("<span class=\"disabled\"><a href=\"#\" onlick=\"return false\">...</a></span>")
-
-    appendActive = (page) ->
-      container.append("<span class=\"active\"><a href=\"#\" onlick=\"return false\">#{page}</a></span>")
-
-    size = 2
-    container.html("")
-
-    return if count <= 1
-
-    appendLink(1) if current - size > 1
-    appendGap() if current - size > 2
-
-    if current > 1
-      appendLink(page) for page in [Math.max(current-size,1)..current-1]
-
-    appendActive(current)
-
-    if current < count
-      appendLink(page) for page in [current+1..Math.min(current+size,count)]
-
-    appendGap() if current + size < count - 1
-    appendLink(count) if current + size < count
-
   findCategories: (table, types) ->
     cat for cat in metadata.categories when cat.table == table and _.any(cat.types, (ctype) -> _.include(types, ctype))
 
@@ -231,21 +183,6 @@ class @App
     res = new SearchResult(@, result)
     @searchResultsLayer.addLayer(res.getMarker())
     res.getNode()
-
-  buildIcon: (url) ->
-    @iconCache = {} unless @iconCache
-    return @iconCache[url] if @iconCache[url]
-
-    iconClass = L.Icon.extend
-      options:
-        iconUrl: url
-        iconSize: new L.Point(32, 37)
-        iconAnchor: new L.Point(16, 35)
-        shadowUrl: '/images/marker-shadow.png'
-        shadowSize: new L.Point(50, 35)
-        popupAnchor: new L.Point(0, -25)
-
-    @iconCache[url] = new iconClass()
 
   showPopup: (data) ->
     @prevPopup.modal('hide') if @prevPopup

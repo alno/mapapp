@@ -40,7 +40,7 @@ class @SearchResult
     return @marker if @marker
 
     markerOptions = {}
-    markerOptions.icon = @app.buildIcon(@icons[0]) if @icons.length > 0
+    markerOptions.icon = App.Utils.buildIcon(@icons[0]) if @icons.length > 0
 
     popupContent = $("<div><h3>#{@data.name}</h3><b>#{@data.address || ''}</b><p><a class=\"more\" href=\"#\" onclick=\"return false\">#{I18n.t 'info.links.more'}</a></p></div>")
     popupContent.find('a.more').click =>

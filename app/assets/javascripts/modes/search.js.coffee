@@ -21,4 +21,22 @@ class @App.Search
 
       if requery
         $.get "/counts.json", {q: params.query}, (data) =>
-          @app.updateSearchCounts(data)
+          @updateSearchCounts(data)
+
+  updateSearchCounts: (data) ->
+    sidebar = @app.sidebar
+
+    sidebar.find('.category_total .count').text(data.category_counts.all)
+    sidebar.find('.category').each ->
+      cat = $(@)
+
+      if count = data.category_counts[parseInt(cat.data('id'))]
+        cat.find('.count').text(count)
+        cat.removeClass('empty')
+        cat.find('a').attr('href', "#categories=#{cat.data('id')}")
+      else
+        cat.find('.count').text('')
+        cat.addClass('empty')
+        cat.find('a').attr('href', null)
+
+    sidebar.find('#sidebar_results_tab').tab('show')
