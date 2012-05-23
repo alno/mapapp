@@ -90,7 +90,7 @@ class @App
       params.mode = @defaultMode
       changed = true
 
-    for k, v of @lastParams when not params[k]
+    for k, v of @lastParams when typeof params[k] == 'undefined'
       params[k] = v
       changed = true
 
@@ -175,6 +175,7 @@ class @App
     else
       @sidebar.find('.results').text(I18n.t("search.no_query"))
 
+    @sidebar.find('.category_total .count').text(data.category_counts.all)
     @sidebar.find('.category').each ->
       cat = $(@)
 

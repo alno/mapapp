@@ -62,7 +62,10 @@ class Search
   end
 
   def counts_by(attr)
-    Hash[ThinkingSphinx.search(query, :group_function => :attr, :limit => 1000, :max_matches => 100000, :group_by => attr, :ids_only => true).results[:matches].map{|m| a = m[:attributes]; [a['@groupby'], a['@count']]}]
+    matches = ThinkingSphinx.search(query, :group_function => :attr, :limit => 1000, :max_matches => 100000, :group_by => attr, :ids_only => true).results[:matches]
+    res = Hash[matches.map{|m| a = m[:attributes]; [a['@groupby'], a['@count']]}]
+    res[:all] = ThinkingSphinx.count(query, :max_matches => 100000)
+    res
   end
 
 end

@@ -16,6 +16,10 @@
 
         .pagination
       #sidebar_categories.tab-pane
+        .category_total
+          = link_to "Всего", "#categories="
+          %span.count
+
         = render 'layouts/categories', :categories => Category.arrange
 
   .mode_dependent.mode_validators
