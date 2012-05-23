@@ -62,14 +62,22 @@ class @App.Editing.PolylineTool
     @map.off 'click', @onMapClick
 
   onMapClick: (e) =>
-    unless @line
-      @line = new L.Polyline([])
-      @map.addLayer(@line)
+    @createPolyline() unless @line
 
     @line.addLatLng(e.latlng)
     @line.editing.disable()
     @line.editing.enable()
     @line.fire('edit')
+
+  createPolyline: ->
+    line = @line = new L.Polyline([])
+    line.on 'dblclick', =>
+      if line.editing.enabled()
+        line.editing.disable()
+      else
+        line.editing.enable()
+
+    @map.addLayer(line)
 
 class @App.Editing.PolygonTool
 
@@ -82,16 +90,26 @@ class @App.Editing.PolygonTool
     @map.on 'click', @onMapClick
 
   exit: ->
-    @poly.editing.disable() if @poly
+    if @poly
+      @poly.editing.disable()
+      @poly = null
 
     @map.off 'click', @onMapClick
 
   onMapClick: (e) =>
-    unless @poly
-      @poly = new L.Polygon([])
-      @map.addLayer(@poly)
+    @createPolygon() unless @poly
 
     @poly.addLatLng(e.latlng)
     @poly.editing.disable()
     @poly.editing.enable()
     @poly.fire('edit')
+
+  createPolygon: ->
+    poly = @poly = new L.Polygon([])
+    poly.on 'dblclick', =>
+      if poly.editing.enabled()
+        poly.editing.disable()
+      else
+        poly.editing.enable()
+
+    @map.addLayer(poly)
