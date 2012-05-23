@@ -7,7 +7,7 @@ class @App.Search
   exit: ->
 
   route: (params) ->
-    queryHash = "#{params.lat}/#{params.lon}/#{params.query}"
+    queryHash = "#{params.lat}/#{params.lon}/#{params.query}/#{params.categories}"
 
     if queryHash != @lastQueryHash
       reopenResults = params.query != @lastQuery
@@ -15,6 +15,6 @@ class @App.Search
       @lastQueryHash = queryHash
       @lastQuery = params.query
 
-      $.get "/search.json", {lat: params.lat, lng: params.lon, q: params.query}, (data) =>
+      $.get "/search.json", {lat: params.lat, lng: params.lon, q: params.query, categories: params.categories}, (data) =>
         @app.updateSearchResults(data)
         @app.showSidebar() if reopenResults

@@ -56,6 +56,7 @@ class @App
       else
         app.map.addLayer(layer)
 
+    @lastParams = {}
     @setupRoutes()
 
   setupRoutes: ->
@@ -65,7 +66,9 @@ class @App
     w.trigger 'hashchange'
 
   navigate: (params, force = false) ->
-    params = $.extend($.deparam((location.hash or '').slice(1)), params) unless force
+    params = $.extend(@lastParams, params) unless force
+
+    @lastParams = params
     location.hash = $.param(params)
 
   route: (params) ->
@@ -87,8 +90,13 @@ class @App
       params.mode = @defaultMode
       changed = true
 
+    for k, v of @lastParams when not params[k]
+      params[k] = v
+      changed = true
+
     return @navigate(params) if changed
 
+    @lastParams = params
     @switchMode(params.mode)
 
     unless parseFloat(params.lat) == @map.getCenter().lat and parseFloat(params.lon) == @map.getCenter().lng and parseInt(params.zoom) == @map.getZoom()
@@ -173,7 +181,7 @@ class @App
       if count = data.category_counts[parseInt(cat.data('id'))]
         cat.find('.count').text(count)
         cat.removeClass('empty')
-        cat.find('a').attr('href', "#search/#{data.params.lat}/#{data.params.lng}/#{data.query || ''}/#{cat.data('id')}")
+        cat.find('a').attr('href', "#categories=#{cat.data('id')}")
       else
         cat.find('.count').text('')
         cat.addClass('empty')

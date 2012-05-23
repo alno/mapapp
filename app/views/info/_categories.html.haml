@@ -1,5 +1,5 @@
 %ul.categories
   - model.categories.each do |cat|
     %li{ :style => "background: url(/images/icons-classic/#{cat.icon}.png) no-repeat left center" }
-      %a{ :href => "#search/cur/cur/cur/#{cat.id}" }= cat.name
+      %a{ :href => "#categories=#{cat.id}" }= cat.name
 .clear-left
