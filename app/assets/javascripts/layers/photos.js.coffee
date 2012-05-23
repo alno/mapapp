@@ -1,21 +1,5 @@
 
-
-class @Photo
-
-  constructor: (@data) ->
-    @point = new L.LatLng(@data.lat, @data.lng)
-
-  getMarker: ->
-    return @marker if @marker
-
-    markerOptions = {}
-    markerOptions.icon = App.Utils.buildIcon('/images/icons-classic/photo.png')
-
-    @marker = new L.Marker(@point, markerOptions)
-    @marker.bindPopup @data.popup
-    @marker
-
-class @PhotoLayer
+class @App.PhotoLayer
 
   constructor: ->
     @group = new L.LayerGroup()
@@ -54,7 +38,7 @@ class @PhotoLayer
           newPhotos[id] = @photos[id]
           @photos[id] = undefined
         else
-          newPhotos[id] = new Photo(data)
+          newPhotos[id] = new App.PhotoLayer.Photo(data)
 
       for id, photo of @photos when photo
         @group.removeLayer(photo.getMarker())
@@ -63,3 +47,18 @@ class @PhotoLayer
         @group.addLayer(photo.getMarker())
 
       @photos = newPhotos
+
+class @App.PhotoLayer.Photo
+
+  constructor: (@data) ->
+    @point = new L.LatLng(@data.lat, @data.lng)
+
+  getMarker: ->
+    return @marker if @marker
+
+    markerOptions = {}
+    markerOptions.icon = App.Utils.buildIcon('/images/icons-classic/photo.png')
+
+    @marker = new L.Marker(@point, markerOptions)
+    @marker.bindPopup @data.popup
+    @marker

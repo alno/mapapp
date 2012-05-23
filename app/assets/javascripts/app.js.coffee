@@ -3,11 +3,11 @@
 
 #= require_self
 
-#= require control-distance
-#= require layer-photos
 #= require utils
 
 #= require_tree ./modes
+#= require_tree ./layers
+#= require_tree ./controls
 
 class @App
 
@@ -16,7 +16,7 @@ class @App
     @content = $('#content')
 
     @layers =
-      photos: new PhotoLayer()
+      photos: new App.PhotoLayer()
       weather: new OsmJs.Weather.LeafletLayer({lang: I18n.locale})
 
     @modes =
