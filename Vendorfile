@@ -1,15 +1,21 @@
 folder 'vendor/assets/javascripts' do
-  from 'https://github.com/alno/osm-js-libs.git' do
+  from 'https://github.com/alno/osm-js-libs.git', :branch => 'leaflet-dev' do
     file 'osmjs.validators-layer.js', 'dist/validators/leaflet-layer.js'
     file 'osmjs.validators-errors.js', 'dist/validators/jquery-errors-control.js'
     file 'osmjs.validators-sources.js', 'dist/validators/jquery-sources-control.js'
     file 'osmjs.weather-layer.js', 'dist/weather/leaflet-layer.js'
+    file 'osmjs.distance-control.js', 'dist/distance/leaflet-control.js'
   end
 
   file 'leaflet.scale.js', 'https://raw.github.com/shurshur/leaflet-plugins/master/control/Scale.js'
 
   file 'jquery.animate-enhanced.js', 'https://raw.github.com/benbarnett/jQuery-Animate-Enhanced/master/scripts/src/jquery.animate-enhanced.js'
   file 'jquery.bbq.js', 'https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js'
+end
+
+folder 'vendor/assets/stylesheets' do
+  file 'osmjs.distance-control.css', 'https://raw.github.com/alno/osm-js-libs/leaflet-dev/dist/distance/leaflet-control.css'
+  file 'distance-icon.png', 'https://raw.github.com/alno/osm-js-libs/leaflet-dev/dist/distance/distance-icon.png'
 end
 
 file 'config/mapnik/embossed.xml', 'https://raw.github.com/alno/mapstyle/master/dist/embossed.xml'

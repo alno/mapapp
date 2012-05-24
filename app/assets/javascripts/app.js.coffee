@@ -7,7 +7,8 @@
 
 #= require_tree ./modes
 #= require_tree ./layers
-#= require_tree ./controls
+
+#= require osmjs.distance-control
 
 class @App
 
@@ -40,7 +41,7 @@ class @App
   setupLayers: ->
     @layers =
       photos: new App.PhotoLayer()
-      weather: new OsmJs.Weather.LeafletLayer({lang: I18n.locale})
+      weather: new OsmJs.Weather.LeafletLayer({lang: I18n.locale, temperatureDigits: 0})
 
   setupModes: ->
     @defaultMode = 'search'
