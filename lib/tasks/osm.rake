@@ -18,7 +18,7 @@ namespace :osm do
     min_lon = app['map']['bbox']['min_lng'].to_f.floor
     max_lon = app['map']['bbox']['max_lng'].to_f.ceil
 
-    puts "Downloading height data..."
+    puts "Downloading height data for [#{min_lat}..#{max_lat}]x[#{min_lon}..#{max_lon}]..."
 
     names = (min_lat..max_lat).map{|lat| (min_lon..max_lon).map{|lon| "N#{lat}E0#{lon}" } }.flatten
     names.each do |name|
@@ -27,7 +27,7 @@ namespace :osm do
     end
 
     puts "Merging height data..."
-    system "cd '#{heightdir}' && rm -rf all.tif && gdal_merge.py -v -o all.tif -ul_lr #{min_lon} #{max_lat} #{max_lon} #{min_lat} #{names.map{|n|"#{n}.tif"}.join(' ')}" or raise StandardError.new("Error merging data")
+    system "cd '#{heightdir}' && rm -rf all.tif && gdal_merge.py -v -o all.tif -ul_lr #{min_lon} #{max_lat+1} #{max_lon+1} #{min_lat} #{names.map{|n|"#{n}.tif"}.join(' ')}" or raise StandardError.new("Error merging data")
 
     puts "Reprojecting height data..."
     system "cd '#{heightdir}' && rm -rf warped.tif && gdalwarp -of GTiff -co 'TILED=YES' -srcnodata 32767 -t_srs '+proj=merc +ellps=sphere +R=6378137 +a=6378137 +units=m' -rcs -order 3 -tr 30 30 -multi all.tif warped.tif" or raise StandardError.new("Error reprojecting data")
